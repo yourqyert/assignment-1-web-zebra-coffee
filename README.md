@@ -5,109 +5,58 @@
 
 ---
 
-## 👥 Информация о команде / Team Details
-* **Название проекта:** Zebra Coffee Web Store
-* **Группа:** SE-2507
-* **Участники команды и распределение ролей:**
-    * **Birzhan Zhanbolatuly**
-        * `index.html` — Главная страница витрины, каталог напитков и десертов, hero-баннер.
-        * `profile.html` — Страница профиля пользователя и лояльности (Zebra Club).
-        * `component/module.html` — Интерактивный конфигуратор / конструктор напитка (`<details>`, радиокнопки, чекбоксы).
-        * `component/auth.html` — Страница входа в систему по SMS/телефону.
-        * `profile/cart.html` — Корзина заказа с таблицей позиций.
-        * `profile/order-history.html` — Таблица истории выполненных заказов.
-        * `order/payment.html` — Страница оформления и оплаты заказа с формой.
-        * `order/passed.html` — Экран подтверждения принятого заказа.
-        * `css/style.css` — Базовая дизайн-система, сброс стилей, типографика, адаптивные сетки, компоненты.
+## 👥 Team Details & Page Responsibilities
+* **Project Name:** Zebra Coffee Web Store
+* **Team Structure:**
+    * **Birzhan Zhanbolatuly** 
+        * `index.html` — Homepage showcase, coffee & pastry grid, hero banner.
+        * `profile.html` — User status card, loyalty stats, author bio and links.
+        * `component/module.html` — Beverage builder & configurator (`<details>`, radio buttons, checkboxes).
+        * `component/auth.html` — Phone/SMS authentication view.
+        * `profile/cart.html` — Cart summary with a 4-column data table.
+        * `profile/order-history.html` — Historical orders log with an itemized table.
+        * `order/payment.html` — Checkout & payment options form.
+        * `order/passed.html` — Order confirmation screen with active ID.
+        * `css/style.css` — Core design system, resets, typography, and responsive grids.
 
 ---
 
-## 🌐 Ссылка на Live Demo (GitHub Pages)
-* **GitHub Repository:** `https://github.com/yourqyert/slmsung-web`
+## 📌 Project Overview
+**Zebra Coffee** is a lightweight web showcase and pre-ordering platform.
 
 ---
 
-## 📌 Описание проекта
-**Zebra Coffee** — современный веб-сервис для предварительного заказа кофе и десертов без очередей. Проект разработан исключительно на чистом **HTML5** и **CSS3** без использования сторонних UI-библиотек или CSS-фреймворков (Bootstrap, Tailwind строго исключены согласно критериям задания).
+## 🛠 Step-by-Step Task Achievements
+
+### Part 1: HTML Structure
+1. **HTML Boilerplate (Step 1):** Complete boilerplate on all 7 pages with `<!DOCTYPE html>`, `<html lang="ru">`, `<meta charset="UTF-8">`, viewport tags, and unique `<title>` attributes.
+2. **Semantic Hierarchy & Content (Step 2):** Logical layout structure using `<header>`, `<nav>`, `<main>`, `<section>`, and `<footer>` containers, paired with structured headings (`<h1>` to `<h4>`) and an author bio block.
+3. **Lists, Images & Navigation (Step 3):** Global navigation menu styled with `<ul>`, step configuration powered by `<ol>`, and optimized image cards with valid `alt` tags.
+4. **Data Tables (Step 4):** Fully styled multi-column tables in `profile/cart.html` and `profile/order-history.html` structured with `<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, and `<td>`.
+5. **HTML Forms & Inputs (Step 5):** Text inputs, email inputs, selects, radio buttons, checkboxes, textareas, and submit buttons styled across the payment and builder pages.
+
+### Part 2: External Styling with CSS
+1. **CSS Linking (Step 7):** Centralized styling in `css/style.css` linked across all pages using relative paths.
+2. **Selector Diversity (Step 8):** Full demonstration of element, class, ID, and descendant selectors.
+3. **Palette & Typography (Step 9):** Cohesive modern dark-accent scheme (`#111111`, `#01a6b8`, `#f4f5f7`) with smooth `:hover` transitions and reset link decorations.
+4. **Box Model & Layout (Step 10–13):** Sticky header navigation, universal box reset (`box-sizing: border-box`), circular avatars (`border-radius: 50%`), and focus rings on form controls.
 
 ---
 
-## 🛠 Выполнение требований задания (Step-by-Step)
-
-### Часть 1. Структура HTML (HTML Structure)
-1. **HTML Boilerplate (Step 1):**
-    * Все страницы имеют корректную декларацию `<!DOCTYPE html>`, атрибут языка `<html lang="ru">`, мета-теги `charset="UTF-8"` и адаптивный `viewport`.
-    * Каждая страница содержит уникальный и описательный тег `<title>` (например, *«Zebra Coffee — Главная»*, *«Zebra Coffee — Конструктор напитка»*).
-2. **Семантическая разметка и типографика (Step 2):**
-    * Использована строгая иерархия заголовков `<h1>` – `<h4>`, теги абзацев `<p>`, смысловые блоки `<header>`, `<main>`, `<section>`, `<footer>`.
-    * В профиле и на страницах размещена информация об авторах проекта.
-3. **Списки, изображения и ссылки (Step 3):**
-    * Меню навигации реализовано через маркированные списки `<ul>`.
-    * Шаги настройки напитка и инструкции оформлены через `<ol>` / нумерованные блоки.
-    * Все изображения содержат осмысленные атрибуты `alt`.
-    * Единая глобальная навигация `<nav class="nav-menu">` связывает все разделы сайта через относительные ссылки.
-4. **Таблицы данных (Step 4):**
-    * Страница `profile/cart.html` содержит таблицу состава корзины (4 колонки: Наименование, Параметры, Кол-во, Цена).
-    * Страница `profile/order-history.html` содержит таблицу истории заказов (4 колонки: Дата, Код заказа, Позиции, Сумма).
-    * Использована валидная семантика таблиц: `<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>`.
-5. **Формы и элементы ввода (Step 5):**
-    * В `order/payment.html` и `component/module.html` представлены все необходимые типы полей:
-        * Текстовое поле (`<input type="text">` для имени)
-        * Email поле (`<input type="email">` для чека)
-        * Выпадающие списки (`<select>` для выбора метода оплаты и времени готовности)
-        * Радио-кнопки (`<input type="radio">` для размера порции)
-        * Чекбоксы (`<input type="checkbox">` для добавок и сиропов)
-        * Многострочное поле ввода (`<textarea>` для пожеланий бариста)
-        * Кнопка отправки формы (`<button type="submit">`).
-
----
-
-### Часть 2. Стилизация CSS (External Styling)
-1. **Единый внешний файл стилей (Step 7):**
-    * Все стили вынесены в отдельный файл `css/style.css` и подключены в `<head>` каждой страницы.
-2. **Использование селекторов (Step 8):**
-    * *Element selectors:* `body`, `a`, `h1`, `p`, `table`, `footer`.
-    * *Class selectors:* `.chip`, `.btn-primary`, `.modern-table`, `.product-item`.
-    * *ID selectors:* `#main-header`, `#auth-form`, `#product-options-form`.
-    * *Descendant selectors:* `.nav-menu ul li a`, `.modern-table th`, `.auth-card h2`.
-3. **Цветовая палитра и типографика (Step 9):**
-    * Основной акцентный цвет: Бирюзовый (`#01a6b8` / hover: `#008896`).
-    * Фоновые оттенки: Светлый технологичный фон (`#f4f5f7`), чистые белые карточки (`#ffffff`), глубокий темный цвет шапки/баннера (`#111111`).
-    * Стилизация ссылок: убран дефолтный `text-decoration`, настроены плавные переходы (`transition`) и эффект при наведении (`:hover`).
-4. **Навигационная панель (Step 10):**
-    * Стилизована с помощью Flexbox, скругленных плашек меню, индикатора активной вкладки (`.active`) и интерактивных состояний наведения.
-5. **Box Model и геометрия (Step 11):**
-    * Глобальный сброс `box-sizing: border-box; margin: 0; padding: 0;`.
-    * Использование современных единиц измерения: `rem`, `px`, `%`, `vh`.
-6. **Медиа и изображения (Step 12):**
-    * Размеры изображений зафиксированы в CSS.
-    * Аватар пользователя стилизован с помощью `border-radius: 50%` для идеальной круглой формы.
-7. **Стилизация UI-компонентов и форм (Step 13):**
-    * Инпуты и селекты имеют современный вид: мягкий фон `#f1f3f5`, скругления `border-radius: 14px`, подсветку границы при фокусе (`:focus`) с акцентной тенью.
-
----
-
-## 📁 Структура проекта
+## 📁 Directory Structure
 ```text
 slmsung-web/
-├── index.html                  # Главная витрина
-├── profile.html                # Профиль пользователя и лояльность
+├── index.html                  # Homepage showcase
+├── profile.html                # User profile & loyalty stats
 ├── css/
-│   └── style.css               # Основные стили проекта
-├── assets/                     # Изображения (coffee1.jpg, avatar.jpg и др.)
+│   └── style.css               # External stylesheet
+├── assets/                     # Image assets
 ├── component/
-│   ├── auth.html               # Страница авторизации
-│   └── module.html             # Конструктор напитка
+│   ├── auth.html               # Authentication page
+│   └── module.html             # Beverage builder
 ├── order/
-│   ├── payment.html            # Форма оплаты и доставки
-│   └── passed.html             # Статус подтверждения заказа
+│   ├── payment.html            # Checkout & payment form
+│   └── passed.html             # Success order confirmation
 └── profile/
-    ├── cart.html               # Таблица корзины
-    └── order-history.html      # Таблица истории заказов
-```
-
----
-
-## 🚀 Инструкция по локальному запуску
-1. Склонируйте репозиторий или разархивируйте проект.
-2. Откройте файл `index.html` в любом современном веб-браузере (Google Chrome, Firefox, Safari, Edge) или запустите через расширение **Live Server** в VS Code.
+    ├── cart.html               # Cart table
+    └── order-history.html      # Order history table
