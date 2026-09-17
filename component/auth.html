@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebra Coffee — Вход</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="auth-page-body">
+
+<main class="auth-container">
+    <div class="auth-banner">
+        <div class="auth-banner-header">
+            <span class="brand-logo">zebra <span>coffee</span></span>
+        </div>
+        <div class="auth-banner-footer">
+            <h3>Бодрость в каждом глотке</h3>
+            <div class="banner-indicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <h2>Добро пожаловать</h2>
+        <p class="auth-subtitle">Заполните поля ниже для того, чтобы войти в систему</p>
+
+        <form id="auth-form" action="../profile.html" method="get">
+            <div class="form-group">
+                <input type="text" id="identifier" name="identifier" placeholder="+7 (708) 000-00-00" required>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%;">Отправить SMS</button>
+
+        </form>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="../index.html" style="font-size: 13px; color: #888;">← Вернуться на главную</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>created by yourqyert</p>
+    <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

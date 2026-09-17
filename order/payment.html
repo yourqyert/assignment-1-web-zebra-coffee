@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebra Coffee — Оплата</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header id="main-header">
+    <div class="logo">
+        <h1>Zebra <span>Coffee</span></h1>
+    </div>
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="../index.html">Главная</a></li>
+            <li><a href="../profile/cart.html">Корзина</a></li>
+            <li><a href="payment.html" class="active">Оплата</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div style="max-width: 500px; margin: 0 auto; background: #ffffff; padding: 2rem; border-radius: 24px; border: 1px solid #eee;">
+        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;">Оплата заказа</h2>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">Выберите способ получения и оплаты.</p>
+
+        <form action="passed.html" method="get">
+            <div class="form-group">
+                <label for="client-name">Ваше имя:</label>
+                <input type="text" id="client-name" name="client-name" placeholder="Биржан" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pay-method">Способ оплаты:</label>
+                <select id="pay-method" name="pay-method">
+                    <option value="kaspi">Kaspi Pay / QR</option>
+                    <option value="card">Банковская карта онлайн</option>
+                    <option value="cash">При получении в кофейне</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pickup-time">Время готовности:</label>
+                <select id="pickup-time" name="pickup-time">
+                    <option value="now">Как можно скорее (10-15 мин)</option>
+                    <option value="30m">Через 30 минут</option>
+                    <option value="1h">Через 1 час</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="client-email">Ваш Email для чека:</label>
+                <input type="email" id="client-email" name="client-email" placeholder="example@mail.com" required>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Оплатить 2 900 ₸</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>created by yourqyert</p>
+    <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+</footer>
+
+</body>
+</html>
