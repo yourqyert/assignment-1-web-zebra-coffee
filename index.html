@@ -8,68 +8,115 @@
 </head>
 <body>
 
-<header id="main-header">
-    <a href="index.html" class="logo">
-        <h1>Zebra <span>Coffee</span></h1>
-    </a>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="index.html" class="active">Главная</a></li>
-            <li><a href="profile.html">Профиль</a></li>
-            <li><a href="component/auth.html">Вход</a></li>
-            <li><a href="component/module.html">Конструктор</a></li>
-            <li><a href="order/payment.html">Оплата</a></li>
-            <li><a href="profile/cart.html">Корзина</a></li>
+<div class="page-grid-layout">
+    <header id="main-header">
+        <a href="index.html" class="logo">
+            <img class="logo" src="assets/logo.png" alt="logo">
+            <h1>Zebra <span>Coffee</span></h1>
+        </a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html" class="active">Главная</a></li>
+
+                <li><a href="component/module.html">Конструктор</a></li>
+                <li><a href="order/payment.html">Оплата</a></li>
+                <li><a href="profile/cart.html">Корзина</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="profile.html">Профиль</a></li>
+
+                <li><a href="component/auth.html">Вход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <h3>Меню и категории</h3>
+        <ul class="sidebar-nav">
+            <li><a href="#all" class="active">☕ Все напитки</a></li>
+            <li><a href="#cold">❄️ Холодный кофе</a></li>
+            <li><a href="#bakery">🥐 Свежая выпечка</a></li>
+            <li><a href="#dessert">🍰 Десерты</a></li>
+            <li><a href="#tea">🍵 Авторский чай</a></li>
         </ul>
-    </nav>
-</header>
 
-<main>
-    <section class="hero-banner">
-        <h2>Бодрость в каждом глотке</h2>
-        <p>Технологичная сеть кофеен Zebra Coffee. Быстрый заказ через веб-витрину без очередей.</p>
-        <a href="component/module.html" class="btn">Собрать напиток</a>
-    </section>
+        <div class="sidebar-info-card">
+            <h4>Акция недели</h4>
+            <p>Скидка 10% на все десерты при заказе через сайт!</p>
+        </div>
+    </aside>
 
-    <div class="category-chips">
-        <span class="chip active">☕ Все напитки</span>
-        <span class="chip">❄️ Холодный кофе</span>
-        <span class="chip">🥐 Свежая выпечка</span>
-        <span class="chip">🍰 Десерты</span>
-    </div>
+    <main class="main-content">
+        <section class="hero-banner">
+            <h2>Бодрость в каждом глотке</h2>
+            <p>Технологичная сеть кофеен Zebra Coffee. Быстрый заказ через веб-витрину без очередей.</p>
+            <a href="component/module.html" class="btn hero-btn">Собрать напиток</a>
+        </section>
 
-    <section class="product-grid">
-        <div class="product-item">
-            <img src="assets/latte.jpeg" alt="Латте">
-            <h4>Латте Макиато</h4>
-            <p class="price">1 600 ₸</p>
-            <a href="component/module.html" class="btn-secondary">Выбрать</a>
+        <div class="category-chips">
+            <span class="chip active">☕ Все напитки</span>
+            <span class="chip">❄️ Холодный кофе</span>
+            <span class="chip">🥐 Свежая выпечка</span>
+            <span class="chip">🍰 Десерты</span>
         </div>
-        <div class="product-item">
-            <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай">
-            <h4>Ташкентский чай</h4>
-            <p class="price">1 400 ₸</p>
-            <a href="component/module.html" class="btn-secondary">Выбрать</a>
-        </div>
-        <div class="product-item">
-            <img src="assets/kruassan.jpeg" alt="Круассан">
-            <h4>Классический круассан</h4>
-            <p class="price">1 200 ₸</p>
-            <a href="profile/cart.html" class="btn-secondary">В корзину</a>
-        </div>
-        <div class="product-item">
-            <img src="assets/breakfast1.jpeg" alt="Завтрак">
-            <h4>Датский сет</h4>
-            <p class="price">2 200 ₸</p>
-            <a href="profile/cart.html" class="btn-secondary">В корзину</a>
-        </div>
-    </section>
-</main>
 
-<footer>
-    <p>created by yourqyert</p>
-    <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
-</footer>
+        <h3 class="section-title">Популярные позиции</h3>
+
+        <section class="cards-flex-row">
+            <div class="product-card">
+                <img src="assets/latte.jpeg" alt="Латте">
+                <div class="card-content">
+                    <h4>Латте Макиато</h4>
+                    <p class="description">Нежный кофе с мягкой молочной пенкой и сиропом на выбор.</p>
+                    <p class="price">1 600 ₸</p>
+                </div>
+                <a href="component/module.html" class="btn-secondary">Выбрать</a>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай">
+                <div class="card-content">
+                    <h4>Ташкентский чай</h4>
+                    <p class="description">Ароматный черный и зеленый чай с добавлением лимона, мяты и меда.</p>
+                    <p class="price">1 400 ₸</p>
+                </div>
+                <a href="component/module.html" class="btn-secondary">Выбрать</a>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/kruassan.jpeg" alt="Круассан">
+                <div class="card-content">
+                    <h4>Классический круассан</h4>
+                    <p class="description">Хрустящая французская выпечка из слоеного теста на сливочном масле.</p>
+                    <p class="price">1 200 ₸</p>
+                </div>
+                <a href="profile/cart.html" class="btn-secondary">В корзину</a>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/breakfast1.jpeg" alt="Завтрак">
+                <div class="card-content">
+                    <h4>Датский сет</h4>
+                    <p class="description">Сбалансированный утренний завтрак для отличного начала продуктивного дня.</p>
+                    <p class="price">2 200 ₸</p>
+                </div>
+                <a href="profile/cart.html" class="btn-secondary">В корзину</a>
+            </div>
+        </section>
+
+        <section class="help-choice-banner">
+            <div class="choice-text">
+                <h3>Не знаете, что выбрать?</h3>
+                <p>Загляните в нашу интерактивную витрину-галерею: покажем все напитки, десерты и их состав с яркими фото.</p>
+            </div>
+            <a href="gallery.html" class="btn">Подобрать напиток в галерее →</a>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <p>created by yourqyert</p>
+        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+    </footer>
+</div>
 
 </body>
 </html>

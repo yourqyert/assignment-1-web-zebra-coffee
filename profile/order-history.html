@@ -8,54 +8,76 @@
 </head>
 <body>
 
-<header id="main-header">
-    <a href="../index.html" class="logo">
-        <h1>Zebra <span>Coffee</span></h1>
-    </a>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="../index.html">Главная</a></li>
-            <li><a href="../profile.html">Профиль</a></li>
-            <li><a href="order-history.html" class="active">История</a></li>
+<div class="page-grid-layout">
+    <header id="main-header">
+        <a href="../index.html" class="logo">
+            <img class="logo" src="../assets/logo.png" alt="logo">
+            <h1>Zebra <span>Coffee</span></h1>
+        </a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="../gallery.html">Галерея</a></li>
+                <li><a href="../profile.html">Профиль</a></li>
+                <li><a href="../component/auth.html">Вход</a></li>
+                <li><a href="../component/module.html">Конструктор</a></li>
+                <li><a href="../order/payment.html">Оплата</a></li>
+                <li><a href="cart.html">Корзина</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <h3>Личный кабинет</h3>
+        <ul class="sidebar-nav">
+            <li><a href="../profile.html">👤 Мой профиль</a></li>
+            <li><a href="cart.html">🛒 Корзина</a></li>
+            <li><a href="order-history.html" class="active">📜 История заказов</a></li>
+            <li><a href="../gallery.html">🖼️ Витрина-галерея</a></li>
         </ul>
-    </nav>
-</header>
 
-<main>
-    <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">История заказов</h2>
+        <div class="sidebar-info-card">
+            <h4>Повтор заказа</h4>
+            <p>Нажмите на номер заказа в приложении или покажите бариста для повтора.</p>
+        </div>
+    </aside>
 
-    <div class="table-card">
-        <table class="modern-table">
-            <thead>
-            <tr>
-                <th>Дата</th>
-                <th>Код заказа</th>
-                <th>Позиции</th>
-                <th>Сумма</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>15.09.2026</td>
-                <td><strong>#ZC-892</strong></td>
-                <td>Латте (L), Чизкейк</td>
-                <td><strong>3 400 ₸</strong></td>
-            </tr>
-            <tr>
-                <td>12.09.2026</td>
-                <td><strong>#ZC-741</strong></td>
-                <td>Флэт Уайт, Сэндвич с курицей</td>
-                <td><strong>2 800 ₸</strong></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</main>
+    <main class="main-content">
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">История заказов</h2>
 
-<footer>
-    <p>created by yourqyert</p>
-    <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
-</footer>
+        <div class="table-card">
+            <table class="modern-table">
+                <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Код заказа</th>
+                    <th>Позиции</th>
+                    <th>Сумма</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>15.09.2026</td>
+                    <td><strong>#ZC-892</strong></td>
+                    <td>Латте (L), Чизкейк</td>
+                    <td><strong>3 400 ₸</strong></td>
+                </tr>
+                <tr>
+                    <td>12.09.2026</td>
+                    <td><strong>#ZC-741</strong></td>
+                    <td>Флэт Уайт, Сэндвич с курицей</td>
+                    <td><strong>2 800 ₸</strong></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer id="main-footer">
+        <p>created by yourqyert</p>
+        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+    </footer>
+</div>
 
 </body>
 </html>

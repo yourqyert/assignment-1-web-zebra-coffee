@@ -1,0 +1,159 @@
+{
+  "categories": [
+    {
+      "id": "coffee",
+      "name": "Кофе",
+      "icon": "☕"
+    },
+    {
+      "id": "cold_coffee",
+      "name": "Холодный кофе",
+      "icon": "❄️"
+    },
+    {
+      "id": "tea",
+      "name": "Чай",
+      "icon": "🍵"
+    },
+    {
+      "id": "bakery",
+      "name": "Выпечка",
+      "icon": "🥐"
+    },
+    {
+      "id": "desserts",
+      "name": "Десерты",
+      "icon": "🍰"
+    }
+  ],
+
+  "goods": [
+    {
+      "id": 1,
+      "name": "Латте Макиато",
+      "category": "coffee",
+      "price": 1600,
+      "description": "Эспрессо с горячим молоком и плотной молочной пенкой.",
+      "image": "assets/latte.jpeg"
+    },
+    {
+      "id": 2,
+      "name": "Капучино Классик",
+      "category": "coffee",
+      "price": 1500,
+      "description": "Идеальный баланс насыщенного эспрессо и шелковистой пены.",
+      "image": "assets/latte.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Флэт Уайт",
+      "category": "coffee",
+      "price": 1700,
+      "description": "Двойной эспрессо с бархатистым молоком для ценителей вкуса.",
+      "image": "assets/latte.jpeg"
+    },
+    {
+      "id": 4,
+      "name": "Айс Американо",
+      "category": "cold_coffee",
+      "price": 1300,
+      "description": "Освежающий эспрессо со льдом и фильтрованной водой.",
+      "image": "assets/latte.jpeg"
+    },
+    {
+      "id": 5,
+      "name": "Айс Карамель Латте",
+      "category": "cold_coffee",
+      "price": 1800,
+      "description": "Охлажденный латте с добавлением домашней соленой карамели.",
+      "image": "assets/latte.jpeg"
+    },
+    {
+      "id": 6,
+      "name": "Ташкентский чай",
+      "category": "tea",
+      "price": 1400,
+      "description": "Микс черного и зеленого чая с лимоном, мятой и медом.",
+      "image": "assets/tashkent-tea.jpeg"
+    },
+    {
+      "id": 7,
+      "name": "Ягодный авторский чай",
+      "category": "tea",
+      "price": 1500,
+      "description": "Натуральное пюре из малины и облепихи с пряностями.",
+      "image": "assets/tashkent-tea.jpeg"
+    },
+    {
+      "id": 8,
+      "name": "Классический круассан",
+      "category": "bakery",
+      "price": 1200,
+      "description": "Хрустящий слоеный круассан на натуральном сливочном масле.",
+      "image": "assets/kruassan.jpeg"
+    },
+    {
+      "id": 9,
+      "name": "Датский сет",
+      "category": "bakery",
+      "price": 2200,
+      "description": "Сытный комбо-завтрак со свежей выпечкой и добавками.",
+      "image": "assets/breakfast1.jpeg"
+    },
+    {
+      "id": 10,
+      "name": "Чизкейк Сан-Себастьян",
+      "category": "desserts",
+      "price": 1800,
+      "description": "Карамелизированный снаружи и нежнейший сливочный внутри.",
+      "image": "assets/breakfast1.jpeg"
+    }
+  ],
+
+  "users": [
+    {
+      "id": 1,
+      "name": "Биржан",
+      "phone": "+7 (708) 000-00-00",
+      "email": "254977@astanait.edu.kz",
+      "avatar": "assets/avatar.jpg",
+      "status": "gold",
+      "cashback_balance": 850
+    },
+    {
+      "id": 2,
+      "name": "Нурсулу",
+      "phone": "+7 (700) 888-11-11",
+      "email": "nursulu@team.zebracoffee.kz",
+      "avatar": "assets/nursulu.jpg",
+      "status": "staff",
+      "cashback_balance": 55
+    },
+    {
+      "id": 3,
+      "name": "Диана",
+      "phone": "+7 (776) 740-44-00",
+      "email": "diana_s@inbox.ru",
+      "avatar": "assets/diana.jpg",
+      "status": "none",
+      "cashback_balance": 10
+    }
+  ],
+
+  "addresses": [
+    {
+      "id": 1,
+      "name": "Зебра на Мангилик Ел",
+      "address": "Проспект Мангилик Ел, 38",
+      "photo": "assets/addresses/mangilik-el-38.jpg",
+      "link": "https://go.2gis.com/GXhGJ"
+    },
+    {
+      "id": 2,
+      "name": "Зебра на Улы Дала",
+      "address": "Проспект Улы Дала, 63",
+      "photo": "assets/addresses/uly-dala-63.jpg",
+      "link": "https://go.2gis.com/GXhGJ"
+    }
+  ]
+}

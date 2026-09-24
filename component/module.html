@@ -8,74 +8,93 @@
 </head>
 <body>
 
-<header id="main-header">
-    <a href="../index.html" class="logo">
-        <h1>Zebra <span>Coffee</span></h1>
-    </a>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="../index.html">Главная</a></li>
-            <li><a href="../profile.html">Профиль</a></li>
-            <li><a href="auth.html">Вход</a></li>
-            <li><a href="module.html" class="active">Конструктор</a></li>
+<div class="page-grid-layout">
+    <header id="main-header">
+        <a href="../index.html" class="logo">
+            <img class="logo" src="../assets/logo.png" alt="logo">
+            <h1>Zebra <span>Coffee</span></h1>
+        </a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="../gallery.html">Галерея</a></li>
+                <li><a href="../profile.html">Профиль</a></li>
+                <li><a href="auth.html">Вход</a></li>
+                <li><a href="module.html" class="active">Конструктор</a></li>
+                <li><a href="../profile/cart.html">Корзина</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <h3>Кастомизация</h3>
+        <ul class="sidebar-nav">
+            <li><a href="module.html" class="active">⚙️ Конструктор</a></li>
+            <li><a href="../gallery.html">🖼️ Галерея блюд</a></li>
+            <li><a href="../profile/cart.html">🛒 Корзина</a></li>
         </ul>
-    </nav>
-</header>
 
-<main>
-    <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">Конструктор заказа</h2>
-    <p style="color: #666; margin-bottom: 1.5rem;">Нажмите на карточку ниже для раскрытия параметров стаканчика, сиропов и десерта.</p>
-
-    <details class="modal-details" open>
-        <summary>
-            <span>☕ Капучино на выбор</span>
-            <span style="color: #01a6b8; font-size: 0.9rem;">Настроить параметры ▾</span>
-        </summary>
-
-        <div class="modal-content">
-            <form id="product-options-form" action="../profile/cart.html" method="get">
-                <div class="form-group">
-                    <label><strong>1. Размер чашки:</strong></label>
-                    <div style="display: flex; gap: 1rem; margin-top: 0.4rem;">
-                        <label><input type="radio" name="cup-size" value="s" checked> S (250 мл)</label>
-                        <label><input type="radio" name="cup-size" value="m"> M (350 мл)</label>
-                        <label><input type="radio" name="cup-size" value="l"> L (450 мл)</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label><strong>2. Дополнительные опции:</strong></label>
-                    <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.4rem;">
-                        <label><input type="checkbox" name="syrup" value="vanilla"> Ванильный сироп (+250 ₸)</label>
-                        <label><input type="checkbox" name="milk" value="oat"> Овсяное молоко (+300 ₸)</label>
-                        <label><input type="checkbox" name="shot" value="extra"> Дополнительный эспрессо-шот (+250 ₸)</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="dessert"><strong>3. Добавить десерт:</strong></label>
-                    <select id="dessert" name="dessert">
-                        <option value="none">Без десерта</option>
-                        <option value="croissant">Миндальный круассан (+1 200 ₸)</option>
-                        <option value="cheesecake">Чизкейк Сан-Себастьян (+1 800 ₸)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="comment"><strong>Пожелания бариста:</strong></label>
-                    <textarea id="comment" name="comment" rows="3" placeholder="Сделать не слишком горячим, без сахара..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-primary" style="width: 100%;">Добавить в корзину</button>
-            </form>
+        <div class="sidebar-info-card">
+            <h4>Растительное молоко</h4>
+            <p>Овсяное, кокосовое и миндальное молоко доступны для любого объема чашки.</p>
         </div>
-    </details>
-</main>
+    </aside>
 
-<footer>
-    <p>created by yourqyert</p>
-    <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
-</footer>
+    <main class="main-content">
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">Конструктор заказа</h2>
+        <p style="color: #666; margin-bottom: 1.5rem;">Настройте параметры напитка, сиропы и добавьте свежий десерт.</p>
+
+        <details class="modal-details" open>
+            <summary>
+                <span>☕ Капучино на выбор</span>
+                <span style="color: #01a6b8; font-size: 0.9rem;">Настроить параметры ▾</span>
+            </summary>
+
+            <div class="modal-content">
+                <form id="product-options-form" action="../profile/cart.html" method="get">
+                    <div class="form-group">
+                        <label><strong>1. Размер чашки:</strong></label>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.4rem;">
+                            <label><input type="radio" name="cup-size" value="s" checked> S (250 мл)</label>
+                            <label><input type="radio" name="cup-size" value="m"> M (350 мл)</label>
+                            <label><input type="radio" name="cup-size" value="l"> L (450 мл)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><strong>2. Дополнительные опции:</strong></label>
+                        <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.4rem;">
+                            <label><input type="checkbox" name="syrup" value="vanilla"> Ванильный сироп (+250 ₸)</label>
+                            <label><input type="checkbox" name="milk" value="oat"> Овсяное молоко (+300 ₸)</label>
+                            <label><input type="checkbox" name="shot" value="extra"> Дополнительный эспрессо-шот (+250 ₸)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dessert"><strong>3. Добавить десерт:</strong></label>
+                        <select id="dessert" name="dessert">
+                            <option value="none">Без десерта</option>
+                            <option value="croissant">Миндальный круассан (+1 200 ₸)</option>
+                            <option value="cheesecake">Чизкейк Сан-Себастьян (+1 800 ₸)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment"><strong>Пожелания бариста:</strong></label>
+                        <textarea id="comment" name="comment" rows="3" placeholder="Сделать не слишком горячим, без сахара..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">Добавить в корзину</button>
+                </form>
+            </div>
+        </details>
+    </main>
+
+    <footer id="main-footer">
+        <p>created by yourqyert</p>
+        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+    </footer>
+</div>
 
 </body>
 </html>

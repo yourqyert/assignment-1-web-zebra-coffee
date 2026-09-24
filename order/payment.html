@@ -8,62 +8,83 @@
 </head>
 <body>
 
-<header id="main-header">
-    <a href="../index.html" class="logo">
-        <h1>Zebra <span>Coffee</span></h1>
-    </a>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="../index.html">Главная</a></li>
-            <li><a href="../profile/cart.html">Корзина</a></li>
-            <li><a href="payment.html" class="active">Оплата</a></li>
+<div class="page-grid-layout">
+    <header id="main-header">
+        <a href="../index.html" class="logo">
+            <img class="logo" src="../assets/logo.png" alt="logo">
+            <h1>Zebra <span>Coffee</span></h1>
+        </a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="../gallery.html">Галерея</a></li>
+                <li><a href="../profile.html">Профиль</a></li>
+                <li><a href="../component/auth.html">Вход</a></li>
+                <li><a href="../component/module.html">Конструктор</a></li>
+                <li><a href="payment.html" class="active">Оплата</a></li>
+                <li><a href="../profile/cart.html">Корзина</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <h3>Оформление</h3>
+        <ul class="sidebar-nav">
+            <li><a href="../profile/cart.html">🛒 Корзина</a></li>
+            <li><a href="payment.html" class="active">💳 Оплата</a></li>
+            <li><a href="../gallery.html">🖼️ Галерея</a></li>
         </ul>
-    </nav>
-</header>
 
-<main>
-    <div style="max-width: 500px; margin: 0 auto; background: #ffffff; padding: 2rem; border-radius: 24px; border: 1px solid #eee;">
-        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;">Оплата заказа</h2>
-        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">Выберите способ получения и оплаты.</p>
+        <div class="sidebar-info-card">
+            <h4>Безопасная оплата</h4>
+            <p>Поддержка мгновенной оплаты через Kaspi QR и карты всех банков.</p>
+        </div>
+    </aside>
 
-        <form action="passed.html" method="get">
-            <div class="form-group">
-                <label for="client-name">Ваше имя:</label>
-                <input type="text" id="client-name" name="client-name" placeholder="Биржан" required>
-            </div>
+    <main class="main-content">
+        <div style="max-width: 500px; margin: 0 auto; background: #ffffff; padding: 2rem; border-radius: 24px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+            <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;">Оплата заказа</h2>
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">Выберите способ получения и оплаты.</p>
 
-            <div class="form-group">
-                <label for="pay-method">Способ оплаты:</label>
-                <select id="pay-method" name="pay-method">
-                    <option value="kaspi">Kaspi Pay / QR</option>
-                    <option value="card">Банковская карта онлайн</option>
-                    <option value="cash">При получении в кофейне</option>
-                </select>
-            </div>
+            <form action="passed.html" method="get">
+                <div class="form-group">
+                    <label for="client-name">Ваше имя:</label>
+                    <input type="text" id="client-name" name="client-name" placeholder="Биржан" required>
+                </div>
 
-            <div class="form-group">
-                <label for="pickup-time">Время готовности:</label>
-                <select id="pickup-time" name="pickup-time">
-                    <option value="now">Как можно скорее (10-15 мин)</option>
-                    <option value="30m">Через 30 минут</option>
-                    <option value="1h">Через 1 час</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="pay-method">Способ оплаты:</label>
+                    <select id="pay-method" name="pay-method">
+                        <option value="kaspi">Kaspi Pay / QR</option>
+                        <option value="card">Банковская карта онлайн</option>
+                        <option value="cash">При получении в кофейне</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="client-email">Ваш Email для чека:</label>
-                <input type="email" id="client-email" name="client-email" placeholder="example@mail.com" required>
-            </div>
+                <div class="form-group">
+                    <label for="pickup-time">Время готовности:</label>
+                    <select id="pickup-time" name="pickup-time">
+                        <option value="now">Как можно скорее (10-15 мин)</option>
+                        <option value="30m">Через 30 минут</option>
+                        <option value="1h">Через 1 час</option>
+                    </select>
+                </div>
 
-            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Оплатить 2 900 ₸</button>
-        </form>
-    </div>
-</main>
+                <div class="form-group">
+                    <label for="client-email">Ваш Email для чека:</label>
+                    <input type="email" id="client-email" name="client-email" placeholder="example@mail.com" required>
+                </div>
 
-<footer>
-    <p>created by yourqyert</p>
-    <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
-</footer>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Оплатить 2 900 ₸</button>
+            </form>
+        </div>
+    </main>
+
+    <footer id="main-footer">
+        <p>created by yourqyert</p>
+        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+    </footer>
+</div>
 
 </body>
 </html>

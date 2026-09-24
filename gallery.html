@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebra Coffee — Галерея и помощь с выбором</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-grid-layout">
+    <header id="main-header">
+        <a href="index.html" class="logo">
+            <img class="logo" src="assets/logo.png" alt="logo">
+            <h1>Zebra <span>Coffee</span></h1>
+        </a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="gallery.html" class="active">Галерея</a></li>
+                <li><a href="profile.html">Профиль</a></li>
+                <li><a href="component/auth.html">Вход</a></li>
+                <li><a href="component/module.html">Конструктор</a></li>
+                <li><a href="profile/cart.html">Корзина</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <h3>Меню и категории</h3>
+        <ul class="sidebar-nav">
+            <li><a href="index.html">☕ Все напитки</a></li>
+            <li><a href="gallery.html" class="active">🖼️ Витрина-галерея</a></li>
+            <li><a href="component/module.html">⚙️ Конструктор заказа</a></li>
+        </ul>
+
+        <div class="sidebar-info-card">
+            <h4>Гид по вкусам</h4>
+            <p>Наведите на фото, чтобы узнать состав, доступные опции и сразу собрать заказ в конструкторе.</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="gallery-header-block">
+            <h2>Витрина напитков и десертов</h2>
+            <p>Интерактивная галерея для легкого выбора идеального кофе или свежей выпечки под ваше настроение.</p>
+        </div>
+
+        <section class="image-gallery">
+            <div class="gallery-item">
+                <img src="assets/latte.jpeg" alt="Латте Макиато">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Латте Макиато</h4>
+                    <span class="item-sub">Нежная молочная пена • 1 600 ₸</span>
+                    <p class="item-description">Эспрессо с горячим взбитым молоком и бархатистой пенкой.</p>
+                    <div class="item-options">
+                        <p><strong>Молоко:</strong> классическое, овсяное, банановое</p>
+                        <p><strong>Зерно:</strong> 100% арабика (Бразилия / Эфиопия)</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Ташкентский чай</h4>
+                    <span class="item-sub">Мята, лимон, мёд • 1 400 ₸</span>
+                    <p class="item-description">Традиционный восточный чай с цитрусовой свежестью и медовым ароматом.</p>
+                    <div class="item-options">
+                        <p><strong>Основа:</strong> купаж черного и зеленого чая</p>
+                        <p><strong>Добавки:</strong> свежая мята, слайсы лимона, натуральный мед</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/kruassan.jpeg" alt="Классический круассан">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Французский круассан</h4>
+                    <span class="item-sub">Сливочное масло • 1 200 ₸</span>
+                    <p class="item-description">Воздушная слоеная выпечка с золотистой корочкой и нежным мякишем.</p>
+                    <div class="item-options">
+                        <p><strong>Подача:</strong> подогретый, свежая выпечка</p>
+                        <p><strong>Топпинг:</strong> джем, соленая карамель, нутелла</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/breakfast1.jpeg" alt="Датский сет">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Датский сет</h4>
+                    <span class="item-sub">Сытный завтрак • 2 200 ₸</span>
+                    <p class="item-description">Полноценный утренний сет: свежая выпечка, яйцо пашот, соус и сыр.</p>
+                    <div class="item-options">
+                        <p><strong>Напиток в сете:</strong> американо или черный чай на выбор</p>
+                        <p><strong>Хлеб:</strong> хрустящая чиабатта или круассан</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/latte.jpeg" alt="Капучино Классик">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Капучино Классик</h4>
+                    <span class="item-sub">Плотная пенка • 1 500 ₸</span>
+                    <p class="item-description">Классический баланс насыщенного эспрессо и глянцевой молочной пены.</p>
+                    <div class="item-options">
+                        <p><strong>Объем:</strong> S (250 мл), M (350 мл), L (450 мл)</p>
+                        <p><strong>Сиропы:</strong> ваниль, соленая карамель, лесной орех</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/berry-tea.jpeg" alt="Ягодный чай">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Ягодный авторский чай</h4>
+                    <span class="item-sub">Облепиха и малина • 1 500 ₸</span>
+                    <p class="item-description">Согревающий витаминный сбор из ягодного пюре с бадьяном и корицей.</p>
+                    <div class="item-options">
+                        <p><strong>Температура:</strong> горячий или со льдом</p>
+                        <p><strong>Сладость:</strong> без сахара, мед, тростниковый сироп</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/kruassan.jpeg" alt="Миндальный круассан">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Миндальный круассан</h4>
+                    <span class="item-sub">Франжипан и лепестки • 1 500 ₸</span>
+                    <p class="item-description">Двойной запекания круассан с начинкой из орехового крема франжипан.</p>
+                    <div class="item-options">
+                        <p><strong>Посыпка:</strong> поджаренные миндальные лепестки</p>
+                        <p><strong>Подача:</strong> теплый с хрустящей корочкой</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/sandwich.jpeg" alt="Сэндвич с индейкой">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Сэндвич с индейкой</h4>
+                    <span class="item-sub">Чиабатта, сыр, зелень • 1 800 ₸</span>
+                    <p class="item-description">Филе индейки су-вид, свежие томаты, соус песто и сыр моцарелла.</p>
+                    <div class="item-options">
+                        <p><strong>Хлеб:</strong> темная или классическая чиабатта</p>
+                        <p><strong>Острота:</strong> классический или с соусом халапеньо</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/flat-white.jpeg" alt="Флэт Уайт">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Флэт Уайт</h4>
+                    <span class="item-sub">Двойной эспрессо • 1 700 ₸</span>
+                    <p class="item-description">Для тех, кто любит выраженный кофейный профиль с тонким слоем молока.</p>
+                    <div class="item-options">
+                        <p><strong>Шот:</strong> Double Ristretto (100% арабика)</p>
+                        <p><strong>Молоко:</strong> цельное, безлактозное, миндальное</p>
+                    </div>
+                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <p>created by yourqyert</p>
+        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+    </footer>
+</div>
+
+</body>
+</html>

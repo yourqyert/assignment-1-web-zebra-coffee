@@ -8,63 +8,84 @@
 </head>
 <body>
 
-<header id="main-header">
-    <a href="../index.html" class="logo">
-        <h1>Zebra <span>Coffee</span></h1>
-    </a>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="../index.html">Главная</a></li>
-            <li><a href="../profile.html">Профиль</a></li>
-            <li><a href="cart.html" class="active">Корзина</a></li>
-            <li><a href="../order/payment.html">Оплата</a></li>
+<div class="page-grid-layout">
+    <header id="main-header">
+        <a href="../index.html" class="logo">
+            <img class="logo" src="../assets/logo.png" alt="logo">
+            <h1>Zebra <span>Coffee</span></h1>
+        </a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="../gallery.html">Галерея</a></li>
+                <li><a href="../profile.html">Профиль</a></li>
+                <li><a href="../component/auth.html">Вход</a></li>
+                <li><a href="../component/module.html">Конструктор</a></li>
+                <li><a href="../order/payment.html">Оплата</a></li>
+                <li><a href="cart.html" class="active">Корзина</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <h3>Заказ</h3>
+        <ul class="sidebar-nav">
+            <li><a href="cart.html" class="active">🛒 Корзина</a></li>
+            <li><a href="../order/payment.html">💳 Оплата</a></li>
+            <li><a href="order-history.html">📜 История заказов</a></li>
+            <li><a href="../index.html">☕ Меню</a></li>
         </ul>
-    </nav>
-</header>
 
-<main>
-    <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">Корзина заказа</h2>
-
-    <div class="table-card">
-        <table class="modern-table">
-            <thead>
-            <tr>
-                <th>Наименование</th>
-                <th>Параметры</th>
-                <th>Кол-во</th>
-                <th>Цена</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><strong>Капучино</strong></td>
-                <td>Размер M, Овсяное молоко</td>
-                <td>1</td>
-                <td>1 700 ₸</td>
-            </tr>
-            <tr>
-                <td><strong>Круассан</strong></td>
-                <td>Миндальный</td>
-                <td>1</td>
-                <td>1 200 ₸</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid #eee;">
-            <div>
-                <span style="color: #888; font-size: 0.9rem;">Итого к оплате:</span>
-                <h3 style="font-size: 1.6rem; font-weight: 800; color: #111;">2 900 ₸</h3>
-            </div>
-            <a href="../order/payment.html" class="btn">Перейти к оформлению</a>
+        <div class="sidebar-info-card">
+            <h4>Бесплатная доставка</h4>
+            <p>От 4 000 ₸ доставим заказ прямо в кампус за 20 минут.</p>
         </div>
-    </div>
-</main>
+    </aside>
 
-<footer>
-    <p>created by yourqyert</p>
-    <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
-</footer>
+    <main class="main-content">
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">Корзина заказа</h2>
+
+        <div class="table-card">
+            <table class="modern-table">
+                <thead>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Параметры</th>
+                    <th>Кол-во</th>
+                    <th>Цена</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong>Капучино</strong></td>
+                    <td>Размер M, Овсяное молоко</td>
+                    <td>1</td>
+                    <td>1 700 ₸</td>
+                </tr>
+                <tr>
+                    <td><strong>Круассан</strong></td>
+                    <td>Миндальный</td>
+                    <td>1</td>
+                    <td>1 200 ₸</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid #eee;">
+                <div>
+                    <span style="color: #888; font-size: 0.9rem;">Итого к оплате:</span>
+                    <h3 style="font-size: 1.6rem; font-weight: 800; color: #111;">2 900 ₸</h3>
+                </div>
+                <a href="../order/payment.html" class="btn">Перейти к оформлению</a>
+            </div>
+        </div>
+    </main>
+
+    <footer id="main-footer">
+        <p>created by yourqyert</p>
+        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+    </footer>
+</div>
 
 </body>
 </html>

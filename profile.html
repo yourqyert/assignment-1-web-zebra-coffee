@@ -8,40 +8,64 @@
 </head>
 <body>
 
-<header id="main-header">
-    <a href="index.html" class="logo">
-        <h1>Zebra <span>Coffee</span></h1>
-    </a>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="profile.html" class="active">Профиль</a></li>
-            <li><a href="profile/cart.html">Корзина</a></li>
-            <li><a href="profile/order-history.html">История</a></li>
+<div class="page-grid-layout">
+    <header id="main-header">
+        <a href="index.html" class="logo">
+            <img class="logo" src="assets/logo.png" alt="logo">
+            <h1>Zebra <span>Coffee</span></h1>
+        </a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+
+
+                <li><a href="component/module.html">Конструктор</a></li>
+                <li><a href="order/payment.html">Оплата</a></li>
+                <li><a href="profile/cart.html">Корзина</a></li>
+
+                <li><a href="profile.html" class="active">Профиль</a></li>
+                <li><a href="component/auth.html">Вход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <h3>Личный кабинет</h3>
+        <ul class="sidebar-nav">
+            <li><a href="profile.html" class="active">👤 Мой профиль</a></li>
+            <li><a href="profile/cart.html">🛒 Корзина</a></li>
+            <li><a href="profile/order-history.html">📜 История заказов</a></li>
+            <li><a href="gallery.html">🖼️ Витрина-галерея</a></li>
         </ul>
-    </nav>
-</header>
 
-<main>
-    <section class="profile-card">
-        <img src="assets/avatar.jpg" alt="Аватар" class="profile-img">
-        <h2>Биржан</h2>
-        <span class="badge">Zebra Club • Gold Member</span>
-
-        <p><strong>Баланс кешбэка:</strong> 850 ₸</p>
-        <p><strong>Скидка участника:</strong> 10% на всё меню</p>
-
-        <div style="display: flex; gap: 0.8rem; margin-top: 1.5rem; justify-content: center;">
-            <a href="profile/cart.html" class="btn">В корзину</a>
-            <a href="profile/order-history.html" class="btn-secondary" style="width: auto;">История заказов</a>
+        <div class="sidebar-info-card">
+            <h4>Бонусная карта</h4>
+            <p>Уровень Gold дает кэшбэк 10% с каждой чашки кофе.</p>
         </div>
-    </section>
-</main>
+    </aside>
 
-<footer>
-    <p>created by yourqyert</p>
-    <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
-</footer>
+    <main class="main-content">
+        <section class="profile-card">
+            <img src="assets/avatar.jpg" alt="Аватар" class="profile-img">
+            <h2>Биржан</h2>
+            <span class="badge">Zebra Club • Gold Member</span>
+
+            <p><strong>Баланс кешбэка:</strong> 850 ₸</p>
+            <p><strong>Скидка участника:</strong> 10% на всё меню</p>
+
+            <div style="display: flex; gap: 0.8rem; margin-top: 1.5rem; justify-content: center;">
+                <a href="profile/cart.html" class="btn">В корзину</a>
+                <a href="profile/order-history.html" class="btn-secondary" style="width: auto;">История заказов</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <p>created by yourqyert</p>
+        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+    </footer>
+</div>
 
 </body>
 </html>
