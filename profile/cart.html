@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zebra Coffee — Корзина</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -14,14 +15,17 @@
             <img class="logo" src="../assets/logo.png" alt="logo">
             <h1>Zebra <span>Coffee</span></h1>
         </a>
-        <nav class="nav-menu">
+
+        <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#cartNavCollapse" aria-controls="cartNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <nav class="nav-menu collapse d-lg-flex" id="cartNavCollapse">
             <ul>
                 <li><a href="../index.html">Главная</a></li>
                 <li><a href="../gallery.html">Галерея</a></li>
                 <li><a href="../profile.html">Профиль</a></li>
                 <li><a href="../component/auth.html">Вход</a></li>
-                <li><a href="../component/module.html">Конструктор</a></li>
-                <li><a href="../order/payment.html">Оплата</a></li>
                 <li><a href="cart.html" class="active">Корзина</a></li>
             </ul>
         </nav>
@@ -31,7 +35,6 @@
         <h3>Заказ</h3>
         <ul class="sidebar-nav">
             <li><a href="cart.html" class="active">🛒 Корзина</a></li>
-            <li><a href="../order/payment.html">💳 Оплата</a></li>
             <li><a href="order-history.html">📜 История заказов</a></li>
             <li><a href="../index.html">☕ Меню</a></li>
         </ul>
@@ -43,40 +46,73 @@
     </aside>
 
     <main class="main-content">
-        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">Корзина заказа</h2>
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.2rem;">Корзина заказа</h2>
 
-        <div class="table-card">
-            <table class="modern-table">
-                <thead>
-                <tr>
-                    <th>Наименование</th>
-                    <th>Параметры</th>
-                    <th>Кол-во</th>
-                    <th>Цена</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><strong>Капучино</strong></td>
-                    <td>Размер M, Овсяное молоко</td>
-                    <td>1</td>
-                    <td>1 700 ₸</td>
-                </tr>
-                <tr>
-                    <td><strong>Круассан</strong></td>
-                    <td>Миндальный</td>
-                    <td>1</td>
-                    <td>1 200 ₸</td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="row g-4">
+            <div class="col-lg-8 col-md-12">
+                <div class="table-card p-4 m-0" style="background: #ffffff; border-radius: 20px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
+                    <table class="modern-table">
+                        <thead>
+                        <tr>
+                            <th>Наименование</th>
+                            <th>Параметры</th>
+                            <th style="text-align: center;">Кол-во</th>
+                            <th style="text-align: right;">Цена</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><strong>Капучино</strong></td>
+                            <td class="text-muted small">Размер M, Овсяное молоко</td>
+                            <td style="text-align: center;">1</td>
+                            <td style="text-align: right; color: #01a6b8; font-weight: 700;">1 700 ₸</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Круассан</strong></td>
+                            <td class="text-muted small">Миндальный</td>
+                            <td style="text-align: center;">1</td>
+                            <td style="text-align: right; color: #01a6b8; font-weight: 700;">1 200 ₸</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid #eee;">
-                <div>
-                    <span style="color: #888; font-size: 0.9rem;">Итого к оплате:</span>
-                    <h3 style="font-size: 1.6rem; font-weight: 800; color: #111;">2 900 ₸</h3>
+                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3" style="border-top: 1px solid #f0f0f0;">
+                        <a href="../index.html" class="text-muted small">← Добавить ещё напитки</a>
+                        <span class="small text-muted">2 позиции в заказе</span>
+                    </div>
                 </div>
-                <a href="../order/payment.html" class="btn">Перейти к оформлению</a>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="p-4" style="background: #ffffff; border-radius: 20px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: #111; margin-bottom: 1.2rem;">К оплате</h3>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted small">Стоимость товаров:</span>
+                        <span class="fw-semibold">2 900 ₸</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted small">Скидка участника:</span>
+                        <span class="text-success small fw-semibold">0 ₸</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted small">Самовывоз / Зал:</span>
+                        <span class="text-success small fw-semibold">Бесплатно</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center pt-3 mb-4" style="border-top: 1px solid #eee;">
+                        <span style="color: #666; font-size: 0.95rem; font-weight: 600;">Итого:</span>
+                        <h4 style="font-size: 1.5rem; font-weight: 800; color: #111; margin: 0;">2 900 ₸</h4>
+                    </div>
+
+                    <button type="button" class="btn-primary w-100 py-3" data-bs-toggle="modal" data-bs-target="#paymentModal">Оплатить 2 900 ₸</button>
+
+                    <div class="mt-3 text-center">
+                        <span class="text-muted small" style="font-size: 0.75rem;">🔒 Быстрая и безопасная оплата</span>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -87,5 +123,54 @@
     </footer>
 </div>
 
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 24px; padding: 1.8rem; background: #ffffff;">
+            <div class="modal-header border-0 pb-1">
+                <div>
+                    <h3 class="modal-title fw-bold" id="paymentModalLabel" style="font-size: 1.5rem; color: #111111;">Оплата заказа</h3>
+                    <p class="text-muted small mb-0 mt-1">Выберите способ получения и оплаты.</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+
+            <div class="modal-body pt-3">
+                <form id="payment-form" action="../order/passed.html" method="get">
+                    <div class="form-group mb-3">
+                        <label for="client-name" class="form-label" style="font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 6px;">Ваше имя:</label>
+                        <input type="text" id="client-name" name="client-name" class="form-control" placeholder="Биржан" value="Биржан" required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="pay-method" class="form-label" style="font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 6px;">Способ оплаты:</label>
+                        <select id="pay-method" name="pay-method" class="form-select">
+                            <option value="kaspi" selected>Kaspi Pay / QR</option>
+                            <option value="card">Банковская карта онлайн</option>
+                            <option value="cash">При получении в кофейне</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="pickup-time" class="form-label" style="font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 6px;">Время готовности:</label>
+                        <select id="pickup-time" name="pickup-time" class="form-select">
+                            <option value="now" selected>Как можно скорее (10-15 мин)</option>
+                            <option value="30m">Через 30 минут</option>
+                            <option value="1h">Через 1 час</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="client-email" class="form-label" style="font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 6px;">Ваш Email для чека:</label>
+                        <input type="email" id="client-email" name="client-email" class="form-control" placeholder="example@mail.com" value="example@mail.com" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-100 py-3" style="font-size: 1rem;">Оплатить 2 900 ₸</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

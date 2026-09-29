@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zebra Coffee — Галерея и помощь с выбором</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,13 +15,17 @@
             <img class="logo" src="assets/logo.png" alt="logo">
             <h1>Zebra <span>Coffee</span></h1>
         </a>
-        <nav class="nav-menu">
+
+        <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#galleryNavCollapse" aria-controls="galleryNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <nav class="nav-menu collapse d-lg-flex" id="galleryNavCollapse">
             <ul>
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="gallery.html" class="active">Галерея</a></li>
                 <li><a href="profile.html">Профиль</a></li>
                 <li><a href="component/auth.html">Вход</a></li>
-                <li><a href="component/module.html">Конструктор</a></li>
                 <li><a href="profile/cart.html">Корзина</a></li>
             </ul>
         </nav>
@@ -31,7 +36,6 @@
         <ul class="sidebar-nav">
             <li><a href="index.html">☕ Все напитки</a></li>
             <li><a href="gallery.html" class="active">🖼️ Витрина-галерея</a></li>
-            <li><a href="component/module.html">⚙️ Конструктор заказа</a></li>
         </ul>
 
         <div class="sidebar-info-card">
@@ -57,7 +61,7 @@
                         <p><strong>Молоко:</strong> классическое, овсяное, банановое</p>
                         <p><strong>Зерно:</strong> 100% арабика (Бразилия / Эфиопия)</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="latte">Собрать в конструкторе →</button>
                 </div>
             </div>
 
@@ -71,7 +75,7 @@
                         <p><strong>Основа:</strong> купаж черного и зеленого чая</p>
                         <p><strong>Добавки:</strong> свежая мята, слайсы лимона, натуральный мед</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="tea">Собрать в конструкторе →</button>
                 </div>
             </div>
 
@@ -85,7 +89,7 @@
                         <p><strong>Подача:</strong> подогретый, свежая выпечка</p>
                         <p><strong>Топпинг:</strong> джем, соленая карамель, нутелла</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="croissant">Собрать в конструкторе →</button>
                 </div>
             </div>
 
@@ -99,7 +103,7 @@
                         <p><strong>Напиток в сете:</strong> американо или черный чай на выбор</p>
                         <p><strong>Хлеб:</strong> хрустящая чиабатта или круассан</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="breakfast">Собрать в конструкторе →</button>
                 </div>
             </div>
 
@@ -113,7 +117,7 @@
                         <p><strong>Объем:</strong> S (250 мл), M (350 мл), L (450 мл)</p>
                         <p><strong>Сиропы:</strong> ваниль, соленая карамель, лесной орех</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="cappuccino">Собрать в конструкторе →</button>
                 </div>
             </div>
 
@@ -127,7 +131,7 @@
                         <p><strong>Температура:</strong> горячий или со льдом</p>
                         <p><strong>Сладость:</strong> без сахара, мед, тростниковый сироп</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="berrytea">Собрать в конструкторе →</button>
                 </div>
             </div>
 
@@ -141,7 +145,7 @@
                         <p><strong>Посыпка:</strong> поджаренные миндальные лепестки</p>
                         <p><strong>Подача:</strong> теплый с хрустящей корочкой</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="almond-croissant">Собрать в конструкторе →</button>
                 </div>
             </div>
 
@@ -155,7 +159,7 @@
                         <p><strong>Хлеб:</strong> темная или классическая чиабатта</p>
                         <p><strong>Острота:</strong> классический или с соусом халапеньо</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="sandwich">Собрать в конструкторе →</button>
                 </div>
             </div>
 
@@ -169,7 +173,7 @@
                         <p><strong>Шот:</strong> Double Ristretto (100% арабика)</p>
                         <p><strong>Молоко:</strong> цельное, безлактозное, миндальное</p>
                     </div>
-                    <a href="component/module.html" class="btn-builder">Собрать в конструкторе →</a>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="flatwhite">Собрать в конструкторе →</button>
                 </div>
             </div>
         </section>
@@ -181,5 +185,104 @@
     </footer>
 </div>
 
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 24px; padding: 1.5rem; background: #ffffff;">
+            <div class="modal-header border-0 pb-0">
+                <h4 class="modal-title fw-bold" id="orderModalLabel" style="font-size: 1.3rem; color: #111111;">Конструктор напитка</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body pt-3">
+                <form id="quick-order-form" action="order/payment.html" method="get">
+                    <div class="mb-3">
+                        <label for="clientNameInput" class="form-label" style="font-size: 0.85rem; font-weight: 600; color: #333;">Ваше имя:</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="#5c56b6"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </span>
+                            <input type="text" id="clientNameInput" name="client-name" class="form-control" placeholder="Биржан" value="Биржан" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="drinkSelect" class="form-label" style="font-size: 0.85rem; font-weight: 600; color: #333;">Выберите позицию:</label>
+                        <select id="drinkSelect" name="drink" class="form-select" style="border-radius: 14px; border-color: #e2e4e8;">
+                            <option value="latte">Латте Макиато (1 600 ₸)</option>
+                            <option value="tea">Ташкентский чай (1 400 ₸)</option>
+                            <option value="croissant">Французский круассан (1 200 ₸)</option>
+                            <option value="breakfast">Датский сет (2 200 ₸)</option>
+                            <option value="cappuccino">Капучино Классик (1 500 ₸)</option>
+                            <option value="berrytea">Ягодный авторский чай (1 500 ₸)</option>
+                            <option value="almond-croissant">Миндальный круассан (1 500 ₸)</option>
+                            <option value="sandwich">Сэндвич с индейкой (1 800 ₸)</option>
+                            <option value="flatwhite">Флэт Уайт (1 700 ₸)</option>
+                            <option value="cheesecake">Чизкейк Нью-Йорк (1 600 ₸)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label d-block" style="font-size: 0.85rem; font-weight: 600; color: #333;">Размер / Порция:</label>
+                        <div class="d-flex gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cup-size" id="radioSizeS" value="s" checked>
+                                <label class="form-check-label" for="radioSizeS" style="font-size: 0.85rem;">S (Стандарт)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cup-size" id="radioSizeM" value="m">
+                                <label class="form-check-label" for="radioSizeM" style="font-size: 0.85rem;">M (Средний)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cup-size" id="radioSizeL" value="l">
+                                <label class="form-check-label" for="radioSizeL" style="font-size: 0.85rem;">L (Большой)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label d-block" style="font-size: 0.85rem; font-weight: 600; color: #333;">Дополнительные опции:</label>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="checkSyrup" name="syrup" value="vanilla">
+                                <label class="form-check-label" for="checkSyrup" style="font-size: 0.85rem;">Ванильный сироп / соус (+250 ₸)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="checkMilk" name="milk" value="oat">
+                                <label class="form-check-label" for="checkMilk" style="font-size: 0.85rem;">Овсяное / растительное молоко (+300 ₸)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="checkShot" name="shot" value="extra">
+                                <label class="form-check-label" for="checkShot" style="font-size: 0.85rem;">Дополнительный шот / топпинг (+250 ₸)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="orderComment" class="form-label" style="font-size: 0.85rem; font-weight: 600; color: #333;">Пожелания бариста:</label>
+                        <textarea id="orderComment" name="comment" rows="2" class="form-control" placeholder="Подогреть, без сахара..." style="border-radius: 14px; border-color: #e2e4e8; font-size: 0.85rem;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">Перейти к оформлению заказа →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+    const orderModalEl = document.getElementById('orderModal');
+    if (orderModalEl) {
+        orderModalEl.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            if (button && button.dataset.item) {
+                const select = document.getElementById('drinkSelect');
+                if (select) {
+                    select.value = button.dataset.item;
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -189,32 +189,58 @@ a:hover {
     margin-bottom: 1.5rem;
 }
 
-.category-chips {
-    display: flex;
-    gap: 0.6rem;
-    margin-bottom: 1.8rem;
+.category-chips,
+.category-chips.btn-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.6rem !important;
+    margin-bottom: 1.8rem !important;
     overflow-x: auto;
     padding-bottom: 4px;
+    border-radius: 0 !important;
+    width: auto !important;
 }
 
-.chip {
-    padding: 0.5rem 1.1rem;
-    border-radius: 20px;
-    background-color: #ffffff;
-    border: 1px solid #e2e4e8;
-    color: #555555;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
+.category-chips .chip,
+.category-chips.btn-group > .btn,
+.category-chips.btn-group > .btn-chip {
+    padding: 0.5rem 1.15rem !important;
+    border-radius: 20px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e2e4e8 !important;
+    color: #555555 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    line-height: 1.5 !important;
 }
 
-.chip.active {
-    background-color: #111111;
-    color: #ffffff;
-    border-color: #111111;
+.category-chips .chip:hover,
+.category-chips.btn-group > .btn:hover,
+.category-chips.btn-group > .btn-chip:hover {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: #111111 !important;
+}
+
+.category-chips .chip.active,
+.category-chips.btn-group > .btn-check:checked + .btn,
+.category-chips.btn-group > .btn-check:checked + .btn-chip {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    border-color: #111111 !important;
+}
+
+.category-chips.btn-group > .btn-check:focus + .btn,
+.category-chips.btn-group > .btn-check:focus + .btn-chip {
+    box-shadow: 0 0 0 2px rgba(1, 166, 184, 0.25) !important;
 }
 
 .section-title {
@@ -336,6 +362,21 @@ a:hover {
     border-top: 1px solid #eaeaea;
 }
 
+@media (max-width: 900px) and (min-width: 551px) {
+    /* Task 1: Tablet Responsive Typography */
+    .hero-banner h2 { font-size: 1.8rem; }
+    .hero-banner p { font-size: 0.95rem; }
+    .section-title { font-size: 1.25rem; }
+
+    /* Task 2: Tablet 2 boxes in a row */
+    .cards-flex-row {
+        flex-wrap: wrap;
+    }
+    .cards-flex-row .product-card {
+        flex: 0 0 calc(50% - 0.75rem);
+    }
+}
+
 @media (max-width: 900px) {
     .page-grid-layout {
         grid-template-columns: 1fr;
@@ -350,7 +391,15 @@ a:hover {
         border-right: none;
         border-bottom: 1px solid #eaeaea;
     }
+}
 
+@media (max-width: 550px) {
+    /* Task 1: Mobile Responsive Typography */
+    .hero-banner h2 { font-size: 1.45rem; }
+    .hero-banner p { font-size: 0.85rem; }
+    .section-title { font-size: 1.15rem; }
+
+    /* Task 2: Mobile boxes stacked vertically */
     .cards-flex-row {
         flex-direction: column;
     }
@@ -828,6 +877,10 @@ a:hover {
     font-size: 0.8rem;
     font-weight: 700;
     text-decoration: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -835,3 +888,291 @@ a:hover {
     background-color: #008896;
     transform: translateY(-2px);
 }
+
+/* ==========================================================
+   Bootstrap Integration Overrides (Preserving Zebra Coffee Aesthetic)
+   ========================================================== */
+
+/* Typography & Reset Fixes against Bootstrap Reboot */
+body {
+    background-color: #f4f5f7 !important;
+    color: #1a1a1a !important;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+a {
+    color: #01a6b8;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #008896;
+    text-decoration: none !important;
+}
+
+/* Header & Nav Menu Protection */
+#main-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #eaeaea !important;
+    padding: 1rem 2rem !important;
+}
+
+#main-header .navbar {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+#main-header .logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    text-decoration: none !important;
+}
+
+#main-header .logo h1 {
+    display: flex !important;
+    flex-direction: column !important;
+    line-height: 1.1 !important;
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    color: #111111 !important;
+    margin: 0 !important;
+}
+
+#main-header .logo span {
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: lowercase !important;
+    color: #01a6b8 !important;
+}
+
+.nav-menu ul {
+    list-style: none !important;
+    display: flex !important;
+    gap: 0.5rem !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nav-menu ul li a {
+    color: #555555 !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: 20px !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+}
+
+.nav-menu ul li a:hover {
+    background-color: #f0f0f2 !important;
+    color: #111111 !important;
+}
+
+.nav-menu ul li a.active {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+}
+
+/* Button Overrides */
+.btn-primary, .btn.hero-btn {
+    background-color: #01a6b8 !important;
+    border-color: #01a6b8 !important;
+    color: #ffffff !important;
+    padding: 0.8rem 1.6rem !important;
+    border-radius: 14px !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    border: none !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    transition: background-color 0.2s ease !important;
+    box-shadow: none !important;
+}
+
+.btn-primary:hover, .btn.hero-btn:hover {
+    background-color: #008896 !important;
+    border-color: #008896 !important;
+    color: #ffffff !important;
+}
+
+.btn-secondary {
+    display: inline-block !important;
+    width: 100% !important;
+    padding: 0.8rem !important;
+    background-color: #ffffff !important;
+    color: #111111 !important;
+    border: 1px solid #e2e4e8 !important;
+    border-radius: 14px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    transition: all 0.2s ease !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary:hover {
+    background-color: #f7f7f8 !important;
+    border-color: #cbd5e1 !important;
+    color: #111111 !important;
+}
+
+/* Card Styling Matching Zebra Coffee */
+.card.product-card {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    padding: 1.2rem !important;
+    text-align: center !important;
+    border: 1px solid #eee !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.card.product-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Carousel Navigation & Styling */
+.btn-carousel-arrow {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #e2e4e8;
+    color: #111111;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.btn-carousel-arrow:hover {
+    background-color: #111111;
+    color: #ffffff;
+    border-color: #111111;
+    transform: translateY(-1px);
+}
+
+.carousel-inner {
+    border-radius: 24px;
+    padding: 0.5rem 0.2rem;
+}
+
+/* Modern Carousel Stripes ("Полоски для кручения") */
+.carousel-indicators.carousel-stripes,
+.carousel-indicators {
+    position: relative !important;
+    bottom: auto !important;
+    margin: 1.5rem 0 0 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 32px !important;
+    height: 5px !important;
+    border-radius: 4px !important;
+    background-color: #e2e4e8 !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.carousel-indicators [data-bs-target]:hover {
+    background-color: #cbd5e1 !important;
+}
+
+.carousel-indicators .active {
+    width: 48px !important;
+    background-color: #01a6b8 !important;
+    border-radius: 4px !important;
+}
+
+/* Remove intrusive floating controls from on top of cards */
+.carousel-control-prev,
+.carousel-control-next {
+    display: none !important;
+}
+
+/* Modal and Form Inputs */
+.modal-content {
+    border-radius: 24px !important;
+    border: none !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+.form-control, .form-select {
+    border-radius: 14px !important;
+    border: 1px solid #e2e4e8 !important;
+    background-color: #f8fafc !important;
+    padding: 13px 16px !important;
+    font-size: 14px !important;
+    color: #212529 !important;
+    transition: all 0.2s ease !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #01a6b8 !important;
+    box-shadow: 0 0 0 3px rgba(1, 166, 184, 0.15) !important;
+    background-color: #ffffff !important;
+}
+
+/* Seamless Unified Input Group */
+.input-group, .custom-input-group {
+    display: flex !important;
+    align-items: center !important;
+    border-radius: 14px !important;
+    border: 1px solid #e2e4e8 !important;
+    background-color: #f8fafc !important;
+    overflow: hidden !important;
+    transition: all 0.2s ease !important;
+}
+
+.input-group:focus-within, .custom-input-group:focus-within {
+    border-color: #01a6b8 !important;
+    box-shadow: 0 0 0 3px rgba(1, 166, 184, 0.15) !important;
+    background-color: #ffffff !important;
+}
+
+.input-group .input-group-text, .custom-input-group .input-group-text {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 0 0 16px !important;
+    margin: 0 !important;
+    font-size: 1.1rem !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.input-group .form-control, .custom-input-group .form-control {
+    border: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    padding: 13px 16px 13px 10px !important;
+    font-size: 14px !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    outline: none !important;
+    flex-grow: 1 !important;
+}
+
+.form-check-input:checked {
+    background-color: #01a6b8 !important;
+    border-color: #01a6b8 !important;
+}
