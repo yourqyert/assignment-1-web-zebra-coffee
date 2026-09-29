@@ -382,14 +382,18 @@ a:hover {
         grid-template-columns: 1fr;
         grid-template-areas:
             "header"
-            "sidebar"
             "main"
             "footer";
     }
 
+    /* Скрываем сайдбар на мобильных устройствах и планшетах */
     .sidebar {
-        border-right: none;
-        border-bottom: 1px solid #eaeaea;
+        display: none !important;
+    }
+
+    /* На мобилке оставляем только основной гамбургер навигации справа */
+    .btn-sidebar-toggle {
+        display: none !important;
     }
 }
 
@@ -1175,4 +1179,132 @@ a:hover {
 .form-check-input:checked {
     background-color: #01a6b8 !important;
     border-color: #01a6b8 !important;
+}
+
+/* Hamburger Buttons (Navbar & Sidebar Toggler) */
+.navbar-toggler,
+.btn-sidebar-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 12px;
+    border: 1px solid #e2e4e8;
+    background-color: #ffffff;
+    color: #111111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-toggler:hover,
+.btn-sidebar-toggle:hover {
+    background-color: #f4f5f7;
+    border-color: #cbd5e1;
+    color: #01a6b8;
+}
+
+.navbar-toggler:focus,
+.btn-sidebar-toggle:focus {
+    box-shadow: 0 0 0 3px rgba(1, 166, 184, 0.2);
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    background-image: none !important;
+}
+
+/* Sidebar Toggle via Hamburger Button */
+body.sidebar-collapsed .sidebar {
+    display: none !important;
+}
+
+body.sidebar-collapsed .page-grid-layout {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer" !important;
+}
+
+/* Mobile Responsive Navigation Dropdown */
+@media (max-width: 991px) {
+    #main-header {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.85rem 1.25rem !important;
+    }
+
+    /* Logo pinned to the left */
+    #main-header > div:first-child,
+    #main-header .d-flex.align-items-center,
+    #main-header > .logo,
+    #main-header > a:first-child {
+        display: flex !important;
+        align-items: center !important;
+        order: 1 !important;
+    }
+
+    /* Hamburger button pinned to the top right */
+    .navbar-toggler {
+        order: 2 !important;
+        margin-left: auto !important;
+        flex-shrink: 0 !important;
+    }
+
+    .btn-sidebar-toggle {
+        display: none !important;
+    }
+
+    /* Dropdown menu always occupies its own full-width row underneath (order: 10) */
+    .nav-menu,
+    .nav-menu.collapse,
+    .nav-menu.collapsing,
+    .nav-menu.collapse.show {
+        order: 10 !important;
+        flex-basis: 100% !important;
+        width: 100% !important;
+    }
+
+    .nav-menu.collapse:not(.show):not(.collapsing) {
+        display: none !important;
+    }
+
+    .nav-menu.collapsing,
+    .nav-menu.collapse.show {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    .nav-menu ul {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.4rem !important;
+        padding: 0.8rem 0 0 0 !important;
+        margin: 0.8rem 0 0 0 !important;
+        border-top: 1px solid #eaeaea !important;
+    }
+
+    .nav-menu ul li {
+        width: 100% !important;
+    }
+
+    .nav-menu ul li a {
+        display: block !important;
+        width: 100% !important;
+        padding: 0.75rem 1.2rem !important;
+        border-radius: 12px !important;
+        font-size: 0.95rem !important;
+    }
 }

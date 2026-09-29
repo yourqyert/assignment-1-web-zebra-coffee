@@ -11,13 +11,28 @@
 
 <div class="page-grid-layout">
     <header id="main-header">
-        <a href="index.html" class="logo">
-            <img class="logo" src="assets/logo.png" alt="logo">
-            <h1>Zebra <span>Coffee</span></h1>
-        </a>
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn-sidebar-toggle d-none d-lg-inline-flex" type="button" id="sidebarToggle" aria-label="Переключить боковое меню" title="Переключить меню">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <a href="index.html" class="logo">
+                <img class="logo" src="assets/logo.png" alt="logo">
+                <h1>Zebra <span>Coffee</span></h1>
+            </a>
+        </div>
 
-        <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#galleryNavCollapse" aria-controls="galleryNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#galleryNavCollapse" aria-controls="galleryNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </span>
         </button>
 
         <nav class="nav-menu collapse d-lg-flex" id="galleryNavCollapse">
@@ -281,6 +296,11 @@
                     select.value = button.dataset.item;
                 }
             }
+        });
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function() {
+            document.body.classList.toggle('sidebar-collapsed');
         });
     }
 </script>
