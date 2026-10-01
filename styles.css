@@ -164,6 +164,8 @@ a:hover {
     padding: 2rem;
     max-width: 1200px;
     width: 100%;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .hero-banner {
@@ -363,12 +365,10 @@ a:hover {
 }
 
 @media (max-width: 900px) and (min-width: 551px) {
-    /* Task 1: Tablet Responsive Typography */
     .hero-banner h2 { font-size: 1.8rem; }
     .hero-banner p { font-size: 0.95rem; }
     .section-title { font-size: 1.25rem; }
 
-    /* Task 2: Tablet 2 boxes in a row */
     .cards-flex-row {
         flex-wrap: wrap;
     }
@@ -386,24 +386,20 @@ a:hover {
             "footer";
     }
 
-    /* Скрываем сайдбар на мобильных устройствах и планшетах */
     .sidebar {
         display: none !important;
     }
 
-    /* На мобилке оставляем только основной гамбургер навигации справа */
     .btn-sidebar-toggle {
         display: none !important;
     }
 }
 
 @media (max-width: 550px) {
-    /* Task 1: Mobile Responsive Typography */
     .hero-banner h2 { font-size: 1.45rem; }
     .hero-banner p { font-size: 0.85rem; }
     .section-title { font-size: 1.15rem; }
 
-    /* Task 2: Mobile boxes stacked vertically */
     .cards-flex-row {
         flex-direction: column;
     }
@@ -893,11 +889,6 @@ a:hover {
     transform: translateY(-2px);
 }
 
-/* ==========================================================
-   Bootstrap Integration Overrides (Preserving Zebra Coffee Aesthetic)
-   ========================================================== */
-
-/* Typography & Reset Fixes against Bootstrap Reboot */
 body {
     background-color: #f4f5f7 !important;
     color: #1a1a1a !important;
@@ -914,7 +905,6 @@ a:hover {
     text-decoration: none !important;
 }
 
-/* Header & Nav Menu Protection */
 #main-header {
     background-color: #ffffff !important;
     border-bottom: 1px solid #eaeaea !important;
@@ -982,7 +972,6 @@ a:hover {
     color: #ffffff !important;
 }
 
-/* Button Overrides */
 .btn-primary, .btn.hero-btn {
     background-color: #01a6b8 !important;
     border-color: #01a6b8 !important;
@@ -1026,7 +1015,6 @@ a:hover {
     color: #111111 !important;
 }
 
-/* Card Styling Matching Zebra Coffee */
 .card.product-card {
     background: #ffffff !important;
     border-radius: 20px !important;
@@ -1042,7 +1030,6 @@ a:hover {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Carousel Navigation & Styling */
 .btn-carousel-arrow {
     width: 38px;
     height: 38px;
@@ -1070,7 +1057,6 @@ a:hover {
     padding: 0.5rem 0.2rem;
 }
 
-/* Modern Carousel Stripes ("Полоски для кручения") */
 .carousel-indicators.carousel-stripes,
 .carousel-indicators {
     position: relative !important;
@@ -1106,13 +1092,11 @@ a:hover {
     border-radius: 4px !important;
 }
 
-/* Remove intrusive floating controls from on top of cards */
 .carousel-control-prev,
 .carousel-control-next {
     display: none !important;
 }
 
-/* Modal and Form Inputs */
 .modal-content {
     border-radius: 24px !important;
     border: none !important;
@@ -1135,7 +1119,6 @@ a:hover {
     background-color: #ffffff !important;
 }
 
-/* Seamless Unified Input Group */
 .input-group, .custom-input-group {
     display: flex !important;
     align-items: center !important;
@@ -1181,7 +1164,6 @@ a:hover {
     border-color: #01a6b8 !important;
 }
 
-/* Hamburger Buttons (Navbar & Sidebar Toggler) */
 .navbar-toggler,
 .btn-sidebar-toggle {
     display: inline-flex;
@@ -1221,7 +1203,6 @@ a:hover {
     background-image: none !important;
 }
 
-/* Sidebar Toggle via Hamburger Button */
 body.sidebar-collapsed .sidebar {
     display: none !important;
 }
@@ -1234,7 +1215,13 @@ body.sidebar-collapsed .page-grid-layout {
         "footer" !important;
 }
 
-/* Mobile Responsive Navigation Dropdown */
+body.sidebar-collapsed .main-content {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+}
+
 @media (max-width: 991px) {
     #main-header {
         display: flex !important;
@@ -1244,7 +1231,6 @@ body.sidebar-collapsed .page-grid-layout {
         padding: 0.85rem 1.25rem !important;
     }
 
-    /* Logo pinned to the left */
     #main-header > div:first-child,
     #main-header .d-flex.align-items-center,
     #main-header > .logo,
@@ -1254,7 +1240,6 @@ body.sidebar-collapsed .page-grid-layout {
         order: 1 !important;
     }
 
-    /* Hamburger button pinned to the top right */
     .navbar-toggler {
         order: 2 !important;
         margin-left: auto !important;
@@ -1265,7 +1250,6 @@ body.sidebar-collapsed .page-grid-layout {
         display: none !important;
     }
 
-    /* Dropdown menu always occupies its own full-width row underneath (order: 10) */
     .nav-menu,
     .nav-menu.collapse,
     .nav-menu.collapsing,
@@ -1307,4 +1291,4 @@ body.sidebar-collapsed .page-grid-layout {
         border-radius: 12px !important;
         font-size: 0.95rem !important;
     }
-}
+}
