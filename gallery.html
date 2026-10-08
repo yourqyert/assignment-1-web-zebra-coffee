@@ -5,234 +5,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zebra Coffee — Галерея и помощь с выбором</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="additional.css?v=2">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="page-grid-layout d-flex flex-column min-vh-100">
-    <header id="main-header" class="navbar navbar-expand-lg bg-white border-bottom py-2 px-3 px-lg-4 sticky-top z-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a href="index.html" class="logo d-inline-flex align-items-center gap-2 text-decoration-none text-dark">
-                <img class="logo" src="assets/logo.png" alt="logo" width="36" height="36" style="object-fit: contain;">
-                <h1 class="h5 mb-0 fw-bold">Zebra <span style="color: #01a6b8;">Coffee</span></h1>
-            </a>
-
-            <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#galleryNavCollapse" aria-controls="galleryNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
-                <span class="navbar-toggler-icon"></span>
+<div class="page-grid-layout">
+    <header id="main-header">
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn-sidebar-toggle d-none d-lg-inline-flex" type="button" id="sidebarToggle" aria-label="Переключить боковое меню" title="Переключить меню">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
             </button>
-
-            <nav class="nav-menu collapse navbar-collapse flex-grow-0" id="galleryNavCollapse">
-                <ul class="navbar-nav d-flex flex-column flex-lg-row gap-1 gap-lg-2 list-unstyled mb-0 align-items-lg-center pt-2 pt-lg-0">
-                    <li class="nav-item"><a href="index.html" class="nav-link px-3 py-1 rounded-pill">Главная</a></li>
-                    <li class="nav-item"><a href="gallery.html" class="nav-link active px-3 py-1 rounded-pill">Галерея</a></li>
-                    <li class="nav-item"><a href="profile.html" class="nav-link px-3 py-1 rounded-pill">Профиль</a></li>
-                    <li class="nav-item"><a href="component/auth.html" class="nav-link px-3 py-1 rounded-pill">Вход</a></li>
-                    <li class="nav-item"><a href="profile/cart.html" class="nav-link px-3 py-1 rounded-pill">Корзина</a></li>
-                </ul>
-            </nav>
+            <a href="index.html" class="logo">
+                <img class="logo" src="assets/logo.png" alt="logo">
+                <h1>Zebra <span>Coffee</span></h1>
+            </a>
         </div>
+
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#galleryNavCollapse" aria-controls="galleryNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </span>
+        </button>
+
+        <nav class="nav-menu collapse d-lg-flex" id="galleryNavCollapse">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="gallery.html" class="active">Галерея</a></li>
+                <li><a href="profile.html">Профиль</a></li>
+                <li><a href="component/auth.html">Вход</a></li>
+                <li><a href="profile/cart.html">Корзина</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="main-content container py-4 px-3 px-md-4 flex-grow-1">
+    <aside class="sidebar">
+        <h3>Меню и категории</h3>
+        <ul class="sidebar-nav">
+            <li><a href="index.html">☕ Все напитки</a></li>
+            <li><a href="gallery.html" class="active">🖼️ Витрина-галерея</a></li>
+        </ul>
+
+        <div class="sidebar-info-card">
+            <h4>Гид по вкусам</h4>
+            <p>Наведите на фото, чтобы узнать состав, доступные опции и сразу собрать заказ в конструкторе.</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
         <div class="gallery-header-block">
             <h2>Витрина напитков и десертов</h2>
             <p>Интерактивная галерея для легкого выбора идеального кофе или свежей выпечки под ваше настроение.</p>
         </div>
 
-        <section class="image-gallery row g-4 mb-5">
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/latte.jpeg" alt="Латте Макиато" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Латте Макиато</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Нежная молочная пена • 1 600 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Эспрессо с горячим взбитым молоком и бархатистой пенкой.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Молоко:</strong>  классическое, овсяное, банановое</p>
-                        <p class="mb-0 text-body"><strong>Зерно:</strong>  100% арабика (Бразилия / Эфиопия)</p>
+        <section class="image-gallery">
+            <div class="gallery-item">
+                <img src="assets/latte.jpeg" alt="Латте Макиато">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Латте Макиато</h4>
+                    <span class="item-sub">Нежная молочная пена • 1 600 ₸</span>
+                    <p class="item-description">Эспрессо с горячим взбитым молоком и бархатистой пенкой.</p>
+                    <div class="item-options">
+                        <p><strong>Молоко:</strong> классическое, овсяное, банановое</p>
+                        <p><strong>Зерно:</strong> 100% арабика (Бразилия / Эфиопия)</p>
                     </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="latte">Собрать в конструкторе →</button>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="latte">Собрать в конструкторе →</button>
                 </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Ташкентский чай</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Мята, лимон, мёд • 1 400 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Традиционный восточный чай с цитрусовой свежестью и медовым ароматом.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Основа:</strong>  купаж черного и зеленого чая</p>
-                        <p class="mb-0 text-body"><strong>Добавки:</strong>  свежая мята, слайсы лимона, натуральный мед</p>
-                    </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="tea">Собрать в конструкторе →</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/kruassan.jpeg" alt="Французский круассан" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Французский круассан</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Сливочное масло • 1 200 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Воздушная слоеная выпечка с золотистой корочкой и нежным мякишем.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Подача:</strong>  подогретый, свежая выпечка</p>
-                        <p class="mb-0 text-body"><strong>Топпинг:</strong>  джем, соленая карамель, нутелла</p>
-                    </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="croissant">Собрать в конструкторе →</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/breakfast1.jpeg" alt="Датский сет" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Датский сет</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Сытный завтрак • 2 200 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Полноценный утренний сет: свежая выпечка, яйцо пашот, соус и сыр.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Напиток в сете:</strong>  американо или черный чай на выбор</p>
-                        <p class="mb-0 text-body"><strong>Хлеб:</strong>  хрустящая чиабатта или круассан</p>
-                    </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="breakfast">Собрать в конструкторе →</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/latte.jpeg" alt="Капучино Классик" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Капучино Классик</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Плотная пенка • 1 500 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Классический баланс насыщенного эспрессо и глянцевой молочной пены.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Объем:</strong>  S (250 мл), M (350 мл), L (450 мл)</p>
-                        <p class="mb-0 text-body"><strong>Сиропы:</strong>  ваниль, соленая карамель, лесной орех</p>
-                    </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="cappuccino">Собрать в конструкторе →</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/berry-tea.jpeg" alt="Ягодный авторский чай" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Ягодный авторский чай</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Облепиха и малина • 1 500 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Согревающий витаминный сбор из ягодного пюре с бадьяном и корицей.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Температура:</strong>  горячий или со льдом</p>
-                        <p class="mb-0 text-body"><strong>Сладость:</strong>  без сахара, мед, тростниковый сироп</p>
-                    </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="berrytea">Собрать в конструкторе →</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/kruassan.jpeg" alt="Миндальный круассан" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Миндальный круассан</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Франжипан и лепестки • 1 500 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Двойной запекания круассан с начинкой из орехового крема франжипан.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Посыпка:</strong>  поджаренные миндальные лепестки</p>
-                        <p class="mb-0 text-body"><strong>Подача:</strong>  теплый с хрустящей корочкой</p>
-                    </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="almond-croissant">Собрать в конструкторе →</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/cheesecake.jpg" alt="Чизкейк Нью-Йорк" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Чизкейк Нью-Йорк</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Малиновое кули • 1 600 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Нежный сливочный сыр Филадельфия на рассыпчатом песочном сабле.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Основа:</strong>  классическое песочное тесто</p>
-                        <p class="mb-0 text-body"><strong>Соус:</strong>  натуральное ягодное пюре малины</p>
-                    </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="cheesecake">Собрать в конструкторе →</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 d-flex">
-            <div class="gallery-item card h-100 w-100 shadow-sm border overflow-hidden position-relative">
-                <img src="assets/sandwich.jpeg" alt="Сэндвич с индейкой" class="card-img-top object-fit-cover w-100" style="height: 240px;">
-                <div class="gallery-overlay card-body d-flex flex-column justify-content-end p-3">
-                    <h4 class="item-title card-title fs-5 fw-bold mb-1">Сэндвич с индейкой</h4>
-                    <span class="item-sub text-info-emphasis fw-bold small mb-2">Моцарелла и песто • 1 800 ₸</span>
-                    <p class="item-description card-text small mb-2 text-secondary">Хрустящая чиабатта на закваске с сочным филе, зеленью и соусом песто.</p>
-                    <div class="item-options small mb-3">
-                        <p class="mb-1 text-body"><strong>Хлеб:</strong>  пшеничная чиабатта с травами</p>
-                        <p class="mb-0 text-body"><strong>Сыр:</strong>  моцарелла / чеддер на выбор</p>
-                    </div>
-                    <button type="button" class="btn btn-info text-white fw-bold w-100 btn-builder mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="sandwich">Собрать в конструкторе →</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <section class="visitors-gallery-section mb-5">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
-                <div>
-                    <h3 class="fs-4 fw-bold mb-1">Снимки от наших гостей</h3>
-                    <p class="text-muted small mb-0">Живая атмосфера Zebra Coffee: любимые напитки, уют и тёплые встречи.</p>
-                </div>
-                <span class="badge bg-light text-dark border px-3 py-2 rounded-pill mt-2 mt-md-0 align-self-start align-self-md-auto">
-                    📸 #ZebraCoffeeMoments
-                </span>
             </div>
 
-            <div id="visitorsCarousel" class="carousel slide rounded-4 overflow-hidden shadow-sm" data-bs-ride="carousel" data-bs-interval="3500">
-
-                <div class="carousel-indicators mb-3">
-                    <button type="button" data-bs-target="#visitorsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Слайд 1"></button>
-                    <button type="button" data-bs-target="#visitorsCarousel" data-bs-slide-to="1" aria-label="Слайд 2"></button>
-                    <button type="button" data-bs-target="#visitorsCarousel" data-bs-slide-to="2" aria-label="Слайд 3"></button>
-                    <button type="button" data-bs-target="#visitorsCarousel" data-bs-slide-to="3" aria-label="Слайд 4"></button>
-                    <button type="button" data-bs-target="#visitorsCarousel" data-bs-slide-to="4" aria-label="Слайд 5"></button>
+            <div class="gallery-item">
+                <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Ташкентский чай</h4>
+                    <span class="item-sub">Мята, лимон, мёд • 1 400 ₸</span>
+                    <p class="item-description">Традиционный восточный чай с цитрусовой свежестью и медовым ароматом.</p>
+                    <div class="item-options">
+                        <p><strong>Основа:</strong> купаж черного и зеленого чая</p>
+                        <p><strong>Добавки:</strong> свежая мята, слайсы лимона, натуральный мед</p>
+                    </div>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="tea">Собрать в конструкторе →</button>
                 </div>
+            </div>
 
-                <div class="carousel-inner rounded-4 overflow-hidden">
-                    <div class="carousel-item active">
-                        <img src="assets/visitor-1.jpg" class="d-block w-100 object-fit-cover" style="height: 480px; max-height: 60vh;" alt="Гости в кофейне Zebra Coffee">
+            <div class="gallery-item">
+                <img src="assets/kruassan.jpeg" alt="Классический круассан">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Французский круассан</h4>
+                    <span class="item-sub">Сливочное масло • 1 200 ₸</span>
+                    <p class="item-description">Воздушная слоеная выпечка с золотистой корочкой и нежным мякишем.</p>
+                    <div class="item-options">
+                        <p><strong>Подача:</strong> подогретый, свежая выпечка</p>
+                        <p><strong>Топпинг:</strong> джем, соленая карамель, нутелла</p>
                     </div>
-                    <div class="carousel-item">
-                        <img src="assets/visitor-2.jpg" class="d-block w-100 object-fit-cover" style="height: 480px; max-height: 60vh;" alt="Атмосфера за столиком Zebra Coffee">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/visitor-3.jpg" class="d-block w-100 object-fit-cover" style="height: 480px; max-height: 60vh;" alt="Утренний кофе от гостя Zebra Coffee">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/visitor-4.jpg" class="d-block w-100 object-fit-cover" style="height: 480px; max-height: 60vh;" alt="Латте-арт на столике Zebra Coffee">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/visitor-5.jpg" class="d-block w-100 object-fit-cover" style="height: 480px; max-height: 60vh;" alt="Свежая выпечка и кофе от посетителя">
-                    </div>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="croissant">Собрать в конструкторе →</button>
                 </div>
+            </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#visitorsCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Предыдущее</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#visitorsCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Следующее</span>
-                </button>
+            <div class="gallery-item">
+                <img src="assets/breakfast1.jpeg" alt="Датский сет">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Датский сет</h4>
+                    <span class="item-sub">Сытный завтрак • 2 200 ₸</span>
+                    <p class="item-description">Полноценный утренний сет: свежая выпечка, яйцо пашот, соус и сыр.</p>
+                    <div class="item-options">
+                        <p><strong>Напиток в сете:</strong> американо или черный чай на выбор</p>
+                        <p><strong>Хлеб:</strong> хрустящая чиабатта или круассан</p>
+                    </div>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="breakfast">Собрать в конструкторе →</button>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/latte.jpeg" alt="Капучино Классик">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Капучино Классик</h4>
+                    <span class="item-sub">Плотная пенка • 1 500 ₸</span>
+                    <p class="item-description">Классический баланс насыщенного эспрессо и глянцевой молочной пены.</p>
+                    <div class="item-options">
+                        <p><strong>Объем:</strong> S (250 мл), M (350 мл), L (450 мл)</p>
+                        <p><strong>Сиропы:</strong> ваниль, соленая карамель, лесной орех</p>
+                    </div>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="cappuccino">Собрать в конструкторе →</button>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/berry-tea.jpeg" alt="Ягодный чай">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Ягодный авторский чай</h4>
+                    <span class="item-sub">Облепиха и малина • 1 500 ₸</span>
+                    <p class="item-description">Согревающий витаминный сбор из ягодного пюре с бадьяном и корицей.</p>
+                    <div class="item-options">
+                        <p><strong>Температура:</strong> горячий или со льдом</p>
+                        <p><strong>Сладость:</strong> без сахара, мед, тростниковый сироп</p>
+                    </div>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="berrytea">Собрать в конструкторе →</button>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/kruassan.jpeg" alt="Миндальный круассан">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Миндальный круассан</h4>
+                    <span class="item-sub">Франжипан и лепестки • 1 500 ₸</span>
+                    <p class="item-description">Двойной запекания круассан с начинкой из орехового крема франжипан.</p>
+                    <div class="item-options">
+                        <p><strong>Посыпка:</strong> поджаренные миндальные лепестки</p>
+                        <p><strong>Подача:</strong> теплый с хрустящей корочкой</p>
+                    </div>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="almond-croissant">Собрать в конструкторе →</button>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/sandwich.jpeg" alt="Сэндвич с индейкой">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Сэндвич с индейкой</h4>
+                    <span class="item-sub">Чиабатта, сыр, зелень • 1 800 ₸</span>
+                    <p class="item-description">Филе индейки су-вид, свежие томаты, соус песто и сыр моцарелла.</p>
+                    <div class="item-options">
+                        <p><strong>Хлеб:</strong> темная или классическая чиабатта</p>
+                        <p><strong>Острота:</strong> классический или с соусом халапеньо</p>
+                    </div>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="sandwich">Собрать в конструкторе →</button>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="assets/flat-white.jpeg" alt="Флэт Уайт">
+                <div class="gallery-overlay">
+                    <h4 class="item-title">Флэт Уайт</h4>
+                    <span class="item-sub">Двойной эспрессо • 1 700 ₸</span>
+                    <p class="item-description">Для тех, кто любит выраженный кофейный профиль с тонким слоем молока.</p>
+                    <div class="item-options">
+                        <p><strong>Шот:</strong> Double Ristretto (100% арабика)</p>
+                        <p><strong>Молоко:</strong> цельное, безлактозное, миндальное</p>
+                    </div>
+                    <button type="button" class="btn-builder border-0 w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-item="flatwhite">Собрать в конструкторе →</button>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer id="main-footer" class="mt-auto bg-dark text-light border-top border-info border-3 py-4">
-        <div class="container text-center">
-            <p class="mb-1 fw-bold fs-5">Zebra <span class="text-info">Coffee</span></p>
-            <p class="small text-white-50 mb-0">&copy; 2026 Zebra Coffee Inc. Все права защищены. <span class="text-info">·</span> Создано yourqyert</p>
-        </div>
+    <footer id="main-footer">
+        <p>created by yourqyert</p>
+        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
     </footer>
 </div>
 
@@ -312,7 +276,7 @@
                         <textarea id="orderComment" name="comment" rows="2" class="form-control" placeholder="Подогреть, без сахара..." style="border-radius: 14px; border-color: #e2e4e8; font-size: 0.85rem;"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-info text-white fw-bold btn-primary" style="width: 100%;">Перейти к оформлению заказа →</button>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Перейти к оформлению заказа →</button>
                 </form>
             </div>
         </div>
@@ -321,5 +285,24 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+<script>
+    const orderModalEl = document.getElementById('orderModal');
+    if (orderModalEl) {
+        orderModalEl.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            if (button && button.dataset.item) {
+                const select = document.getElementById('drinkSelect');
+                if (select) {
+                    select.value = button.dataset.item;
+                }
+            }
+        });
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function() {
+            document.body.classList.toggle('sidebar-collapsed');
+        });
+    }
+</script>
 </body>
 </html>
