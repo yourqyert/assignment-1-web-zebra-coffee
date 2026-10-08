@@ -5,125 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zebra Coffee — Главная</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="additional.css">
 </head>
 <body>
 
-<div class="page-grid-layout">
-    <header id="main-header">
-        <div class="d-flex align-items-center gap-3">
-            <button class="btn-sidebar-toggle d-none d-lg-inline-flex" type="button" id="sidebarToggle" aria-label="Переключить боковое меню" title="Переключить меню">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
-            <a href="index.html" class="logo">
-                <img class="logo" src="assets/logo.png" alt="logo">
-                <h1>Zebra <span>Coffee</span></h1>
+<div class="page-grid-layout d-flex flex-column min-vh-100">
+    <header id="main-header" class="navbar navbar-expand-lg bg-white border-bottom py-2 px-3 px-lg-4 sticky-top z-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="logo d-inline-flex align-items-center gap-2 text-decoration-none text-dark">
+                <img class="logo" src="assets/logo.png" alt="logo" width="36" height="36" style="object-fit: contain;">
+                <h1 class="h5 mb-0 fw-bold">Zebra <span style="color: #01a6b8;">Coffee</span></h1>
             </a>
+
+            <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavCollapse" aria-controls="mainNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <nav class="nav-menu collapse navbar-collapse flex-grow-0" id="mainNavCollapse">
+                <ul class="navbar-nav d-flex flex-column flex-lg-row gap-1 gap-lg-2 list-unstyled mb-0 align-items-lg-center pt-2 pt-lg-0">
+                    <li class="nav-item"><a href="index.html" class="nav-link active px-3 py-1 rounded-pill">Главная</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link px-3 py-1 rounded-pill">Галерея</a></li>
+                    <li class="nav-item"><a href="profile.html" class="nav-link px-3 py-1 rounded-pill">Профиль</a></li>
+                    <li class="nav-item"><a href="component/auth.html" class="nav-link px-3 py-1 rounded-pill">Вход</a></li>
+                    <li class="nav-item"><a href="profile/cart.html" class="nav-link px-3 py-1 rounded-pill">Корзина</a></li>
+                </ul>
+            </nav>
         </div>
-
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavCollapse" aria-controls="mainNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
-            <span class="navbar-toggler-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </span>
-        </button>
-
-        <nav class="nav-menu collapse d-lg-flex" id="mainNavCollapse">
-            <ul>
-                <li><a href="index.html" class="active">Главная</a></li>
-                <li><a href="gallery.html">Галерея</a></li>
-                <li><a href="profile.html">Профиль</a></li>
-                <li><a href="component/auth.html">Вход</a></li>
-                <li><a href="profile/cart.html">Корзина</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <aside class="sidebar">
-        <h3>Меню и категории</h3>
-        <ul class="sidebar-nav">
-            <li><a href="#all" class="active">☕ Все напитки</a></li>
-            <li><a href="#cold">❄️ Холодный кофе</a></li>
-            <li><a href="#bakery">🥐 Свежая выпечка</a></li>
-            <li><a href="#dessert">🍰 Десерты</a></li>
-            <li><a href="#tea">🍵 Авторский чай</a></li>
-        </ul>
+    
 
-        <div class="sidebar-info-card">
-            <h4>Акция недели</h4>
-            <p>Скидка 10% на все десерты при заказе через сайт!</p>
-        </div>
-    </aside>
-
-    <main class="main-content">
-        <section class="hero-banner">
-            <h2>Бодрость в каждом глотке</h2>
-            <p>Технологичная сеть кофеен Zebra Coffee. Быстрый заказ через веб-витрину без очередей.</p>
-            <button type="button" class="btn hero-btn" data-bs-toggle="modal" data-bs-target="#orderModal">Собрать напиток</button>
+    <main class="main-content container py-4 px-3 px-md-4 flex-grow-1">
+        <section class="hero-banner p-4 p-md-5 mb-4 rounded-4 bg-dark text-white shadow-sm">
+            <h2 class="text-white fw-bold mb-2">Бодрость в каждом глотке</h2>
+            <p class="text-white-50 mb-4">Технологичная сеть кофеен Zebra Coffee. Быстрый заказ через веб-витрину без очередей.</p>
+            <button type="button" class="btn hero-btn-info text-white fw-bold px-4 py-2 rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#orderModal">Собрать напиток</button>
         </section>
 
-        <div class="btn-group category-chips flex-wrap gap-2" role="group" aria-label="Категории меню">
+        <div class="btn-group category-chips flex-wrap gap-2 mb-4" role="group" aria-label="Категории меню">
             <input type="radio" class="btn-check" name="category-radio" id="cat-all" autocomplete="off" checked>
-            <label class="btn btn-chip" for="cat-all">☕ Все напитки</label>
+            <label class="btn-outline-dark rounded-pill px-3 py-2 btn-chip" for="cat-all">☕ Все напитки</label>
 
             <input type="radio" class="btn-check" name="category-radio" id="cat-cold" autocomplete="off">
-            <label class="btn btn-chip" for="cat-cold">❄️ Холодный кофе</label>
+            <label class="btn-outline-dark rounded-pill px-3 py-2 btn-chip" for="cat-cold">❄️ Холодный кофе</label>
 
             <input type="radio" class="btn-check" name="category-radio" id="cat-bakery" autocomplete="off">
-            <label class="btn btn-chip" for="cat-bakery">🥐 Свежая выпечка</label>
+            <label class="btn-outline-dark rounded-pill px-3 py-2 btn-chip" for="cat-bakery">🥐 Свежая выпечка</label>
 
             <input type="radio" class="btn-check" name="category-radio" id="cat-dessert" autocomplete="off">
-            <label class="btn btn-chip" for="cat-dessert">🍰 Десерты</label>
+            <label class="btn-outline-dark rounded-pill px-3 py-2 btn-chip" for="cat-dessert">🍰 Десерты</label>
         </div>
 
         <h3 class="section-title">Популярные позиции</h3>
 
-        <section class="cards-flex-row">
-            <div class="product-card">
-                <img src="assets/latte.jpeg" alt="Латте">
-                <div class="card-content">
-                    <h4>Латте Макиато</h4>
-                    <p class="description">Нежный кофе с мягкой молочной пенкой и сиропом на выбор.</p>
-                    <p class="price">1 600 ₸</p>
+        <section class="cards-flex-row row g-4 mb-5">
+            <div class="col-lg-3 col-md-6 col-12 d-flex">
+                <div class="product-card card h-100 w-100 p-3 text-center border shadow-sm">
+                    <img src="assets/latte.jpeg" alt="Латте" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
+                    <div class="card-content card-body p-0 d-flex flex-column">
+                        <h4 class="card-title fs-6 fw-bold mb-1">Латте Макиато</h4>
+                        <p class="card-text description text-secondary small mb-2">Нежный кофе с мягкой молочной пенкой и сиропом на выбор.</p>
+                        <p class="price fw-bold text-info fs-5 mt-auto mb-3">1 600 ₸</p>
+                    </div>
+                    <button type="button" class="btn btn-light border text-dark fw-bold btn-secondary btn-light border text-dark fw-bold w-100" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
                 </div>
-                <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
             </div>
 
-            <div class="product-card">
-                <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай">
-                <div class="card-content">
-                    <h4>Ташкентский чай</h4>
-                    <p class="description">Ароматный черный и зеленый чай с добавлением лимона, мяты и меда.</p>
-                    <p class="price">1 400 ₸</p>
+            <div class="col-lg-3 col-md-6 col-12 d-flex">
+                <div class="product-card card h-100 w-100 p-3 text-center border shadow-sm">
+                    <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
+                    <div class="card-content card-body p-0 d-flex flex-column">
+                        <h4 class="card-title fs-6 fw-bold mb-1">Ташкентский чай</h4>
+                        <p class="card-text description text-secondary small mb-2">Ароматный черный и зеленый чай с добавлением лимона, мяты и меда.</p>
+                        <p class="price fw-bold text-info fs-5 mt-auto mb-3">1 400 ₸</p>
+                    </div>
+                    <button type="button" class="btn btn-light border text-dark fw-bold btn-secondary btn-light border text-dark fw-bold w-100" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
                 </div>
-                <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
             </div>
 
-            <div class="product-card">
-                <img src="assets/kruassan.jpeg" alt="Круассан">
-                <div class="card-content">
-                    <h4>Классический круассан</h4>
-                    <p class="description">Хрустящая французская выпечка из слоеного теста на сливочном масле.</p>
-                    <p class="price">1 200 ₸</p>
+            <div class="col-lg-3 col-md-6 col-12 d-flex">
+                <div class="product-card card h-100 w-100 p-3 text-center border shadow-sm">
+                    <img src="assets/kruassan.jpeg" alt="Круассан" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
+                    <div class="card-content card-body p-0 d-flex flex-column">
+                        <h4 class="card-title fs-6 fw-bold mb-1">Классический круассан</h4>
+                        <p class="card-text description text-secondary small mb-2">Хрустящая французская выпечка из слоеного теста на сливочном масле.</p>
+                        <p class="price fw-bold text-info fs-5 mt-auto mb-3">1 200 ₸</p>
+                    </div>
+                    <a href="profile/cart.html" class="btn btn-light border text-dark fw-bold btn-secondary btn-light border text-dark fw-bold w-100">В корзину</a>
                 </div>
-                <a href="profile/cart.html" class="btn-secondary">В корзину</a>
             </div>
 
-            <div class="product-card">
-                <img src="assets/breakfast1.jpeg" alt="Завтрак">
-                <div class="card-content">
-                    <h4>Датский сет</h4>
-                    <p class="description">Сбалансированный утренний завтрак для отличного начала продуктивного дня.</p>
-                    <p class="price">2 200 ₸</p>
+            <div class="col-lg-3 col-md-6 col-12 d-flex">
+                <div class="product-card card h-100 w-100 p-3 text-center border shadow-sm">
+                    <img src="assets/breakfast1.jpeg" alt="Завтрак" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
+                    <div class="card-content card-body p-0 d-flex flex-column">
+                        <h4 class="card-title fs-6 fw-bold mb-1">Датский сет</h4>
+                        <p class="card-text description text-secondary small mb-2">Сбалансированный утренний завтрак для отличного начала продуктивного дня.</p>
+                        <p class="price fw-bold text-info fs-5 mt-auto mb-3">2 200 ₸</p>
+                    </div>
+                    <a href="profile/cart.html" class="btn btn-light border text-dark fw-bold btn-secondary btn-light border text-dark fw-bold w-100">В корзину</a>
                 </div>
-                <a href="profile/cart.html" class="btn-secondary">В корзину</a>
             </div>
         </section>
 
@@ -145,36 +126,36 @@
                     <div class="carousel-item active pb-2">
                         <div class="row g-4">
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/latte.jpeg" alt="Латте Макиато">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/latte.jpeg" alt="Латте Макиато" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Латте Макиато</h4>
                                         <p class="description">Нежный кофе с мягкой молочной пенкой и сиропом на выбор.</p>
                                         <p class="price">1 600 ₸</p>
                                     </div>
-                                    <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
+                                    <button type="button" class="btn-light border text-dark fw-bold btn-secondary btn w-100" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/tashkent-tea.jpeg" alt="Ташкентский чай" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Ташкентский чай</h4>
                                         <p class="description">Ароматный черный и зеленый чай с добавлением лимона, мяты и меда.</p>
                                         <p class="price">1 400 ₸</p>
                                     </div>
-                                    <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
+                                    <button type="button" class="btn-light border text-dark fw-bold btn-secondary btn w-100" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/kruassan.jpeg" alt="Классический круассан">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/kruassan.jpeg" alt="Классический круассан" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Классический круассан</h4>
                                         <p class="description">Хрустящая французская выпечка из слоеного теста на сливочном масле.</p>
                                         <p class="price">1 200 ₸</p>
                                     </div>
-                                    <a href="profile/cart.html" class="btn-secondary">В корзину</a>
+                                    <a href="profile/cart.html" class="btn-light border text-dark fw-bold btn-secondary btn w-100">В корзину</a>
                                 </div>
                             </div>
                         </div>
@@ -183,36 +164,36 @@
                     <div class="carousel-item pb-2">
                         <div class="row g-4">
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/breakfast1.jpeg" alt="Датский сет">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/breakfast1.jpeg" alt="Датский сет" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Датский сет</h4>
                                         <p class="description">Сбалансированный утренний завтрак для отличного начала продуктивного дня.</p>
                                         <p class="price">2 200 ₸</p>
                                     </div>
-                                    <a href="profile/cart.html" class="btn-secondary">В корзину</a>
+                                    <a href="profile/cart.html" class="btn-light border text-dark fw-bold btn-secondary btn w-100">В корзину</a>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/cappucino.jpeg" alt="Капучино Классик">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/cappucino.jpeg" alt="Капучино Классик" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Капучино Классик</h4>
                                         <p class="description">Глянцевая молочная пена и насыщенный эспрессо из 100% арабики.</p>
                                         <p class="price">1 500 ₸</p>
                                     </div>
-                                    <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
+                                    <button type="button" class="btn-light border text-dark fw-bold btn-secondary btn w-100" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/berry-tea.jpeg" alt="Ягодный чай">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/berry-tea.jpeg" alt="Ягодный чай" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Ягодный чай</h4>
                                         <p class="description">Согревающий витаминный сбор из ягодного пюре с бадьяном и корицей.</p>
                                         <p class="price">1 500 ₸</p>
                                     </div>
-                                    <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
+                                    <button type="button" class="btn-light border text-dark fw-bold btn-secondary btn w-100" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
                                 </div>
                             </div>
                         </div>
@@ -221,36 +202,36 @@
                     <div class="carousel-item pb-2">
                         <div class="row g-4">
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/flat-white.jpeg" alt="Флэт Уайт">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/flat-white.jpeg" alt="Флэт Уайт" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Флэт Уайт</h4>
                                         <p class="description">Двойной ристретто с шелковистой текстурой молока для ценителей вкуса.</p>
                                         <p class="price">1 700 ₸</p>
                                     </div>
-                                    <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
+                                    <button type="button" class="btn-light border text-dark fw-bold btn-secondary btn w-100" data-bs-toggle="modal" data-bs-target="#orderModal">Выбрать</button>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/sandwich.jpeg" alt="Сэндвич с индейкой">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/sandwich.jpeg" alt="Сэндвич с индейкой" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Сэндвич с индейкой</h4>
                                         <p class="description">Хрустящая чиабатта с нежным филе индейки, томатами и сыром моцарелла.</p>
                                         <p class="price">1 800 ₸</p>
                                     </div>
-                                    <a href="profile/cart.html" class="btn-secondary">В корзину</a>
+                                    <a href="profile/cart.html" class="btn-light border text-dark fw-bold btn-secondary btn w-100">В корзину</a>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="product-card">
-                                    <img src="assets/cheesecake.jpg" alt="Чизкейк Нью-Йорк">
+                                <div class="product-card card h-100 w-100 card h-100 w-100 p-3 text-center border shadow-sm">
+                                    <img src="assets/cheesecake.jpg" alt="Чизкейк Нью-Йорк" class="card-img-top mx-auto mb-3 rounded-4" style="width: 140px; height: 140px; object-fit: cover;">
                                     <div class="card-content">
                                         <h4>Чизкейк Нью-Йорк</h4>
                                         <p class="description">Классический сливочный десерт на песочной основе с малиновым кули.</p>
                                         <p class="price">1 600 ₸</p>
                                     </div>
-                                    <a href="profile/cart.html" class="btn-secondary">В корзину</a>
+                                    <a href="profile/cart.html" class="btn-light border text-dark fw-bold btn-secondary btn w-100">В корзину</a>
                                 </div>
                             </div>
                         </div>
@@ -286,7 +267,7 @@
                                 <p class="description mb-0">Кастомизируйте напиток под свои предпочтения: вид зерна, сиропы и молоко.</p>
                             </div>
                         </div>
-                        <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#orderModal">Открыть конструктор →</button>
+                        <button type="button" class="btn-light border text-dark fw-bold btn-secondary btn w-100" data-bs-toggle="modal" data-bs-target="#orderModal">Открыть конструктор →</button>
                     </div>
                 </div>
 
@@ -299,24 +280,26 @@
                                 <p class="description mb-0">Оплачивайте онлайн через Kaspi QR и забирайте готовый напиток у стойки выдачи.</p>
                             </div>
                         </div>
-                        <a href="profile/cart.html" class="btn-primary" style="display: block; text-align: center;">Перейти к оплате в корзине →</a>
+                        <a href="profile/cart.html" class="btn btn-info text-white fw-bold btn-primary" style="display: block; text-align: center;">Перейти к оплате в корзине →</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="help-choice-banner">
+        <section class="help-choice-banner card p-4 mb-4 border rounded-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 bg-white shadow-sm">
             <div class="choice-text">
                 <h3>Не знаете, что выбрать?</h3>
                 <p>Загляните в нашу интерактивную витрину-галерею: покажем все напитки, десерты и их состав с яркими фото.</p>
             </div>
-            <a href="gallery.html" class="btn">Подобрать напиток в галерее →</a>
+            <a href="gallery.html" class="btn btn-info text-white fw-bold px-4 py-2 rounded-3 text-nowrap">Подобрать напиток в галерее →</a>
         </section>
     </main>
 
-    <footer id="main-footer">
-        <p>created by yourqyert</p>
-        <p>&copy; 2026 Zebra Coffee Inc. Все права защищены.</p>
+    <footer id="main-footer" class="mt-auto bg-dark text-light border-top border-info border-3 py-4">
+        <div class="container text-center">
+            <p class="mb-1 fw-bold fs-5">Zebra <span class="text-info">Coffee</span></p>
+            <p class="small text-white-50 mb-0">&copy; 2026 Zebra Coffee Inc. Все права защищены. <span class="text-info">·</span> Создано yourqyert</p>
+        </div>
     </footer>
 </div>
 
@@ -391,7 +374,7 @@
                         <textarea id="orderComment" name="comment" rows="2" class="form-control" placeholder="Не слишком горячий, без сахара..." style="border-radius: 14px; border-color: #e2e4e8; font-size: 0.85rem;"></textarea>
                     </div>
 
-                    <button type="submit" class="btn-primary" style="width: 100%;">Перейти к оформлению заказа →</button>
+                    <button type="submit" class="btn btn-info text-white fw-bold btn-primary" style="width: 100%;">Перейти к оформлению заказа →</button>
                 </form>
             </div>
         </div>
@@ -399,13 +382,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script>
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', function() {
-            document.body.classList.toggle('sidebar-collapsed');
-        });
-    }
-</script>
+
 </body>
 </html>
