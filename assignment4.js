@@ -148,8 +148,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (invalidFields.length) {
                 message.classList.remove("is-success");
-                message.textContent = invalidFields.map((field) => field.validationMessage).join(" ");
-                invalidFields[0].focus();
+                const firstInvalidField = invalidFields[0];
+                const fieldLabel = authForm.querySelector(`label[for="${firstInvalidField.id}"]`)?.textContent.trim();
+                message.textContent = fieldLabel
+                    ? `${fieldLabel}: ${firstInvalidField.validationMessage}`
+                    : firstInvalidField.validationMessage;
+                firstInvalidField.focus();
                 return;
             }
 

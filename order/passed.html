@@ -13,26 +13,25 @@
 <body>
 
 <div class="page-grid-layout d-flex flex-column min-vh-100">
-    <header id="main-header">
-        <div class="d-flex align-items-center gap-3">
-            <a href="../index.html" class="logo">
-                <img class="logo" src="../assets/logo.png" alt="logo" width="38" height="38" style="object-fit: contain;">
-                <h1>Zebra <span>Coffee</span></h1>
+    <header id="main-header" class="navbar navbar-expand-lg bg-white border-bottom py-2 px-3 px-lg-4 sticky-top z-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="../index.html" class="logo d-inline-flex align-items-center gap-2 text-decoration-none text-dark">
+                <img class="logo" src="../assets/logo.png" alt="logo" width="36" height="36" style="object-fit: contain;">
+                <h1 class="h5 mb-0 fw-bold">Zebra <span style="color: #01a6b8;">Coffee</span></h1>
             </a>
-        </div>
 
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#passedNavCollapse" aria-controls="passedNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
+            <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#passedNavCollapse" aria-controls="passedNavCollapse" aria-expanded="false" aria-label="Переключить навигацию">
             <span class="navbar-toggler-icon"></span>
-        </button>
+            </button>
 
-        <nav class="nav-menu collapse d-lg-flex" id="passedNavCollapse">
-            <ul class="d-flex flex-column flex-lg-row gap-2 list-unstyled mb-0 align-items-lg-center">
-                <li><a href="../index.html" class="header-nav-icon-link" aria-label="Главная"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5.5 9v11h13V9M9.5 20v-6h5v6"/></svg><span class="header-nav-label">Главная</span></a></li>
-                <li><a href="../gallery.html" class="header-nav-icon-link" aria-label="Галерея"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg><span class="header-nav-label">Галерея</span></a></li>
-                <li><a href="../profile.html" class="header-nav-icon-link" aria-label="Профиль"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.6-3.4 3-5.2 7-5.2s6.4 1.8 7 5.2"/></svg><span class="header-nav-label">Профиль</span></a></li>
-                <li><a href="../component/auth.html" class="header-nav-icon-link" aria-label="Вход"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h5v16h-5M3 12h11m-4-4 4 4-4 4"/></svg><span class="header-nav-label">Вход</span></a></li>
-                <li><a href="../profile/cart.html" class="header-nav-icon-link" aria-label="Корзина"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 11h10.9l2-7.5H6M9 19a1 1 0 1 0 0 .01M17 19a1 1 0 1 0 0 .01"/></svg><span class="header-nav-label">Корзина</span></a></li>
-                <li><button type="button" class="header-theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="false"><svg data-theme-icon="sun" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg data-theme-icon="moon" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"/></svg><span class="header-nav-label" data-theme-label>Тема</span></button></li>
+        <nav class="nav-menu collapse navbar-collapse flex-grow-0" id="passedNavCollapse">
+            <ul class="navbar-nav d-flex flex-column flex-lg-row gap-1 gap-lg-2 list-unstyled mb-0 align-items-lg-center pt-2 pt-lg-0">
+                <li class="nav-item"><a href="../index.html" class="nav-link header-nav-icon-link" aria-label="Главная"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5.5 9v11h13V9M9.5 20v-6h5v6"/></svg><span class="header-nav-label">Главная</span></a></li>
+                <li class="nav-item"><a href="../gallery.html" class="nav-link header-nav-icon-link" aria-label="Галерея"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg><span class="header-nav-label">Галерея</span></a></li>
+                <li class="nav-item"><a href="../profile.html" class="nav-link header-nav-icon-link" aria-label="Профиль"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.6-3.4 3-5.2 7-5.2s6.4 1.8 7 5.2"/></svg><span class="header-nav-label">Профиль</span></a></li>
+                <li class="nav-item"><a href="../component/auth.html" class="nav-link header-nav-icon-link" aria-label="Вход"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h5v16h-5M3 12h11m-4-4 4 4-4 4"/></svg><span class="header-nav-label">Вход</span></a></li>
+                <li class="nav-item"><a href="../profile/cart.html" class="nav-link header-nav-icon-link" aria-label="Корзина"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 11h10.9l2-7.5H6M9 19a1 1 0 1 0 0 .01M17 19a1 1 0 1 0 0 .01"/></svg><span class="header-nav-label">Корзина</span></a></li>
+                <li class="nav-item"><button type="button" class="header-theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="false"><svg data-theme-icon="sun" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg data-theme-icon="moon" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"/></svg><span class="header-nav-label" data-theme-label>Тема</span></button></li>
             </ul>
         </nav>
     </header>
