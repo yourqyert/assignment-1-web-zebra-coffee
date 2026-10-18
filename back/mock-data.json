@@ -27,86 +27,183 @@
     }
   ],
 
+  "builderOptions": {
+    "sizes": [
+      { "id": "s", "label": "S", "volume": 250, "price": 0, "scale": 0.78 },
+      { "id": "m", "label": "M", "volume": 350, "price": 250, "scale": 0.9 },
+      { "id": "l", "label": "L", "volume": 450, "price": 500, "scale": 1 }
+    ],
+    "syrups": [
+      { "id": "vanilla", "name": "Ваниль", "price": 250 },
+      { "id": "caramel", "name": "Солёная карамель", "price": 250 },
+      { "id": "hazelnut", "name": "Лесной орех", "price": 250 }
+    ],
+    "milks": [
+      { "id": "standard", "name": "Оставить стандартное", "price": 0 },
+      { "id": "oat", "name": "Овсяное молоко", "price": 300 },
+      { "id": "almond", "name": "Миндальное молоко", "price": 350 }
+    ],
+    "extras": [
+      { "id": "shot", "name": "Дополнительный эспрессо-шот", "price": 250 }
+    ]
+  },
+
   "goods": [
     {
       "id": 1,
+      "slug": "latte-macchiato",
       "name": "Латте Макиато",
       "category": "coffee",
       "price": 1600,
-      "description": "Эспрессо с горячим молоком и плотной молочной пенкой.",
-      "image": "assets/latte.jpeg"
+      "description": "Нежный кофе с мягкой молочной пенкой и сиропом на выбор.",
+      "image": "assets/zebra-latte.png",
+      "highlight": "Нежная молочная пена",
+      "options": ["Классическое или овсяное молоко", "100% арабика"],
+      "featured": true,
+      "seasonal": true
     },
     {
       "id": 2,
+      "slug": "cappuccino-classic",
       "name": "Капучино Классик",
       "category": "coffee",
       "price": 1500,
-      "description": "Идеальный баланс насыщенного эспрессо и шелковистой пены.",
-      "image": "assets/latte.jpeg"
+      "description": "Классический баланс насыщенного эспрессо и глянцевой молочной пены.",
+      "image": "assets/zebra-cappuccino.png",
+      "highlight": "Плотная молочная пенка",
+      "options": ["S, M или L", "Ванильный сироп, карамель или лесной орех"],
+      "featured": false,
+      "seasonal": true
     },
     {
       "id": 3,
+      "slug": "flat-white",
       "name": "Флэт Уайт",
       "category": "coffee",
       "price": 1700,
-      "description": "Двойной эспрессо с бархатистым молоком для ценителей вкуса.",
-      "image": "assets/latte.jpeg"
+      "description": "Двойной ристретто с шелковистой текстурой молока для ценителей вкуса.",
+      "image": "assets/zebra-latte.png",
+      "highlight": "Двойной ристретто",
+      "options": ["Классическое или растительное молоко", "Дополнительный эспрессо-шот"],
+      "featured": false,
+      "seasonal": true
     },
     {
       "id": 4,
+      "slug": "iced-americano",
       "name": "Айс Американо",
       "category": "cold_coffee",
       "price": 1300,
       "description": "Освежающий эспрессо со льдом и фильтрованной водой.",
-      "image": "assets/latte.jpeg"
+      "image": "assets/zebra-iced-americano.png",
+      "highlight": "Эспрессо со льдом",
+      "options": ["Без сиропа или с карамелью", "Регулируемая крепость"],
+      "featured": false,
+      "seasonal": true
     },
     {
       "id": 5,
+      "slug": "iced-caramel-latte",
       "name": "Айс Карамель Латте",
       "category": "cold_coffee",
       "price": 1800,
       "description": "Охлажденный латте с добавлением домашней соленой карамели.",
-      "image": "assets/latte.jpeg"
+      "image": "assets/zebra-iced-latte.png",
+      "highlight": "Домашняя солёная карамель",
+      "options": ["Классическое или овсяное молоко", "Дополнительная карамель"],
+      "featured": false,
+      "seasonal": true
     },
     {
       "id": 6,
+      "slug": "tashkent-tea",
       "name": "Ташкентский чай",
       "category": "tea",
       "price": 1400,
-      "description": "Микс черного и зеленого чая с лимоном, мятой и медом.",
-      "image": "assets/tashkent-tea.jpeg"
+      "description": "Ароматный чёрный и зелёный чай с лимоном, мятой и мёдом.",
+      "image": "assets/zebra-tea.png",
+      "highlight": "Мята, лимон и мёд",
+      "options": ["Чёрный и зелёный чай", "Мята, лимон и натуральный мёд"],
+      "featured": true,
+      "seasonal": true
     },
     {
       "id": 7,
+      "slug": "berry-tea",
       "name": "Ягодный авторский чай",
       "category": "tea",
       "price": 1500,
       "description": "Натуральное пюре из малины и облепихи с пряностями.",
-      "image": "assets/tashkent-tea.jpeg"
+      "image": "assets/zebra-berry-tea.png",
+      "highlight": "Облепиха и малина",
+      "options": ["Горячий или со льдом", "Без сахара, с мёдом или сиропом"],
+      "featured": false,
+      "seasonal": true
     },
     {
       "id": 8,
+      "slug": "classic-croissant",
       "name": "Классический круассан",
       "category": "bakery",
       "price": 1200,
-      "description": "Хрустящий слоеный круассан на натуральном сливочном масле.",
-      "image": "assets/kruassan.jpeg"
+      "description": "Хрустящая французская выпечка из слоёного теста на сливочном масле.",
+      "image": "assets/kruassan.jpeg",
+      "highlight": "Свежая выпечка",
+      "options": ["Подача тёплой", "Джем, карамель или шоколадный соус"],
+      "featured": true,
+      "seasonal": true
     },
     {
       "id": 9,
+      "slug": "danish-breakfast",
       "name": "Датский сет",
       "category": "bakery",
       "price": 2200,
-      "description": "Сытный комбо-завтрак со свежей выпечкой и добавками.",
-      "image": "assets/breakfast1.jpeg"
+      "description": "Сбалансированный утренний завтрак для хорошего начала дня.",
+      "image": "assets/breakfast1.jpeg",
+      "highlight": "Сытный завтрак",
+      "options": ["Американо или чёрный чай", "Чиабатта или круассан"],
+      "featured": true,
+      "seasonal": false
     },
     {
       "id": 10,
+      "slug": "san-sebastian-cheesecake",
       "name": "Чизкейк Сан-Себастьян",
       "category": "desserts",
       "price": 1800,
       "description": "Карамелизированный снаружи и нежнейший сливочный внутри.",
-      "image": "assets/breakfast1.jpeg"
+      "image": "assets/cheesecake.jpg",
+      "highlight": "Карамельная корочка",
+      "options": ["Сливочная текстура", "Малиновый соус по желанию"],
+      "featured": false,
+      "seasonal": true
+    },
+    {
+      "id": 11,
+      "slug": "almond-croissant",
+      "name": "Миндальный круассан",
+      "category": "bakery",
+      "price": 1500,
+      "description": "Слоёный круассан с начинкой из орехового крема франжипан.",
+      "image": "assets/kruassan.jpeg",
+      "highlight": "Франжипан и миндальные лепестки",
+      "options": ["Миндальный крем", "Подача тёплой"],
+      "featured": false,
+      "seasonal": false
+    },
+    {
+      "id": 12,
+      "slug": "turkey-sandwich",
+      "name": "Сэндвич с индейкой",
+      "category": "bakery",
+      "price": 1800,
+      "description": "Чиабатта на закваске с филе индейки, зеленью и соусом песто.",
+      "image": "assets/sandwich.jpeg",
+      "highlight": "Моцарелла и песто",
+      "options": ["Пшеничная чиабатта с травами", "Моцарелла или чеддер"],
+      "featured": false,
+      "seasonal": false
     }
   ],
 

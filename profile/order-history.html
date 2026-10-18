@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zebra Coffee — История заказов</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../additional.css">
+    <link rel="stylesheet" href="../assignment4.css?v=20261019-nav-labels-1">
+    <script src="../assignment4.js"></script>
+    <script src="../products.js"></script>
 </head>
 <body>
 
@@ -25,11 +28,12 @@
 
             <nav class="nav-menu collapse navbar-collapse flex-grow-0" id="topNavCollapse">
                 <ul class="navbar-nav d-flex flex-column flex-lg-row gap-1 gap-lg-2 list-unstyled mb-0 align-items-lg-center pt-2 pt-lg-0">
-                    <li class="nav-item"><a href="../index.html" class="nav-link px-3 py-1 rounded-pill">Главная</a></li>
-                    <li class="nav-item"><a href="../gallery.html" class="nav-link px-3 py-1 rounded-pill">Галерея</a></li>
-                    <li class="nav-item"><a href="../profile.html" class="nav-link  px-3 py-1 rounded-pill">Профиль</a></li>
-                    <li class="nav-item"><a href="../component/auth.html" class="nav-link px-3 py-1 rounded-pill">Вход</a></li>
-                    <li class="nav-item"><a href="../profile/cart.html" class="nav-link  px-3 py-1 rounded-pill">Корзина</a></li>
+                    <li class="nav-item"><a href="../index.html" class="nav-link header-nav-icon-link" aria-label="Главная"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5.5 9v11h13V9M9.5 20v-6h5v6"/></svg><span class="header-nav-label">Главная</span></a></li>
+                    <li class="nav-item"><a href="../gallery.html" class="nav-link header-nav-icon-link" aria-label="Галерея"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg><span class="header-nav-label">Галерея</span></a></li>
+                    <li class="nav-item"><a href="../profile.html" class="nav-link header-nav-icon-link" aria-label="Профиль"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.6-3.4 3-5.2 7-5.2s6.4 1.8 7 5.2"/></svg><span class="header-nav-label">Профиль</span></a></li>
+                    <li class="nav-item"><a href="../component/auth.html" class="nav-link header-nav-icon-link" aria-label="Вход"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h5v16h-5M3 12h11m-4-4 4 4-4 4"/></svg><span class="header-nav-label">Вход</span></a></li>
+                    <li class="nav-item"><a href="../profile/cart.html" class="nav-link header-nav-icon-link" aria-label="Корзина"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 11h10.9l2-7.5H6M9 19a1 1 0 1 0 0 .01M17 19a1 1 0 1 0 0 .01"/></svg><span class="header-nav-label">Корзина</span></a></li>
+                    <li class="nav-item"><button type="button" class="header-theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="false"><svg data-theme-icon="sun" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg data-theme-icon="moon" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"/></svg><span class="header-nav-label" data-theme-label>Тема</span></button></li>
                 </ul>
             </nav>
         </div>
@@ -57,45 +61,72 @@
             <main class="main-content col-md-8 col-lg-9">
         <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">История заказов</h2>
 
-        <div class="table-card">
-            <table class="modern-table table table-hover">
-                <thead>
-                <tr>
-                    <th>Дата</th>
-                    <th>Код заказа</th>
-                    <th>Позиции</th>
-                    <th>Сумма</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>15.09.2026</td>
-                    <td><strong>#ZC-892</strong></td>
-                    <td>Латте (L), Чизкейк</td>
-                    <td><strong>3 400 ₸</strong></td>
-                </tr>
-                <tr>
-                    <td>12.09.2026</td>
-                    <td><strong>#ZC-741</strong></td>
-                    <td>Флэт Уайт, Сэндвич с курицей</td>
-                    <td><strong>2 800 ₸</strong></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <section id="order-history-list" class="order-history-list" aria-live="polite" aria-label="Оформленные заказы">
+            <p class="text-muted">Загрузка истории заказов...</p>
+        </section>
     </main>
         </div>
     </div>
 
-    <footer id="main-footer" class="mt-auto bg-dark text-light border-top border-info border-3 py-4">
-        <div class="container text-center">
-            <p class="mb-1 fw-bold fs-5">Zebra <span class="text-info">Coffee</span></p>
-            <p class="small text-white-50 mb-0">&copy; 2026 Zebra Coffee Inc. Все права защищены. <span class="text-info">·</span> Создано yourqyert</p>
+    <footer id="main-footer" class="site-footer mt-auto" aria-label="Подвал сайта">
+    <div class="container py-5">
+        <div class="row g-4 g-lg-5">
+            <div class="col-12 col-lg-4">
+                <a class="site-footer-brand" href="../index.html" aria-label="Zebra Coffee — главная">
+                    <img src="../assets/logo.png" width="44" height="44" alt="">
+                    <span><strong>Zebra</strong><span class="site-footer-brand-accent">Coffee</span></span>
+                </a>
+                <p class="site-footer-description">Кофе, любимые десерты и свежая выпечка. Соберите заказ онлайн — мы приготовим его к вашему визиту.</p>
+                <a class="site-footer-cta" href="../index.html#featured-products">Выбрать напиток <span aria-hidden="true">→</span></a>
+            </div>
+
+            <nav class="col-6 col-lg-2" aria-label="Разделы меню">
+                <h2 class="site-footer-heading">Меню</h2>
+                <ul class="site-footer-links">
+                    <li><a href="../index.html#featured-products">Напитки и десерты</a></li>
+                    <li><a href="../gallery.html">Галерея</a></li>
+                    <li><a href="../index.html#faq-title">Частые вопросы</a></li>
+                </ul>
+            </nav>
+
+            <nav class="col-6 col-lg-2" aria-label="Личный кабинет">
+                <h2 class="site-footer-heading">Мой аккаунт</h2>
+                <ul class="site-footer-links">
+                    <li><a href="../component/auth.html">Вход</a></li>
+                    <li><a href="../profile.html">Профиль</a></li>
+                    <li><a href="../profile/order-history.html">История заказов</a></li>
+                    <li><a href="../profile/cart.html">Корзина</a></li>
+                </ul>
+            </nav>
+
+            <div class="col-12 col-lg-4">
+                <h2 class="site-footer-heading">Наши кофейни</h2>
+                <ul class="site-footer-locations">
+                    <li>
+                        <a href="https://go.2gis.com/GXhGJ" target="_blank" rel="noopener noreferrer">
+                            <span class="site-footer-location-name">Зебра на Мангилик Ел</span>
+                            <span class="site-footer-location-address">Проспект Мангилик Ел, 38</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://go.2gis.com/GXhGJ" target="_blank" rel="noopener noreferrer">
+                            <span class="site-footer-location-name">Зебра на Улы Дала</span>
+                            <span class="site-footer-location-address">Проспект Улы Дала, 63</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </footer>
+
+        <div class="site-footer-bottom">
+            <p>&copy; <span data-footer-year>2026</span> Zebra Coffee. Все права защищены.</p>
+            <span class="site-footer-meta"><time data-current-time aria-live="off">Обновляем дату и время…</time><span>dev with <span class="site-footer-heart" aria-hidden="true">♥</span> by Birzhan Zhanbolatuly (@yourqyert)</span></span>
+            <a href="../index.html">Кофе, к которому хочется возвращаться</a>
+        </div>
+    </div>
+</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 </html>

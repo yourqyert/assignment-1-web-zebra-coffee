@@ -1,6 +1,6 @@
 # Zebra Coffee — Web Ordering System
 
-**Front-End Development Course | Assignment #3: Media Queries + Bootstrap Grid**  
+**Front-End Development Course | Assignments #3–4: Responsive Layout + JavaScript**
 **Astana IT University**
 
 ---
@@ -8,7 +8,7 @@
 ## 👥 Team Details & Author Information
 * **Project Name:** Zebra Coffee Web Platform
 * **Authors:** Birzhan Zhanbolatuly (`yourqyert`)
-* **Live Deployment URL:** [https://yourqyert.github.io/slmsung-web/](https://yourqyert.github.io/slmsung-web/)
+* **Live Deployment URL:** Not available at final review (2026-10-19). GitHub Pages returned 404 for both `https://yourqyert.github.io/slmsung-web/` and `https://yourqyert.github.io/`.
 
 ---
 
@@ -35,12 +35,32 @@
 
 ---
 
+## 🧩 Assignment #4: Introduction to JavaScript
+
+The JavaScript tasks are implemented in the shared `assignment4.js` file and linked from every HTML page. Page-specific controls are initialized only where their matching elements exist.
+
+1. **Form validation:** the registration form at `component/auth.html` checks required values, email format, a minimum eight-character password, and matching password confirmation. Validation feedback is shown beside the form.
+2. **FAQ accordion:** three questions on `index.html` expand and collapse their answers with an animated transition and accessible expanded state.
+3. **Subscription popup:** the home page footer opens a responsive subscription dialog. It closes from its close button, the backdrop, or Escape, and validates the email before showing a local demo confirmation. The form is not connected to a mailing service.
+4. **Background color:** the header theme control switches between Bootstrap's light and dark color modes. The selected mode is remembered between pages.
+5. **Current date and time:** shared site footers display live, Russian-formatted date and time using the JavaScript `Date` object. The login page intentionally has no footer, following the requested login-page design.
+
+The shared styles for these components are in `assignment4.css`. The GitHub Pages deployment needs to be configured and published before a live URL can be submitted. The separate submission report with task screenshots and the ZIP archive still need to be prepared for final course submission.
+
+### Dynamic product catalog and order history
+
+Product records are loaded from `back/mock-data.json` by the shared `products.js` script. The home page, gallery, product category filters, and quick-order selector use the same catalog, including names, descriptions, prices, categories, and image paths. Additions from product cards and the quick-order form go into the browser's `localStorage` cart.
+
+When a customer completes the demo checkout, the order saves a snapshot of each selected item (image, name, options, unit price, and quantity). The confirmation page and order history render those saved items with their images. Cart and order data stay in that browser only; this front-end demo does not send orders to a server. Open the project through a local web server so the browser can fetch the JSON file.
+
+---
+
 ### Part 2. Bootstrap Grid & Components
 
 #### Bootstrap Grid Layout
 * Integrated Bootstrap 5 12-column grid (`container-fluid`, `row`, `col-*`):
   * **Two-column section:** `col-lg-6 col-md-12` showcasing "Особенности сервиса" on `index.html`.
-  * **Three-column section:** `col-lg-4 col-md-6 col-sm-12` used inside the seasonal carousel.
+  * **Three-column section:** `col-lg-4 col-md-6 col-sm-12` used in the seasonal product grid.
 
 #### Bootstrap Spacing Utilities
 * Utilized Bootstrap responsive spacing utilities: `m-`, `p-`, `mt-lg-4`, `px-sm-2`, `mb-4`, `mb-5`, `g-4`, `py-3`.
@@ -52,18 +72,15 @@
 * Styled with Bootstrap button classes: `btn`, `btn-primary`, `btn-secondary`.
 * Stylized category chips implemented using Bootstrap `.btn-group`, `.btn-check`, and `.btn` toggle buttons for category selection, fully preserving brand aesthetics.
 
-#### Bootstrap Carousel (9 Images)
-* Implemented in `index.html` (`#coffeeCarousel` with `data-bs-ride="carousel"`):
-  * Displays **9 unique images** (`latte.jpeg`, `tashkent-tea.jpeg`, `kruassan.jpeg`, `breakfast1.jpeg`, `cappucino.jpeg`, `berry-tea.jpeg`, `flat-white.jpeg`, `sandwich.jpeg`, `cheesecake.jpg`).
-  * Organized into 3 responsive slides (3 items per slide in a Bootstrap grid).
-  * Full navigation indicators and controls.
+#### Bootstrap Carousel
+* The guest-photo carousel on `gallery.html` uses Bootstrap indicators and previous/next controls. Product cards on the home page and gallery are loaded from the shared JSON catalog.
 
 #### Bootstrap Cards
 * Styled with `.product-card` and Bootstrap `.card` maintaining brand rounded corners, subtle shadows, and actions.
 
-#### Responsive Form Design (Modal Window)
-* Implemented as an interactive Bootstrap Modal (`#orderModal`) triggered by the "Собрать напиток" and "Открыть конструктор" buttons.
-* Contains full Bootstrap form controls: `.input-group`, `.form-control`, `.form-select`, `.form-check`, `.form-check-input`.
+#### Drink Builder and Cross-Sell Modal
+* The drink builder opens from a beverage card's "Настроить и добавить" button. It previews the selected item, lets the customer choose size, syrup, milk, extras, and barista notes, then keeps the modal open with dessert and bakery recommendations.
+* Product sizes and add-on prices come from `back/mock-data.json`; the selected configuration is saved with the cart item.
 
 #### Accessibility & Code Quality
 * Valid semantic HTML tags (`<header>`, `<nav>`, `<aside>`, `<main>`, `<section>`, `<footer>`, `<button>`).
@@ -75,17 +92,20 @@
 ## 📁 Project Structure
 ```text
 slmsung-web/
-├── index.html                  # Homepage with Bootstrap Grid, 9-img Carousel & Modal Form
+├── index.html                  # Homepage with dynamic products, filters and drink-builder modal
 ├── gallery.html                # Interactive Showcase Gallery with Bootstrap Navbar
 ├── profile.html                # User profile card & loyalty stats
-├── styles.css                  # Custom styling + Media queries + Bootstrap fine-tuning overrides
+├── additional.css              # Site layout, responsive rules and brand styling
+├── assignment4.js              # Shared assignment interactions
+├── assignment4.css             # Shared assignment component styling
+├── products.js                 # Catalog, cart, checkout and order-history rendering
+├── back/
+│   └── mock-data.json          # Catalog records, categories and mock data
 ├── README.md                   # Assignment documentation & report guide
-├── assets/                     # 9+ High-resolution product images & icons
+├── assets/                     # Product images, logo and hero image
 ├── component/
-│   ├── auth.html               # SMS/Email login
-│   └── module.html             # Beverage builder
+│   └── auth.html               # Registration form with validation
 ├── order/
-│   ├── payment.html            # Checkout form
 │   └── passed.html             # Order success confirmation
 └── profile/
     ├── cart.html               # Cart table

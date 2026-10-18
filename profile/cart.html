@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zebra Coffee — Корзина</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../additional.css">
+    <link rel="stylesheet" href="../assignment4.css?v=20261019-nav-labels-1">
+    <script src="../assignment4.js"></script>
+    <script src="../products.js"></script>
 </head>
 <body>
 
@@ -25,11 +28,12 @@
 
             <nav class="nav-menu collapse navbar-collapse flex-grow-0" id="topNavCollapse">
                 <ul class="navbar-nav d-flex flex-column flex-lg-row gap-1 gap-lg-2 list-unstyled mb-0 align-items-lg-center pt-2 pt-lg-0">
-                    <li class="nav-item"><a href="../index.html" class="nav-link px-3 py-1 rounded-pill">Главная</a></li>
-                    <li class="nav-item"><a href="../gallery.html" class="nav-link px-3 py-1 rounded-pill">Галерея</a></li>
-                    <li class="nav-item"><a href="../profile.html" class="nav-link  px-3 py-1 rounded-pill">Профиль</a></li>
-                    <li class="nav-item"><a href="../component/auth.html" class="nav-link px-3 py-1 rounded-pill">Вход</a></li>
-                    <li class="nav-item"><a href="../profile/cart.html" class="nav-link active px-3 py-1 rounded-pill">Корзина</a></li>
+                    <li class="nav-item"><a href="../index.html" class="nav-link header-nav-icon-link" aria-label="Главная"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5.5 9v11h13V9M9.5 20v-6h5v6"/></svg><span class="header-nav-label">Главная</span></a></li>
+                    <li class="nav-item"><a href="../gallery.html" class="nav-link header-nav-icon-link" aria-label="Галерея"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg><span class="header-nav-label">Галерея</span></a></li>
+                    <li class="nav-item"><a href="../profile.html" class="nav-link header-nav-icon-link" aria-label="Профиль"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.6-3.4 3-5.2 7-5.2s6.4 1.8 7 5.2"/></svg><span class="header-nav-label">Профиль</span></a></li>
+                    <li class="nav-item"><a href="../component/auth.html" class="nav-link header-nav-icon-link" aria-label="Вход"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h5v16h-5M3 12h11m-4-4 4 4-4 4"/></svg><span class="header-nav-label">Вход</span></a></li>
+                    <li class="nav-item"><a href="../profile/cart.html" class="nav-link header-nav-icon-link active" aria-label="Корзина"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 11h10.9l2-7.5H6M9 19a1 1 0 1 0 0 .01M17 19a1 1 0 1 0 0 .01"/></svg><span class="header-nav-label">Корзина</span></a></li>
+                    <li class="nav-item"><button type="button" class="header-theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="false"><svg data-theme-icon="sun" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg data-theme-icon="moon" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"/></svg><span class="header-nav-label" data-theme-label>Тема</span></button></li>
                 </ul>
             </nav>
         </div>
@@ -60,7 +64,8 @@
         <div class="row g-4">
             <div class="col-lg-8 col-md-12">
                 <div class="table-card p-4 m-0" style="background: #ffffff; border-radius: 20px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
-                    <table class="modern-table table table-hover">
+                    <p id="cart-empty" class="text-muted mb-0" hidden>Корзина пока пуста. <a href="../gallery.html">Выберите товары в галерее.</a></p>
+                    <table id="cart-table" class="modern-table table table-hover" hidden>
                         <thead>
                         <tr>
                             <th>Наименование</th>
@@ -69,36 +74,23 @@
                             <th style="text-align: right;">Цена</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td><strong>Капучино</strong></td>
-                            <td class="text-muted small">Размер M, Овсяное молоко</td>
-                            <td style="text-align: center;">1</td>
-                            <td style="text-align: right; color: #01a6b8; font-weight: 700;">1 700 ₸</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Круассан</strong></td>
-                            <td class="text-muted small">Миндальный</td>
-                            <td style="text-align: center;">1</td>
-                            <td style="text-align: right; color: #01a6b8; font-weight: 700;">1 200 ₸</td>
-                        </tr>
-                        </tbody>
+                        <tbody id="cart-lines"></tbody>
                     </table>
 
                     <div class="d-flex justify-content-between align-items-center mt-3 pt-3" style="border-top: 1px solid #f0f0f0;">
                         <a href="../index.html" class="text-muted small">← Добавить ещё напитки</a>
-                        <span class="small text-muted">2 позиции в заказе</span>
+                        <span class="small text-muted"><span data-cart-count>0</span> позиций в заказе</span>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-12">
-                <div class="p-4" style="background: #ffffff; border-radius: 20px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
+                <div class="cart-summary p-4" style="background: #ffffff; border-radius: 20px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
                     <h3 style="font-size: 1.25rem; font-weight: 800; color: #111; margin-bottom: 1.2rem;">К оплате</h3>
 
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted small">Стоимость товаров:</span>
-                        <span class="fw-semibold">2 900 ₸</span>
+                        <span class="fw-semibold" data-cart-subtotal>0 ₸</span>
                     </div>
 
                     <div class="d-flex justify-content-between mb-2">
@@ -113,10 +105,10 @@
 
                     <div class="d-flex justify-content-between align-items-center pt-3 mb-4" style="border-top: 1px solid #eee;">
                         <span style="color: #666; font-size: 0.95rem; font-weight: 600;">Итого:</span>
-                        <h4 style="font-size: 1.5rem; font-weight: 800; color: #111; margin: 0;">2 900 ₸</h4>
+                        <h4 style="font-size: 1.5rem; font-weight: 800; color: #111; margin: 0;" data-cart-total>0 ₸</h4>
                     </div>
 
-                    <button type="button" class="btn btn-info text-white fw-bold btn-primary w-100 py-3" data-bs-toggle="modal" data-bs-target="#paymentModal">Оплатить 2 900 ₸</button>
+                    <button type="button" class="btn btn-info text-white fw-bold btn-primary w-100 py-3" data-cart-pay data-bs-toggle="modal" data-bs-target="#paymentModal" disabled>Оформить заказ · 0 ₸</button>
 
                     <div class="mt-3 text-center">
                         <span class="text-muted small" style="font-size: 0.75rem;">🔒 Быстрая и безопасная оплата</span>
@@ -128,12 +120,63 @@
         </div>
     </div>
 
-    <footer id="main-footer" class="mt-auto bg-dark text-light border-top border-info border-3 py-4">
-        <div class="container text-center">
-            <p class="mb-1 fw-bold fs-5">Zebra <span class="text-info">Coffee</span></p>
-            <p class="small text-white-50 mb-0">&copy; 2026 Zebra Coffee Inc. Все права защищены. <span class="text-info">·</span> Создано yourqyert</p>
+    <footer id="main-footer" class="site-footer mt-auto" aria-label="Подвал сайта">
+    <div class="container py-5">
+        <div class="row g-4 g-lg-5">
+            <div class="col-12 col-lg-4">
+                <a class="site-footer-brand" href="../index.html" aria-label="Zebra Coffee — главная">
+                    <img src="../assets/logo.png" width="44" height="44" alt="">
+                    <span><strong>Zebra</strong><span class="site-footer-brand-accent">Coffee</span></span>
+                </a>
+                <p class="site-footer-description">Кофе, любимые десерты и свежая выпечка. Соберите заказ онлайн — мы приготовим его к вашему визиту.</p>
+                <a class="site-footer-cta" href="../index.html#featured-products">Выбрать напиток <span aria-hidden="true">→</span></a>
+            </div>
+
+            <nav class="col-6 col-lg-2" aria-label="Разделы меню">
+                <h2 class="site-footer-heading">Меню</h2>
+                <ul class="site-footer-links">
+                    <li><a href="../index.html#featured-products">Напитки и десерты</a></li>
+                    <li><a href="../gallery.html">Галерея</a></li>
+                    <li><a href="../index.html#faq-title">Частые вопросы</a></li>
+                </ul>
+            </nav>
+
+            <nav class="col-6 col-lg-2" aria-label="Личный кабинет">
+                <h2 class="site-footer-heading">Мой аккаунт</h2>
+                <ul class="site-footer-links">
+                    <li><a href="../component/auth.html">Вход</a></li>
+                    <li><a href="../profile.html">Профиль</a></li>
+                    <li><a href="../profile/order-history.html">История заказов</a></li>
+                    <li><a href="../profile/cart.html">Корзина</a></li>
+                </ul>
+            </nav>
+
+            <div class="col-12 col-lg-4">
+                <h2 class="site-footer-heading">Наши кофейни</h2>
+                <ul class="site-footer-locations">
+                    <li>
+                        <a href="https://go.2gis.com/GXhGJ" target="_blank" rel="noopener noreferrer">
+                            <span class="site-footer-location-name">Зебра на Мангилик Ел</span>
+                            <span class="site-footer-location-address">Проспект Мангилик Ел, 38</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://go.2gis.com/GXhGJ" target="_blank" rel="noopener noreferrer">
+                            <span class="site-footer-location-name">Зебра на Улы Дала</span>
+                            <span class="site-footer-location-address">Проспект Улы Дала, 63</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </footer>
+
+        <div class="site-footer-bottom">
+            <p>&copy; <span data-footer-year>2026</span> Zebra Coffee. Все права защищены.</p>
+            <span class="site-footer-meta"><time data-current-time aria-live="off">Обновляем дату и время…</time><span>dev with <span class="site-footer-heart" aria-hidden="true">♥</span> by Birzhan Zhanbolatuly (@yourqyert)</span></span>
+            <a href="../index.html">Кофе, к которому хочется возвращаться</a>
+        </div>
+    </div>
+</footer>
 </div>
 
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -177,7 +220,7 @@
                         <input type="email" id="client-email" name="client-email" class="form-control" placeholder="example@mail.com" value="example@mail.com" required>
                     </div>
 
-                    <button type="submit" class="btn btn-info text-white fw-bold btn-primary w-100 py-3" style="font-size: 1rem;">Оплатить 2 900 ₸</button>
+                    <button type="submit" class="btn btn-info text-white fw-bold btn-primary w-100 py-3" data-cart-checkout-submit disabled style="font-size: 1rem;">Подтвердить заказ · 0 ₸</button>
                 </form>
             </div>
         </div>
@@ -185,6 +228,5 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 </html>
