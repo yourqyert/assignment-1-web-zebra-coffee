@@ -1321,7 +1321,6 @@ html[data-bs-theme="dark"] .builder-price-row strong {
     }
 }
 
-/* Keep product photography fully in frame in both storefront layouts. */
 .product-card .product-card-image {
     display: block;
     width: 100%;
@@ -1468,7 +1467,6 @@ html[data-bs-theme="dark"] .header-nav-icon-link.active:hover {
     }
 }
 
-/* Keep the desktop navigation aligned to the right edge of the header. */
 @media (min-width: 992px) {
     #main-header > .container {
         justify-content: space-between !important;

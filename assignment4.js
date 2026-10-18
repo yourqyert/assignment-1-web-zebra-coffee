@@ -4,7 +4,6 @@ let savedTheme = themeRoot.getAttribute("data-bs-theme") || "light";
 try {
     savedTheme = window.localStorage.getItem("zebra-color-mode") || savedTheme;
 } catch {
-    // Fall back to the light theme when browser storage is unavailable.
 }
 
 themeRoot.setAttribute("data-bs-theme", savedTheme);
@@ -90,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 window.localStorage.setItem("zebra-color-mode", theme);
             } catch {
-                // Theme switching remains available for the current page.
             }
         });
     }
@@ -99,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const answer = document.getElementById(button.getAttribute("aria-controls"));
         const hasAccordionStyles = window.getComputedStyle(answer).display === "grid";
 
-        // Keep the accordion usable if its visual stylesheet fails to load.
         if (!hasAccordionStyles) answer.hidden = button.getAttribute("aria-expanded") !== "true";
 
         button.addEventListener("click", () => {
