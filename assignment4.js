@@ -26,26 +26,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const stripWhitespace = (value) => value.replace(/\s/g, "");
     let navAudioContext = null;
 
-    const playNavSound = () => {
+    const playNavSound = async () => {
         const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
         if (!AudioContextConstructor) return;
 
         try {
             navAudioContext ||= new AudioContextConstructor();
-            if (navAudioContext.state === "suspended") navAudioContext.resume().catch(() => {});
+            if (navAudioContext.state === "suspended") await navAudioContext.resume();
 
             const oscillator = navAudioContext.createOscillator();
             const volume = navAudioContext.createGain();
             const now = navAudioContext.currentTime;
-            oscillator.type = "sine";
-            oscillator.frequency.setValueAtTime(740, now);
-            oscillator.frequency.exponentialRampToValueAtTime(520, now + 0.045);
-            volume.gain.setValueAtTime(0.025, now);
-            volume.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+            oscillator.type = "triangle";
+            oscillator.frequency.setValueAtTime(880, now);
+            oscillator.frequency.exponentialRampToValueAtTime(660, now + 0.09);
+            volume.gain.setValueAtTime(0.0001, now);
+            volume.gain.exponentialRampToValueAtTime(0.12, now + 0.008);
+            volume.gain.exponentialRampToValueAtTime(0.0001, now + 0.11);
             oscillator.connect(volume);
             volume.connect(navAudioContext.destination);
             oscillator.start(now);
-            oscillator.stop(now + 0.05);
+            oscillator.stop(now + 0.12);
         } catch {
         }
     };
@@ -258,6 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         event.preventDefault();
         items[nextIndex]?.focus();
+        if (event.key.startsWith("Arrow")) playNavSound();
     });
 
     let soundsEnabled = false;
