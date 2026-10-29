@@ -19,10 +19,13 @@
 
         <div class="auth-banner-header position-absolute top-0 start-0 w-100 p-4 z-3 d-flex justify-content-between align-items-start">
             <a href="../index.html" class="logo d-inline-flex align-items-center gap-2 text-decoration-none">
-                <img class="logo" src="../assets/logo.png" alt="logo" width="38" height="38" style="object-fit: contain;">
-                <h1 class="h4 mb-0 fw-bold text-white">Zebra <span style="color: #01a6b8;">Coffee</span></h1>
+                <img class="logo" src="../assets/logo.png" alt="Zebra Coffee" width="38" height="38">
+                <h1 class="h4 mb-0 fw-bold text-white">Zebra <span class="brand-accent">Coffee</span></h1>
             </a>
-            <button type="button" class="header-theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" title="Включить тёмную тему" aria-pressed="false"><svg data-theme-icon="sun" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg data-theme-icon="moon" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"/></svg></button>
+            <div class="auth-banner-controls">
+                <button type="button" class="header-theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" title="Включить тёмную тему" aria-pressed="false"><svg data-theme-icon="sun" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg data-theme-icon="moon" class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"/></svg></button>
+                <button type="button" class="header-background-toggle" data-background-random aria-label="Случайно изменить цвет фона" title="Случайно изменить цвет фона"><svg class="header-nav-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-1.1-.9-2-2-2h-1.2a1.8 1.8 0 0 1-1.5-2.8A2 2 0 0 0 14.6 4H12Z"/><circle cx="7.5" cy="10" r="1"/><circle cx="10" cy="6.5" r="1"/><circle cx="15" cy="7.5" r="1"/></svg></button>
+            </div>
         </div>
 
         <div id="authCarousel" class="carousel slide carousel-fade h-100 w-100 position-relative" data-bs-ride="carousel" data-bs-interval="4000">
@@ -35,7 +38,7 @@
 
             <div class="carousel-inner h-100">
                 <div class="carousel-item active h-100 position-relative">
-                    <img src="../assets/background.webp" class="d-block w-100 h-100 object-fit-cover" alt="Zebra Coffee — Бодрость в каждом глотке" style="min-height: 480px;">
+                    <img src="../assets/background.webp" class="d-block w-100 h-100 object-fit-cover auth-carousel-image" alt="Zebra Coffee — Бодрость в каждом глотке">
                     <div class="auth-carousel-overlay position-absolute top-0 start-0 w-100 h-100"></div>
                     <div class="carousel-caption auth-banner-caption text-start z-2">
                         <h3 class="fw-bold mb-1">Бодрость в каждом глотке</h3>
@@ -43,7 +46,7 @@
                     </div>
                 </div>
                 <div class="carousel-item h-100 position-relative">
-                    <img src="../assets/visitor-1.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Zebra Coffee — Атмосфера тепла и уюта" style="min-height: 480px;">
+                    <img src="../assets/visitor-1.jpg" class="d-block w-100 h-100 object-fit-cover auth-carousel-image" alt="Zebra Coffee — Атмосфера тепла и уюта">
                     <div class="auth-carousel-overlay position-absolute top-0 start-0 w-100 h-100"></div>
                     <div class="carousel-caption auth-banner-caption text-start z-2">
                         <h3 class="fw-bold mb-1">Атмосфера тепла и уюта</h3>
@@ -51,7 +54,7 @@
                     </div>
                 </div>
                 <div class="carousel-item h-100 position-relative">
-                    <img src="../assets/visitor-2.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Zebra Coffee — Идеальный кофе каждый день" style="min-height: 480px;">
+                    <img src="../assets/visitor-2.jpg" class="d-block w-100 h-100 object-fit-cover auth-carousel-image" alt="Zebra Coffee — Идеальный кофе каждый день">
                     <div class="auth-carousel-overlay position-absolute top-0 start-0 w-100 h-100"></div>
                     <div class="carousel-caption auth-banner-caption text-start z-2">
                         <h3 class="fw-bold mb-1">Идеальный кофе каждый день</h3>
@@ -78,22 +81,22 @@
         <form id="auth-form" action="../profile.html" method="get" novalidate>
             <div class="form-group mb-3">
                 <label for="auth-email" class="form-label">Электронная почта</label>
-                <input type="email" id="auth-email" name="email" class="form-control" placeholder="name@example.com" autocomplete="email" required>
+                <input type="text" inputmode="email" id="auth-email" name="email" class="form-control" placeholder="name@example.com" autocomplete="email" aria-describedby="auth-form-message">
             </div>
 
             <div class="form-group mb-3">
                 <label for="auth-password" class="form-label">Пароль</label>
-                <input type="password" id="auth-password" name="password" class="form-control" placeholder="Не менее 8 символов" autocomplete="new-password" minlength="8" required>
+                <input type="password" id="auth-password" name="password" class="form-control" placeholder="Не менее 8 символов" autocomplete="new-password" aria-describedby="auth-form-message">
             </div>
 
             <div class="form-group mb-3">
                 <label for="auth-password-confirmation" class="form-label">Повторите пароль</label>
-                <input type="password" id="auth-password-confirmation" name="password-confirmation" class="form-control" placeholder="Введите пароль еще раз" autocomplete="new-password" minlength="8" required>
+                <input type="password" id="auth-password-confirmation" name="password-confirmation" class="form-control" placeholder="Введите пароль еще раз" autocomplete="new-password" aria-describedby="auth-form-message">
             </div>
 
-            <p class="small auth-form-message" data-form-message role="status" aria-live="polite"></p>
+            <p class="small auth-form-message" id="auth-form-message" data-form-message role="status" aria-live="polite"></p>
 
-            <button type="submit" class="btn btn-info text-white fw-bold w-100 btn-primary" style="padding: 12px 20px; border-radius: 12px;">Зарегистрироваться</button>
+            <button type="submit" class="btn btn-info text-white fw-bold w-100 btn-primary auth-submit-button">Зарегистрироваться</button>
         </form>
 
         <div class="mt-4 text-center">

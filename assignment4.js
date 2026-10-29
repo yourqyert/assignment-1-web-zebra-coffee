@@ -8,8 +8,23 @@ try {
 
 themeRoot.setAttribute("data-bs-theme", savedTheme);
 
+let savedBackgroundHue = null;
+try {
+    const storedHue = window.localStorage.getItem("zebra-random-background");
+    if (storedHue !== null && Number.isInteger(Number(storedHue)) && Number(storedHue) >= 0 && Number(storedHue) <= 359) {
+        savedBackgroundHue = Number(storedHue);
+    }
+} catch {
+}
+
+if (savedBackgroundHue !== null) {
+    themeRoot.style.setProperty("--zebra-random-hue", String(savedBackgroundHue));
+    themeRoot.setAttribute("data-random-background", "true");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const themeButton = document.querySelector("[data-theme-toggle]");
+    const backgroundButton = document.querySelector("[data-background-random]");
     const accordionButtons = document.querySelectorAll("[data-accordion-trigger]");
     const authForm = document.querySelector("#auth-form");
 
@@ -43,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         openSubscription?.addEventListener("click", () => {
             subscriptionDialog.showModal();
-            subscriptionDialog.querySelector("input[type='email']")?.focus();
+            subscriptionDialog.querySelector("[name='email']")?.focus();
         });
         closeSubscription?.addEventListener("click", () => subscriptionDialog.close());
         subscriptionDialog.addEventListener("click", (event) => {
@@ -51,15 +66,46 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         subscriptionForm?.addEventListener("submit", (event) => {
             event.preventDefault();
-            if (!subscriptionForm.reportValidity()) return;
+            const email = subscriptionForm.querySelector("[name='email']");
+            const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+            email.setAttribute("aria-invalid", String(!isValidEmail));
+            if (!isValidEmail) {
+                subscriptionMessage.classList.remove("is-success");
+                subscriptionMessage.textContent = email.value.trim()
+                    ? "Введите корректный адрес электронной почты."
+                    : "Укажите электронную почту для подписки.";
+                subscriptionMessage.hidden = false;
+                email.focus();
+                return;
+            }
             subscriptionMessage.textContent = "Спасибо! Вы подписались на новости Zebra Coffee.";
+            subscriptionMessage.classList.add("is-success");
             subscriptionMessage.hidden = false;
             subscriptionForm.reset();
+            email.removeAttribute("aria-invalid");
         });
         subscriptionDialog.addEventListener("close", () => {
             if (!subscriptionMessage) return;
             subscriptionMessage.textContent = "";
+            subscriptionMessage.classList.remove("is-success");
             subscriptionMessage.hidden = true;
+        });
+    }
+
+    if (backgroundButton) {
+        backgroundButton.addEventListener("click", () => {
+            const storedHue = themeRoot.style.getPropertyValue("--zebra-random-hue");
+            const currentHue = storedHue ? Number(storedHue) : null;
+            const nextHue = currentHue === null
+                ? Math.floor(Math.random() * 360)
+                : (currentHue + 60 + Math.floor(Math.random() * 241)) % 360;
+            themeRoot.style.setProperty("--zebra-random-hue", String(nextHue));
+            themeRoot.setAttribute("data-random-background", "true");
+            try {
+                window.localStorage.setItem("zebra-random-background", String(nextHue));
+            } catch {
+            }
+            backgroundButton.setAttribute("aria-label", "Цвет фона изменён. Сменить ещё раз");
         });
     }
 
@@ -93,6 +139,178 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const navigationMenu = document.querySelector("#main-header .nav-menu");
+    navigationMenu?.addEventListener("keydown", (event) => {
+        const currentItem = event.target.closest(".header-nav-icon-link, .header-theme-toggle, .header-background-toggle");
+        if (!currentItem) return;
+
+        const items = Array.from(navigationMenu.querySelectorAll(".header-nav-icon-link, .header-theme-toggle, .header-background-toggle"))
+            .filter((item) => item.getClientRects().length > 0 && !item.disabled);
+        const currentIndex = items.indexOf(currentItem);
+        if (currentIndex === -1) return;
+
+        let nextIndex = currentIndex;
+        switch (event.key) {
+            case "ArrowRight":
+            case "ArrowDown":
+                nextIndex = (currentIndex + 1) % items.length;
+                break;
+            case "ArrowLeft":
+            case "ArrowUp":
+                nextIndex = (currentIndex - 1 + items.length) % items.length;
+                break;
+            case "Home":
+                nextIndex = 0;
+                break;
+            case "End":
+                nextIndex = items.length - 1;
+                break;
+            default:
+                return;
+        }
+
+        event.preventDefault();
+        items[nextIndex]?.focus();
+    });
+
+    let soundsEnabled = false;
+    try {
+        soundsEnabled = window.localStorage.getItem("zebra-sounds-enabled") === "true";
+    } catch {
+    }
+
+    const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+    let audioContext = null;
+    let activeOscillator = null;
+    const playNotificationSound = () => {
+        if (!soundsEnabled || !AudioContextConstructor) return;
+
+        try {
+            audioContext ||= new AudioContextConstructor();
+            if (audioContext.state === "suspended") void audioContext.resume();
+
+            if (activeOscillator) {
+                try {
+                    activeOscillator.stop();
+                } catch {
+                }
+            }
+
+            const now = audioContext.currentTime;
+            const oscillator = audioContext.createOscillator();
+            const volume = audioContext.createGain();
+            oscillator.type = "sine";
+            oscillator.frequency.setValueAtTime(587.33, now);
+            oscillator.frequency.setValueAtTime(783.99, now + 0.1);
+            volume.gain.setValueAtTime(0.0001, now);
+            volume.gain.exponentialRampToValueAtTime(0.045, now + 0.02);
+            volume.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
+            oscillator.connect(volume);
+            volume.connect(audioContext.destination);
+            oscillator.start(now);
+            oscillator.stop(now + 0.33);
+            activeOscillator = oscillator;
+            oscillator.addEventListener("ended", () => {
+                if (activeOscillator === oscillator) activeOscillator = null;
+            }, { once: true });
+        } catch (error) {
+            console.warn("Не удалось воспроизвести звуковое уведомление.", error);
+        }
+    };
+
+    window.addEventListener("zebra:notification", playNotificationSound);
+
+    const soundButton = document.querySelector("[data-sound-toggle]");
+    if (soundButton) {
+        const updateSoundButton = () => {
+            soundButton.setAttribute("aria-pressed", String(soundsEnabled));
+            soundButton.textContent = soundsEnabled ? "Звук включён" : "Звук выключен";
+        };
+
+        if (!AudioContextConstructor) {
+            soundButton.disabled = true;
+            soundButton.textContent = "Звук недоступен";
+        } else {
+            updateSoundButton();
+            soundButton.addEventListener("click", () => {
+                soundsEnabled = !soundsEnabled;
+                updateSoundButton();
+                try {
+                    window.localStorage.setItem("zebra-sounds-enabled", String(soundsEnabled));
+                } catch {
+                }
+                if (soundsEnabled) playNotificationSound();
+            });
+        }
+    }
+
+    const ratingPanel = document.querySelector("[data-menu-rating]");
+    if (ratingPanel) {
+        const stars = Array.from(ratingPanel.querySelectorAll("[data-rating-star]"));
+        const ratingMessage = ratingPanel.querySelector("[data-rating-message]");
+        let rating = 0;
+        try {
+            rating = Number(window.localStorage.getItem("zebra-menu-rating")) || 0;
+        } catch {
+        }
+
+        const updateRating = () => {
+            for (let index = 0; index < stars.length; index += 1) {
+                const star = stars[index];
+                const value = Number(star.dataset.ratingStar);
+                const selected = value <= rating;
+                star.classList.toggle("is-selected", selected);
+                star.setAttribute("aria-checked", String(value === rating));
+                star.tabIndex = value === rating || (!rating && value === 1) ? 0 : -1;
+            }
+            ratingMessage.textContent = rating
+                ? `Вы оценили меню на ${rating} из 5. Спасибо!`
+                : "Пока без оценок — оставьте первую.";
+        };
+
+        const selectRating = (value) => {
+            if (!Number.isInteger(value) || value < 1 || value > stars.length) return;
+            rating = value;
+            updateRating();
+            try {
+                window.localStorage.setItem("zebra-menu-rating", String(rating));
+            } catch {
+            }
+            window.dispatchEvent(new Event("zebra:notification"));
+        };
+
+        stars.forEach((star, index) => {
+            star.addEventListener("click", () => selectRating(Number(star.dataset.ratingStar)));
+            star.addEventListener("keydown", (event) => {
+                let nextIndex = index;
+                switch (event.key) {
+                    case "ArrowRight":
+                    case "ArrowUp":
+                        nextIndex = (index + 1) % stars.length;
+                        break;
+                    case "ArrowLeft":
+                    case "ArrowDown":
+                        nextIndex = (index - 1 + stars.length) % stars.length;
+                        break;
+                    case "Home":
+                        nextIndex = 0;
+                        break;
+                    case "End":
+                        nextIndex = stars.length - 1;
+                        break;
+                    default:
+                        return;
+                }
+
+                event.preventDefault();
+                stars[nextIndex].focus();
+                selectRating(Number(stars[nextIndex].dataset.ratingStar));
+            });
+        });
+
+        updateRating();
+    }
+
     accordionButtons.forEach((button) => {
         const answer = document.getElementById(button.getAttribute("aria-controls"));
         const hasAccordionStyles = window.getComputedStyle(answer).display === "grid";
@@ -114,52 +332,55 @@ document.addEventListener("DOMContentLoaded", () => {
         const confirmation = authForm.querySelector("#auth-password-confirmation");
         const message = authForm.querySelector("[data-form-message]");
 
-        const validateConfirmation = () => {
-            confirmation.setCustomValidity(
-                confirmation.value && confirmation.value !== password.value
-                    ? "Пароли не совпадают."
-                    : ""
-            );
+        const validateRegistration = () => {
+            const values = [email.value.trim(), password.value, confirmation.value];
+            const errors = [
+                !values[0]
+                    ? "Укажите электронную почту."
+                    : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values[0])
+                        ? "Введите корректный адрес электронной почты."
+                        : "",
+                !values[1]
+                    ? "Введите пароль."
+                    : values[1].length < 8
+                        ? "Пароль должен содержать не менее 8 символов."
+                        : "",
+                !values[2]
+                    ? "Повторите пароль."
+                    : values[2] !== values[1]
+                        ? "Пароли не совпадают."
+                        : ""
+            ];
+            [email, password, confirmation].forEach((field, index) => {
+                field.setAttribute("aria-invalid", String(Boolean(errors[index])));
+            });
+            return errors;
         };
 
-        const validatePasswordLength = () => {
-            password.setCustomValidity(
-                password.value && password.value.length < 8
-                    ? "Пароль должен содержать не менее 8 символов."
-                    : ""
-            );
-            validateConfirmation();
-        };
-
-        password.addEventListener("input", validatePasswordLength);
-        confirmation.addEventListener("input", validatePasswordLength);
         [email, password, confirmation].forEach((field) => {
-            field.addEventListener("input", () => field.removeAttribute("aria-invalid"));
+            field.addEventListener("input", () => {
+                field.removeAttribute("aria-invalid");
+                message.textContent = "";
+                message.classList.remove("is-success");
+            });
         });
 
         authForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            validatePasswordLength();
-            const invalidFields = [email, password, confirmation].filter((field) => !field.checkValidity());
+            const errors = validateRegistration();
+            const firstInvalidIndex = errors.findIndex(Boolean);
 
-            [email, password, confirmation].forEach((field) => {
-                field.setAttribute("aria-invalid", String(!field.checkValidity()));
-            });
-
-            if (invalidFields.length) {
+            if (firstInvalidIndex !== -1) {
                 message.classList.remove("is-success");
-                const firstInvalidField = invalidFields[0];
-                const fieldLabel = authForm.querySelector(`label[for="${firstInvalidField.id}"]`)?.textContent.trim();
-                message.textContent = fieldLabel
-                    ? `${fieldLabel}: ${firstInvalidField.validationMessage}`
-                    : firstInvalidField.validationMessage;
-                firstInvalidField.focus();
+                message.textContent = errors[firstInvalidIndex];
+                [email, password, confirmation][firstInvalidIndex].focus();
                 return;
             }
 
             message.classList.add("is-success");
             message.textContent = "Проверка пройдена. Форма заполнена корректно.";
             authForm.reset();
+            [email, password, confirmation].forEach((field) => field.removeAttribute("aria-invalid"));
         });
     }
 });

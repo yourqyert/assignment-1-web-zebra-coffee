@@ -82,8 +82,8 @@
         image.loading = "lazy";
         image.width = gallery ? 480 : 140;
         image.height = gallery ? 240 : 140;
-        image.style.objectFit = "contain";
-        if (gallery) image.style.height = "224px";
+        image.classList.add("product-card-image-contain");
+        if (gallery) image.classList.add("gallery-product-image-fixed");
 
         const body = createElement("div", `card-body p-0 d-flex flex-column${gallery ? " gallery-product-body" : ""}`);
         const title = createElement("h4", `card-title fw-bold mb-1${gallery ? " gallery-product-title fs-5" : " fs-6"}`, product.name);
@@ -121,9 +121,19 @@
     function renderProductLists() {
         document.querySelectorAll("[data-product-list]").forEach((list) => {
             const kind = list.dataset.productList;
-            let items = products;
-            if (kind === "featured") items = products.filter((product) => product.featured);
-            if (kind === "seasonal") items = products.filter((product) => product.seasonal);
+            let items;
+            switch (kind) {
+                case "featured":
+                    items = products.filter((product) => product.featured);
+                    break;
+                case "seasonal":
+                    items = products.filter((product) => product.seasonal);
+                    break;
+                case "all":
+                default:
+                    items = products;
+                    break;
+            }
             items = filtered(items);
 
             if (!items.length) {
@@ -183,6 +193,7 @@
             return false;
         }
         renderCart();
+        window.dispatchEvent(new Event("zebra:notification"));
         return true;
     }
 
@@ -396,7 +407,7 @@
                                         </fieldset>
                                         <div class="builder-fieldset builder-note-fieldset">
                                             <label for="builder-note">Указания бариста</label>
-                                            <textarea class="form-control" id="builder-note" data-builder-note rows="2" maxlength="180" placeholder="Например: поменьше льда, без сахара"></textarea>
+                                            <textarea class="form-control" id="builder-note" data-builder-note rows="2" placeholder="Например: поменьше льда, без сахара"></textarea>
                                         </div>
                                         <div class="builder-price-row">
                                             <span>Итого за напиток</span>
@@ -622,6 +633,127 @@
         builderProduct = null;
     }
 
+    function setupCheckoutSteps(paymentForm) {
+        const steps = Array.from(paymentForm.querySelectorAll("[data-checkout-step]"));
+        if (steps.length < 2) return;
+
+        const progressItems = Array.from(paymentForm.querySelectorAll("[data-checkout-progress]"));
+        const checkoutModal = document.querySelector("#paymentModal");
+        const nameField = paymentForm.querySelector("#client-name");
+        const emailField = paymentForm.querySelector("#client-email");
+        const validationMessage = paymentForm.querySelector("[data-checkout-message]");
+        let currentStep = 1;
+
+        const checkoutErrors = () => {
+            const name = nameField.value.trim();
+            const email = emailField.value.trim();
+            return [
+                name ? "" : "Укажите имя для заказа.",
+                !email ? "Укажите электронную почту для чека."
+                    : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? ""
+                        : "Введите корректный адрес электронной почты."
+            ];
+        };
+
+        const validateCheckoutDetails = (focusInvalid = true) => {
+            const errors = checkoutErrors();
+            const fields = [nameField, emailField];
+            fields.forEach((field, index) => field.setAttribute("aria-invalid", String(Boolean(errors[index]))));
+            const invalidIndex = errors.findIndex(Boolean);
+            if (invalidIndex !== -1) {
+                validationMessage.textContent = errors[invalidIndex];
+                validationMessage.hidden = false;
+                if (focusInvalid) fields[invalidIndex].focus();
+                return false;
+            }
+            validationMessage.textContent = "";
+            validationMessage.hidden = true;
+            return true;
+        };
+
+        [nameField, emailField].forEach((field) => {
+            field.addEventListener("input", () => {
+                if (!validationMessage.hidden) validateCheckoutDetails(false);
+            });
+        });
+
+        const showStep = (step, focusHeading = true) => {
+            currentStep = step;
+            steps.forEach((panel) => {
+                const isCurrent = Number(panel.dataset.checkoutStep) === step;
+                panel.hidden = !isCurrent;
+                panel.setAttribute("aria-hidden", String(!isCurrent));
+            });
+            progressItems.forEach((item) => {
+                if (Number(item.dataset.checkoutProgress) === step) item.setAttribute("aria-current", "step");
+                else item.removeAttribute("aria-current");
+            });
+
+            if (focusHeading) {
+                const focusTarget = step === 1
+                    ? paymentForm.querySelector("#client-name")
+                    : paymentForm.querySelector("#checkout-review-title");
+                focusTarget?.focus();
+            }
+        };
+
+        const updateReview = () => {
+            const cart = getCart();
+            const setSummary = (selector, value) => {
+                const target = paymentForm.querySelector(selector);
+                if (target) target.textContent = value;
+            };
+            setSummary("[data-checkout-name]", paymentForm.querySelector("#client-name").value.trim());
+            setSummary("[data-checkout-email]", paymentForm.querySelector("#client-email").value.trim());
+            setSummary("[data-checkout-payment]", paymentForm.querySelector("#pay-method").selectedOptions[0]?.textContent.trim() || "—");
+            setSummary("[data-checkout-pickup]", paymentForm.querySelector("#pickup-time").selectedOptions[0]?.textContent.trim() || "—");
+            setSummary("[data-checkout-total]", priceText(cartTotal(cart)));
+
+            const itemList = paymentForm.querySelector("[data-checkout-items]");
+            itemList.replaceChildren();
+            cart.forEach((item) => {
+                const row = createElement("li", "checkout-review-item");
+                const details = createElement("div", "checkout-review-item-details");
+                const product = productById(item.productId) || item;
+                details.append(createElement("strong", "", `${item.name || product.name} × ${item.quantity}`));
+                if (item.customizations?.length) {
+                    details.append(createElement("span", "", item.customizations.join(" · ")));
+                }
+                row.append(details, createElement("strong", "", priceText(item.unitPrice * item.quantity)));
+                itemList.append(row);
+            });
+        };
+
+        const nextButton = paymentForm.querySelector("[data-checkout-next]");
+        const backButton = paymentForm.querySelector("[data-checkout-back]");
+        nextButton?.addEventListener("click", () => {
+            if (!validateCheckoutDetails()) return;
+            updateReview();
+            showStep(2);
+        });
+        backButton?.addEventListener("click", () => showStep(1));
+        checkoutModal?.addEventListener("show.bs.modal", () => showStep(1, false));
+
+        paymentForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (currentStep === 1) {
+                if (!validateCheckoutDetails()) return;
+                updateReview();
+                showStep(2);
+                return;
+            }
+
+            if (!validateCheckoutDetails(false)) {
+                showStep(1);
+                validateCheckoutDetails();
+                return;
+            }
+
+            saveOrder(paymentForm);
+        });
+    }
+
     function wireInteractions() {
         document.addEventListener("click", (event) => {
             const button = event.target.closest("[data-add-to-cart]");
@@ -639,13 +771,13 @@
             }
         });
 
+        document.addEventListener("input", (event) => {
+            const note = event.target.closest("[data-builder-note]");
+            if (note && note.value.length > 180) note.value = note.value.slice(0, 180);
+        });
+
         const paymentForm = document.querySelector("#payment-form");
-        if (paymentForm) {
-            paymentForm.addEventListener("submit", (event) => {
-                event.preventDefault();
-                if (paymentForm.reportValidity()) saveOrder(paymentForm);
-            });
-        }
+        if (paymentForm) setupCheckoutSteps(paymentForm);
     }
 
     async function initialize() {
