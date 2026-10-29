@@ -646,7 +646,8 @@
 
         const checkoutErrors = () => {
             const name = nameField.value.trim();
-            const email = emailField.value.trim();
+            const email = emailField.value.replace(/\s/g, "").trim();
+            emailField.value = email;
             return [
                 name ? "" : "Укажите имя для заказа.",
                 !email ? "Укажите электронную почту для чека."

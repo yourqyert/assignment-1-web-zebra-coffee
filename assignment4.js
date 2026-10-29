@@ -23,6 +23,92 @@ if (savedBackgroundHue !== null) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const stripWhitespace = (value) => value.replace(/\s/g, "");
+    let navAudioContext = null;
+
+    const playNavSound = () => {
+        const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextConstructor) return;
+
+        try {
+            navAudioContext ||= new AudioContextConstructor();
+            if (navAudioContext.state === "suspended") navAudioContext.resume().catch(() => {});
+
+            const oscillator = navAudioContext.createOscillator();
+            const volume = navAudioContext.createGain();
+            const now = navAudioContext.currentTime;
+            oscillator.type = "sine";
+            oscillator.frequency.setValueAtTime(740, now);
+            oscillator.frequency.exponentialRampToValueAtTime(520, now + 0.045);
+            volume.gain.setValueAtTime(0.025, now);
+            volume.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+            oscillator.connect(volume);
+            volume.connect(navAudioContext.destination);
+            oscillator.start(now);
+            oscillator.stop(now + 0.05);
+        } catch {
+        }
+    };
+
+    document.addEventListener("input", (event) => {
+        const field = event.target;
+        if (!(field instanceof HTMLInputElement) || !field.hasAttribute("data-no-whitespace")) return;
+
+        const originalValue = field.value;
+        const normalizedValue = stripWhitespace(originalValue);
+        if (normalizedValue === originalValue) return;
+
+        const selectionStart = field.selectionStart;
+        const selectionEnd = field.selectionEnd;
+        field.value = normalizedValue;
+
+        if (selectionStart !== null && selectionEnd !== null) {
+            const cleanStart = stripWhitespace(originalValue.slice(0, selectionStart)).length;
+            const cleanEnd = stripWhitespace(originalValue.slice(0, selectionEnd)).length;
+            field.setSelectionRange(cleanStart, cleanEnd);
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        const directions = {
+            ArrowRight: 1,
+            ArrowDown: 1,
+            ArrowLeft: -1,
+            ArrowUp: -1
+        };
+        const direction = directions[event.key];
+        if (!direction || event.altKey || event.ctrlKey || event.metaKey || event.defaultPrevented) return;
+
+        const activeElement = document.activeElement;
+        const isPageUnfocused = !activeElement
+            || activeElement === document.body
+            || activeElement === document.documentElement;
+        const nav = document.querySelector(".nav-menu");
+        if (!nav || (!isPageUnfocused && !nav.contains(activeElement))) return;
+
+        const navItems = Array.from(nav.querySelectorAll(
+            ".header-nav-icon-link, [data-theme-toggle], [data-background-random]"
+        )).filter((item) => {
+            const style = window.getComputedStyle(item);
+            return !item.disabled
+                && item.getClientRects().length > 0
+                && style.visibility !== "hidden"
+                && style.display !== "none";
+        });
+        if (!navItems.length) return;
+
+        const focusedIndex = navItems.indexOf(activeElement);
+        const activePageIndex = navItems.findIndex((item) => item.matches(".header-nav-icon-link.active"));
+        const currentIndex = focusedIndex !== -1 ? focusedIndex : activePageIndex;
+        const nextIndex = currentIndex === -1
+            ? direction > 0 ? 0 : navItems.length - 1
+            : (currentIndex + direction + navItems.length) % navItems.length;
+
+        event.preventDefault();
+        navItems[nextIndex].focus({ preventScroll: true });
+        playNavSound();
+    });
+
     const themeButton = document.querySelector("[data-theme-toggle]");
     const backgroundButton = document.querySelector("[data-background-random]");
     const accordionButtons = document.querySelectorAll("[data-accordion-trigger]");
@@ -67,7 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
         subscriptionForm?.addEventListener("submit", (event) => {
             event.preventDefault();
             const email = subscriptionForm.querySelector("[name='email']");
-            const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+            email.value = stripWhitespace(email.value).trim();
+            const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value);
             email.setAttribute("aria-invalid", String(!isValidEmail));
             if (!isValidEmail) {
                 subscriptionMessage.classList.remove("is-success");
@@ -333,7 +420,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const message = authForm.querySelector("[data-form-message]");
 
         const validateRegistration = () => {
-            const values = [email.value.trim(), password.value, confirmation.value];
+            const values = [email, password, confirmation].map((field) => stripWhitespace(field.value));
+            [email, password, confirmation].forEach((field, index) => {
+                field.value = values[index];
+            });
             const errors = [
                 !values[0]
                     ? "Укажите электронную почту."
