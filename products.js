@@ -77,7 +77,8 @@
         const image = createElement("img", gallery
             ? "product-card-image gallery-product-image card-img-top w-100 mx-auto mb-3"
             : "product-card-image card-img-top mx-auto mb-3 rounded-4");
-        image.src = imageUrl(product.image);
+        if (window.jQuery) image.dataset.lazySrc = imageUrl(product.image);
+        else image.src = imageUrl(product.image);
         image.alt = product.name;
         image.loading = "lazy";
         image.width = gallery ? 480 : 140;
@@ -194,6 +195,7 @@
         }
         renderCart();
         window.dispatchEvent(new Event("zebra:notification"));
+        window.dispatchEvent(new CustomEvent("zebra:cart-added", { detail: { name: product.name } }));
         return true;
     }
 

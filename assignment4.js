@@ -140,8 +140,47 @@ document.addEventListener("DOMContentLoaded", () => {
     if (subscriptionDialog) {
         const subscriptionForm = subscriptionDialog.querySelector("[data-subscription-form]");
         const subscriptionMessage = subscriptionDialog.querySelector("[data-subscription-message]");
+        const subscriptionEmail = subscriptionForm?.querySelector("[name='email']");
+        const subscriptionButton = subscriptionForm?.querySelector(".subscription-submit");
         const openSubscription = document.querySelector("[data-open-subscription]");
         const closeSubscription = subscriptionDialog.querySelector("[data-close-subscription]");
+        let subscriptionWasInteractedWith = false;
+
+        const updateSubscriptionButton = (showError = subscriptionWasInteractedWith) => {
+            if (!subscriptionEmail || !subscriptionButton) return false;
+            const normalizedEmail = stripWhitespace(subscriptionEmail.value).trim();
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(normalizedEmail);
+            const isLoading = subscriptionButton.classList.contains("is-loading");
+            subscriptionButton.disabled = !isValid || isLoading;
+
+            if (isValid) {
+                subscriptionEmail.removeAttribute("aria-invalid");
+                if (!isLoading && subscriptionMessage?.classList.contains("is-error")) {
+                    subscriptionMessage.textContent = "";
+                    subscriptionMessage.classList.remove("is-error");
+                    subscriptionMessage.hidden = true;
+                }
+            } else if (showError && !isLoading && subscriptionMessage) {
+                subscriptionEmail.setAttribute("aria-invalid", "true");
+                subscriptionMessage.classList.remove("is-success", "is-demo");
+                subscriptionMessage.classList.add("is-error");
+                subscriptionMessage.textContent = normalizedEmail
+                    ? "Введите корректный адрес электронной почты."
+                    : "Укажите электронную почту для подписки.";
+                subscriptionMessage.hidden = false;
+            }
+
+            return isValid;
+        };
+        updateSubscriptionButton(false);
+        subscriptionEmail?.addEventListener("input", () => {
+            subscriptionWasInteractedWith = true;
+            updateSubscriptionButton(true);
+        });
+        subscriptionEmail?.addEventListener("blur", () => {
+            subscriptionWasInteractedWith = true;
+            updateSubscriptionButton(true);
+        });
 
         openSubscription?.addEventListener("click", () => {
             subscriptionDialog.showModal();
@@ -151,32 +190,53 @@ document.addEventListener("DOMContentLoaded", () => {
         subscriptionDialog.addEventListener("click", (event) => {
             if (event.target === subscriptionDialog) subscriptionDialog.close();
         });
-        subscriptionForm?.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const email = subscriptionForm.querySelector("[name='email']");
-            email.value = stripWhitespace(email.value).trim();
-            const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value);
-            email.setAttribute("aria-invalid", String(!isValidEmail));
-            if (!isValidEmail) {
-                subscriptionMessage.classList.remove("is-success");
-                subscriptionMessage.textContent = email.value.trim()
-                    ? "Введите корректный адрес электронной почты."
-                    : "Укажите электронную почту для подписки.";
+        if (subscriptionForm && !(window.jQuery && subscriptionForm.hasAttribute("data-jquery-submit"))) {
+            subscriptionForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const email = subscriptionEmail;
+                const submitButton = subscriptionButton;
+                const submitLabel = subscriptionForm.querySelector("[data-subscription-submit-label]");
+                if (submitButton.disabled || submitButton.classList.contains("is-loading")) return;
+
+                email.value = stripWhitespace(email.value).trim();
+                subscriptionWasInteractedWith = true;
+                if (!updateSubscriptionButton(true)) {
+                    email.focus();
+                    return;
+                }
+                submitButton.disabled = true;
+                submitButton.classList.add("is-loading");
+                email.readOnly = true;
+                submitLabel.textContent = "Подождите…";
+                subscriptionMessage.classList.remove("is-success", "is-demo", "is-error");
+                subscriptionMessage.textContent = "Отправляем запрос…";
                 subscriptionMessage.hidden = false;
-                email.focus();
-                return;
-            }
-            subscriptionMessage.textContent = "Спасибо! Вы подписались на новости Zebra Coffee.";
-            subscriptionMessage.classList.add("is-success");
-            subscriptionMessage.hidden = false;
-            subscriptionForm.reset();
-            email.removeAttribute("aria-invalid");
-        });
+
+                window.setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove("is-loading");
+                    email.readOnly = false;
+                    submitLabel.textContent = "Подписаться";
+                    subscriptionMessage.textContent = "Спасибо! Вы успешно подписались на новости Zebra Coffee.";
+                    subscriptionMessage.classList.remove("is-demo", "is-error");
+                    subscriptionMessage.classList.add("is-success");
+                    subscriptionForm.reset();
+                    subscriptionWasInteractedWith = false;
+                    updateSubscriptionButton();
+                    if (subscriptionDialog.open) subscriptionDialog.close();
+                    window.dispatchEvent(new CustomEvent("zebra:subscription-success"));
+                }, 1200);
+            });
+        }
         subscriptionDialog.addEventListener("close", () => {
             if (!subscriptionMessage) return;
+            subscriptionEmail?.removeAttribute("aria-invalid");
+            if (subscriptionEmail) subscriptionEmail.readOnly = false;
+            subscriptionWasInteractedWith = false;
             subscriptionMessage.textContent = "";
-            subscriptionMessage.classList.remove("is-success");
+            subscriptionMessage.classList.remove("is-success", "is-demo", "is-error");
             subscriptionMessage.hidden = true;
+            updateSubscriptionButton();
         });
     }
 

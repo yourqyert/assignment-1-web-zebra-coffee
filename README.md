@@ -43,7 +43,7 @@ The JavaScript tasks are implemented in the shared `assignment4.js` file and lin
 
 1. **Form validation:** the registration form at `component/auth.html` checks required values, email format, a minimum eight-character password, and matching password confirmation. Validation feedback is shown beside the form.
 2. **FAQ accordion:** three questions on `index.html` expand and collapse their answers with an animated transition and accessible expanded state.
-3. **Subscription popup:** the home page footer opens a responsive subscription dialog. It closes from its close button, the backdrop, or Escape, and validates the email before showing a local demo confirmation. The form is not connected to a mailing service.
+3. **Subscription popup:** the home page footer opens a responsive subscription dialog. It closes from its close button, the backdrop, or Escape, validates the email in JavaScript, and shows a success toast before closing after a valid demo submission.
 4. **Background color:** the header theme control switches between Bootstrap's light and dark color modes. The selected mode is remembered between pages.
 5. **Current date and time:** shared site footers display live, Russian-formatted date and time using the JavaScript `Date` object. The login page intentionally has no footer, following the requested login-page design.
 
@@ -67,6 +67,23 @@ When a customer completes the demo checkout, the order saves a snapshot of each 
 8. **Clean structure:** project pages load shared behavior from `assignment4.js` and `products.js`, and styles from the CSS files. Inline style attributes and inline event handlers are not used.
 
 The rating and sound preferences are saved in the current browser. Orders remain a local front-end demonstration and are not transmitted to a payment service or backend.
+
+## 🧩 Assignment #6: jQuery
+
+The jQuery features are integrated into the existing Zebra Coffee homepage and gallery. Both pages load the official jQuery 4.0.0 CDN and share behavior from the external `assignment6.js` file and styles from `jquery-features.css`.
+
+1. **Setup:** the page loads jQuery in the document head, starts `$(document).ready(...)` from the external script, and prints `jQuery is ready!` in the browser console.
+2. **Live product search:** typing in the menu search on the homepage or gallery filters product cards in place using jQuery selectors and `.on("input keyup", ...)`.
+3. **Autocomplete:** a delegated jQuery event handler displays deduplicated, keyboard-accessible menu suggestions. Up/Down arrows move through results, Enter selects, and Escape closes the list.
+4. **Search highlighting:** the homepage FAQ search wraps matching text in a visible `<mark>` highlight and restores the original text when the query changes.
+5. **Scroll progress:** a fixed gradient bar on the homepage and gallery updates from the window scroll position and document height.
+6. **Animated counters:** the homepage's menu count, shop addresses, and preparation time count up with jQuery `.animate()` when the stats enter the viewport.
+7. **Submit spinner and JavaScript validation:** the newsletter form uses `novalidate` so browser-native validation does not replace the required JavaScript validation. JavaScript validates the email as it is typed, shows or clears its error, and keeps Submit disabled until the address is valid. Only a valid submission starts the spinner and 1.2-second simulated request; then the button returns to normal, a success toast appears, and the dialog closes.
+8. **Notifications:** adding a product to the cart, copying the site address, and completing the newsletter form show a temporary fading toast.
+9. **Copy to clipboard:** the existing footer gains a button that copies the deployed-site URL and displays confirmation.
+10. **Lazy loading:** catalog product images keep their path in `data-lazy-src`; the shared script uses jQuery scroll handling, `.offset()`, and `.attr("src", ...)` to load visible and nearby images only.
+
+The shop count is read from `back/mock-data.json` (12 goods), and the location count is the two addresses listed in the existing project data. The external CDN requires an internet connection. For the submission, include screenshots of each task's relevant code and the running pages, then confirm the deployment URL after publishing the updated site.
 
 ---
 
@@ -108,6 +125,8 @@ The rating and sound preferences are saved in the current browser. Orders remain
 ```text
 slmsung-web/
 ├── index.html                  # Homepage with dynamic products, filters and drink-builder modal
+├── assignment6.js               # Shared jQuery search, effects, counters, copy, spinner, toast and lazy loading
+├── jquery-features.css          # Styles for the integrated jQuery features
 ├── gallery.html                # Interactive Showcase Gallery with Bootstrap Navbar
 ├── profile.html                # User profile card & loyalty stats
 ├── additional.css              # Site layout, responsive rules and brand styling
