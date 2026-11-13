@@ -75,28 +75,42 @@
     </div>
 
     <div class="auth-card col-md-6 d-flex flex-column justify-content-center p-4 p-lg-5 bg-white">
-        <h2 class="fw-bold mb-2">Создайте аккаунт</h2>
-        <p class="auth-subtitle text-muted mb-4">Укажите email и придумайте пароль для личного кабинета.</p>
+        <h2 class="fw-bold mb-2" data-auth-title>Создайте аккаунт</h2>
+        <p class="auth-subtitle text-muted mb-4" data-auth-subtitle>Зарегистрируйтесь, чтобы видеть данные профиля и оформлять заказы.</p>
 
-        <form id="auth-form" action="../profile.html" method="get" novalidate>
+        <div class="auth-mode-switch" role="group" aria-label="Выберите действие">
+            <button type="button" class="btn btn-sm btn-info text-white" data-auth-switch="signup" aria-pressed="true">Регистрация</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-auth-switch="login" aria-pressed="false">Войти</button>
+        </div>
+
+        <form id="auth-form" novalidate data-auth-mode="signup">
+            <div class="form-group mb-3" data-signup-only>
+                <label for="auth-name" class="form-label">Имя</label>
+                <input type="text" id="auth-name" name="name" class="form-control" autocomplete="name" placeholder="Ваше имя" aria-describedby="auth-form-message">
+            </div>
             <div class="form-group mb-3">
                 <label for="auth-email" class="form-label">Электронная почта</label>
                 <input type="text" inputmode="email" id="auth-email" name="email" class="form-control" placeholder="name@example.com" autocomplete="email" aria-describedby="auth-form-message" data-no-whitespace>
             </div>
 
-            <div class="form-group mb-3">
-                <label for="auth-password" class="form-label">Пароль</label>
-                <input type="password" id="auth-password" name="password" class="form-control" placeholder="Не менее 8 символов" autocomplete="new-password" aria-describedby="auth-form-message" data-no-whitespace>
+            <div class="form-group mb-3" data-signup-only>
+                <label for="auth-phone" class="form-label">Телефон</label>
+                <input type="text" inputmode="tel" id="auth-phone" name="phone" class="form-control" placeholder="+7 700 123 45 67" autocomplete="tel" aria-describedby="auth-form-message">
             </div>
 
             <div class="form-group mb-3">
+                <label for="auth-password" class="form-label">Пароль</label>
+                <input type="password" id="auth-password" name="password" class="form-control" placeholder="8+ символов, заглавная, строчная и цифра" autocomplete="new-password" aria-describedby="auth-form-message" data-no-whitespace>
+            </div>
+
+            <div class="form-group mb-3" data-signup-only>
                 <label for="auth-password-confirmation" class="form-label">Повторите пароль</label>
                 <input type="password" id="auth-password-confirmation" name="password-confirmation" class="form-control" placeholder="Введите пароль еще раз" autocomplete="new-password" aria-describedby="auth-form-message" data-no-whitespace>
             </div>
 
             <p class="small auth-form-message" id="auth-form-message" data-form-message role="status" aria-live="polite"></p>
 
-            <button type="submit" class="btn btn-info text-white fw-bold w-100 btn-primary auth-submit-button">Зарегистрироваться</button>
+            <button type="submit" class="btn btn-info text-white fw-bold w-100 btn-primary auth-submit-button" data-auth-submit>Зарегистрироваться</button>
         </form>
 
         <div class="mt-4 text-center">

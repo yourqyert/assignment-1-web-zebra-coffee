@@ -476,40 +476,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (authForm) {
+        const name = authForm.querySelector("#auth-name");
         const email = authForm.querySelector("#auth-email");
+        const phone = authForm.querySelector("#auth-phone");
         const password = authForm.querySelector("#auth-password");
         const confirmation = authForm.querySelector("#auth-password-confirmation");
         const message = authForm.querySelector("[data-form-message]");
+        const title = document.querySelector("[data-auth-title]");
+        const subtitle = document.querySelector("[data-auth-subtitle]");
+        const submit = authForm.querySelector("[data-auth-submit]");
+        const switches = document.querySelectorAll("[data-auth-switch]");
+        const signupFields = authForm.querySelectorAll("[data-signup-only]");
 
-        const validateRegistration = () => {
-            const values = [email, password, confirmation].map((field) => stripWhitespace(field.value));
-            [email, password, confirmation].forEach((field, index) => {
-                field.value = values[index];
+        const setMode = (mode) => {
+            const signup = mode === "signup";
+            authForm.dataset.authMode = mode;
+            signupFields.forEach((field) => { field.hidden = !signup; });
+            if (confirmation) confirmation.autocomplete = signup ? "new-password" : "off";
+            if (password) password.autocomplete = signup ? "new-password" : "current-password";
+            title.textContent = signup ? "Создайте аккаунт" : "Войдите в аккаунт";
+            subtitle.textContent = signup ? "Зарегистрируйтесь, чтобы видеть данные профиля и оформлять заказы." : "Введите данные, указанные при регистрации.";
+            submit.textContent = signup ? "Зарегистрироваться" : "Войти";
+            switches.forEach((button) => {
+                const active = button.dataset.authSwitch === mode;
+                button.setAttribute("aria-pressed", String(active));
+                button.classList.toggle("btn-info", active);
+                button.classList.toggle("text-white", active);
+                button.classList.toggle("btn-outline-secondary", !active);
             });
-            const errors = [
-                !values[0]
-                    ? "Укажите электронную почту."
-                    : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values[0])
-                        ? "Введите корректный адрес электронной почты."
-                        : "",
-                !values[1]
-                    ? "Введите пароль."
-                    : values[1].length < 8
-                        ? "Пароль должен содержать не менее 8 символов."
-                        : "",
-                !values[2]
-                    ? "Повторите пароль."
-                    : values[2] !== values[1]
-                        ? "Пароли не совпадают."
-                        : ""
-            ];
-            [email, password, confirmation].forEach((field, index) => {
-                field.setAttribute("aria-invalid", String(Boolean(errors[index])));
-            });
-            return errors;
+            message.textContent = "";
+            message.classList.remove("is-success");
+            [name, email, phone, password, confirmation].filter(Boolean).forEach((field) => field.removeAttribute("aria-invalid"));
         };
 
-        [email, password, confirmation].forEach((field) => {
+        switches.forEach((button) => button.addEventListener("click", () => setMode(button.dataset.authSwitch)));
+
+        const validateRegistration = () => {
+            const signup = authForm.dataset.authMode === "signup";
+            const fields = signup ? [name, email, phone, password, confirmation] : [email, password];
+            const values = fields.map((field) => stripWhitespace(field.value));
+            fields.forEach((field, index) => {
+                field.value = values[index];
+            });
+            const passwordError = !values[signup ? 3 : 1]
+                ? "Введите пароль."
+                : !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(values[signup ? 3 : 1])
+                    ? "Пароль: минимум 8 символов, заглавная и строчная буквы и цифра."
+                    : "";
+            const errors = signup ? [
+                !values[0] ? "Укажите имя." : "",
+                !values[1] ? "Укажите электронную почту." : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values[1]) ? "Введите корректный адрес электронной почты." : "",
+                !values[2] ? "Укажите номер телефона." : !/^\+?\d[\d\s()-]{8,17}$/.test(values[2]) ? "Введите телефон в формате +7 700 123 45 67." : "",
+                passwordError,
+                !values[4] ? "Повторите пароль." : values[4] !== values[3] ? "Пароли не совпадают." : ""
+            ] : [
+                !values[0] ? "Укажите электронную почту." : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values[0]) ? "Введите корректный адрес электронной почты." : "",
+                passwordError
+            ];
+            fields.forEach((field, index) => {
+                field.setAttribute("aria-invalid", String(Boolean(errors[index])));
+            });
+            return { errors, fields, values, signup };
+        };
+
+        [name, email, phone, password, confirmation].filter(Boolean).forEach((field) => {
             field.addEventListener("input", () => {
                 field.removeAttribute("aria-invalid");
                 message.textContent = "";
@@ -519,20 +549,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
         authForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            const errors = validateRegistration();
+            const { errors, fields, values, signup } = validateRegistration();
             const firstInvalidIndex = errors.findIndex(Boolean);
 
             if (firstInvalidIndex !== -1) {
                 message.classList.remove("is-success");
                 message.textContent = errors[firstInvalidIndex];
-                [email, password, confirmation][firstInvalidIndex].focus();
+                fields[firstInvalidIndex].focus();
                 return;
             }
 
+            let user;
+            try { user = JSON.parse(window.localStorage.getItem("zebra-user") || "null"); } catch { user = null; }
+            if (signup) {
+                if (user && user.email.toLowerCase() === values[1].toLowerCase()) {
+                    setMode("login");
+                    email.value = values[1];
+                    message.textContent = "Этот email уже зарегистрирован. Войдите в аккаунт.";
+                    return;
+                }
+                user = { name: values[0], email: values[1], phone: values[2], password: values[3] };
+                window.localStorage.setItem("zebra-user", JSON.stringify(user));
+            } else if (!user || user.email.toLowerCase() !== values[0].toLowerCase() || user.password !== values[1]) {
+                message.textContent = "Email или пароль не совпадают. Проверьте данные или зарегистрируйтесь.";
+                return;
+            }
+            window.localStorage.setItem("zebra-session", "active");
             message.classList.add("is-success");
-            message.textContent = "Проверка пройдена. Форма заполнена корректно.";
-            authForm.reset();
-            [email, password, confirmation].forEach((field) => field.removeAttribute("aria-invalid"));
+            message.textContent = signup ? "Аккаунт создан. Открываем профиль…" : "Вход выполнен. Открываем профиль…";
+            window.location.href = "../profile.html";
         });
+    }
+
+    const profileName = document.querySelector("[data-profile-name]");
+    if (profileName) {
+        let user;
+        try { user = JSON.parse(window.localStorage.getItem("zebra-user") || "null"); } catch { user = null; }
+        if (user && window.localStorage.getItem("zebra-session") === "active") {
+            profileName.textContent = user.name;
+            document.querySelector("[data-profile-email]").textContent = user.email;
+            document.querySelector("[data-profile-phone]").textContent = user.phone;
+        } else {
+            profileName.textContent = "Гость";
+            document.querySelector("[data-profile-email]").textContent = "Войдите или создайте аккаунт";
+            document.querySelector("[data-profile-phone]").textContent = "—";
+        }
+        document.querySelector("[data-profile-logout]")?.addEventListener("click", () => {
+            window.localStorage.removeItem("zebra-session");
+            window.location.href = "component/auth.html";
+        });
+    }
+
+    const coffeeApiCard = document.querySelector("[data-coffee-api]");
+    if (coffeeApiCard) {
+        const loadCoffeeTip = async () => {
+            const status = coffeeApiCard.querySelector("[data-api-status]");
+            const title = coffeeApiCard.querySelector("[data-api-title]");
+            const description = coffeeApiCard.querySelector("[data-api-description]");
+            const ingredients = coffeeApiCard.querySelector("[data-api-ingredients]");
+            status.textContent = "Загружаем идеи напитков…";
+            try {
+                const response = await fetch("https://api.sampleapis.com/coffee/hot");
+                if (!response.ok) throw new Error("HTTP " + response.status);
+                const drinks = await response.json();
+                if (!Array.isArray(drinks) || !drinks.length) throw new Error("Пустой ответ API");
+                const drink = drinks[Math.floor(Math.random() * drinks.length)];
+                title.textContent = drink.title || "Кофейная идея";
+                description.textContent = drink.description || "Вдохновитесь новой кофейной комбинацией.";
+                ingredients.textContent = Array.isArray(drink.ingredients) ? drink.ingredients.join(" · ") : "";
+                status.textContent = "Идея из открытого Coffee API · обновляется при загрузке страницы";
+            } catch {
+                title.textContent = "Классический капучино";
+                description.textContent = "Эспрессо, горячее молоко и воздушная молочная пена — беспроигрышное сочетание.";
+                ingredients.textContent = "эспрессо · молоко · молочная пена";
+                status.textContent = "Не удалось подключиться к API. Показана локальная рекомендация.";
+            }
+        };
+        loadCoffeeTip();
+        coffeeApiCard.querySelector("[data-api-refresh]")?.addEventListener("click", loadCoffeeTip);
     }
 });

@@ -10,7 +10,8 @@
 * **Team:** Zebra Coffee
 * **Group:** SE-2507
 * **Authors:** Birzhan Zhanbolatuly (`yourqyert`)
-* **Live Deployment URL:** [Zebra Coffee](https://yourqyert.github.io/assignment-1-web-zebra-coffee/index.html). Publish the latest local changes to update the deployed version.
+* **Repository:** [yourqyert/slmsung-web.github.io](https://github.com/yourqyert/slmsung-web.github.io)
+* **Previously published site:** [Zebra Coffee](https://yourqyert.github.io/assignment-1-web-zebra-coffee/index.html). Confirm the current deployment URL after publishing this final version.
 
 ---
 
@@ -41,7 +42,7 @@
 
 The JavaScript tasks are implemented in the shared `assignment4.js` file and linked from every HTML page. Page-specific controls are initialized only where their matching elements exist.
 
-1. **Form validation:** the registration form at `component/auth.html` checks required values, email format, a minimum eight-character password, and matching password confirmation. Validation feedback is shown beside the form.
+1. **Form validation:** the sign-up / log-in form at `component/auth.html` checks required values, email format, password complexity, phone format, and matching password confirmation. Validation feedback is shown beside the form.
 2. **FAQ accordion:** three questions on `index.html` expand and collapse their answers with an animated transition and accessible expanded state.
 3. **Subscription popup:** the home page footer opens a responsive subscription dialog. It closes from its close button, the backdrop, or Escape, validates the email in JavaScript, and shows a success toast before closing after a valid demo submission.
 4. **Background color:** the header theme control switches between Bootstrap's light and dark color modes. The selected mode is remembered between pages.
@@ -145,3 +146,15 @@ slmsung-web/
     ├── cart.html               # Cart table
     └── order-history.html      # Order history table
 ```
+
+## Final Project Requirements (November 2026)
+
+* **Connected pages:** home, gallery, profile, sign up / log in, cart, order history, and order confirmation.
+* **Authentication simulation:** sign up saves name, email, phone, and password to this browser's `localStorage`; log in checks the saved credentials and opens the profile. The profile displays the saved account details.
+* **Validation:** forms use `novalidate` and JavaScript messages for required values, email format, password complexity (8+ characters, uppercase, lowercase, and a digit), and phone format.
+* **Search and filtering:** the menu search and category filters update product cards dynamically.
+* **External API:** the homepage loads a random coffee drink from the [SampleAPIs Coffee API](https://api.sampleapis.com/coffee/hot), with loading and fallback messages and a refresh button.
+* **Repository:** [github.com/yourqyert/slmsung-web.github.io](https://github.com/yourqyert/slmsung-web.github.io).
+* **Previously published URL:** [Zebra Coffee](https://yourqyert.github.io/assignment-1-web-zebra-coffee/index.html). Confirm the current GitHub Pages deployment URL after publishing this final version.
+
+Submission deadline: **18 November 2026, 23:59** (cut-off: 19 November, 08:59, local time).

@@ -2297,3 +2297,37 @@ html[data-bs-theme="dark"] .hero-banner p {
             url("assets/zebra-hero-sip.png") !important;
     }
 }
+#auth-form [data-signup-only][hidden] { display: none !important; }
+
+.auth-mode-switch {
+    display: flex;
+    gap: .5rem;
+    margin: 0 0 1.25rem;
+}
+
+.coffee-api-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(1, 166, 184, .24);
+    border-radius: 1rem;
+    background: linear-gradient(120deg, rgba(1, 166, 184, .1), rgba(1, 166, 184, .025));
+}
+
+.coffee-api-card h3 { margin: .2rem 0 .35rem; font-size: 1.25rem; font-weight: 750; }
+.coffee-api-card p { margin: 0 0 .35rem; }
+.coffee-api-eyebrow { color: #087e8b; font-size: .72rem; font-weight: 800; letter-spacing: .11em; }
+.coffee-api-ingredients { font-size: .9rem; font-weight: 650; }
+.coffee-api-status { color: #637078; font-size: .78rem; }
+.profile-account-details { margin: .75rem auto; overflow-wrap: anywhere; }
+
+html[data-bs-theme="dark"] .coffee-api-card { background: linear-gradient(120deg, rgba(1, 166, 184, .2), rgba(1, 166, 184, .06)); border-color: rgba(1, 166, 184, .4); }
+html[data-bs-theme="dark"] .coffee-api-eyebrow { color: #70d8e2; }
+html[data-bs-theme="dark"] .coffee-api-status { color: #b4c2c5; }
+
+@media (max-width: 575.98px) {
+    .coffee-api-card { align-items: stretch; flex-direction: column; padding: 1rem; }
+    .coffee-api-card .btn { width: 100%; }
+}

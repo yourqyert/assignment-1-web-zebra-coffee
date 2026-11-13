@@ -60,8 +60,13 @@
             <main class="main-content col-md-8 col-lg-9">
         <section class="profile-card card border shadow-sm p-4 text-center mt-0">
             <img src="assets/avatar.jpg" alt="Аватар" class="profile-img d-block mx-auto" width="110" height="110">
-            <h2>Биржан</h2>
+            <h2 data-profile-name>Гость</h2>
             <span class="badge">Zebra Club • Gold Member</span>
+
+            <div class="profile-account-details">
+                <p><strong>Email:</strong> <span data-profile-email>Войдите или создайте аккаунт</span></p>
+                <p><strong>Телефон:</strong> <span data-profile-phone>—</span></p>
+            </div>
 
             <p><strong>Баланс кешбэка:</strong> 850 ₸</p>
             <p><strong>Скидка участника:</strong> 10% на всё меню</p>
@@ -69,6 +74,7 @@
                         <div class="profile-action-links">
                 <a href="profile/cart.html" class="btn btn-info text-white fw-bold">В корзину</a>
                             <a href="profile/order-history.html" class="btn btn-light border text-dark fw-bold">История заказов</a>
+                <button type="button" class="btn btn-outline-secondary fw-bold" data-profile-logout>Выйти</button>
             </div>
         </section>
     </main>

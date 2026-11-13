@@ -642,16 +642,20 @@
         const progressItems = Array.from(paymentForm.querySelectorAll("[data-checkout-progress]"));
         const checkoutModal = document.querySelector("#paymentModal");
         const nameField = paymentForm.querySelector("#client-name");
+        const phoneField = paymentForm.querySelector("#client-phone");
         const emailField = paymentForm.querySelector("#client-email");
         const validationMessage = paymentForm.querySelector("[data-checkout-message]");
         let currentStep = 1;
 
         const checkoutErrors = () => {
             const name = nameField.value.trim();
+            const phone = phoneField.value.trim();
+            phoneField.value = phone;
             const email = emailField.value.replace(/\s/g, "").trim();
             emailField.value = email;
             return [
                 name ? "" : "Укажите имя для заказа.",
+                !phone ? "Укажите телефон для связи." : /^\+?\d[\d\s()-]{8,17}$/.test(phone) ? "" : "Введите телефон в формате +7 700 123 45 67.",
                 !email ? "Укажите электронную почту для чека."
                     : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? ""
                         : "Введите корректный адрес электронной почты."
@@ -660,7 +664,7 @@
 
         const validateCheckoutDetails = (focusInvalid = true) => {
             const errors = checkoutErrors();
-            const fields = [nameField, emailField];
+            const fields = [nameField, phoneField, emailField];
             fields.forEach((field, index) => field.setAttribute("aria-invalid", String(Boolean(errors[index]))));
             const invalidIndex = errors.findIndex(Boolean);
             if (invalidIndex !== -1) {
@@ -674,7 +678,7 @@
             return true;
         };
 
-        [nameField, emailField].forEach((field) => {
+        [nameField, phoneField, emailField].forEach((field) => {
             field.addEventListener("input", () => {
                 if (!validationMessage.hidden) validateCheckoutDetails(false);
             });
