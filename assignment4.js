@@ -1,12 +1,49 @@
 const themeRoot = document.documentElement;
 let savedTheme = themeRoot.getAttribute("data-bs-theme") || "light";
 
+const DEMO_USER = Object.freeze({
+    name: "Демо-пользователь",
+    email: "demo@zebracoffee.kz",
+    phone: "+7 700 000 00 00",
+    password: "Zebra2026"
+});
+
+const readLocalUser = (key) => {
+    try {
+        const user = JSON.parse(window.localStorage.getItem(key) || "null");
+        return user && typeof user === "object" && typeof user.email === "string" ? user : null;
+    } catch {
+        return null;
+    }
+};
+
+const getSignedInUser = () => {
+    try {
+        if (window.localStorage.getItem("zebra-session") !== "active") return null;
+        return readLocalUser("zebra-session-user") || readLocalUser("zebra-user");
+    } catch {
+        return null;
+    }
+};
+
+const clearSignedInUser = () => {
+    try {
+        window.localStorage.removeItem("zebra-session");
+        window.localStorage.removeItem("zebra-session-user");
+    } catch {
+    }
+};
+
 try {
     savedTheme = window.localStorage.getItem("zebra-color-mode") || savedTheme;
 } catch {
 }
 
 themeRoot.setAttribute("data-bs-theme", savedTheme);
+
+if (themeRoot.dataset.requireAuth === "true" && !getSignedInUser()) {
+    window.location.replace("component/auth.html?mode=login");
+}
 
 let savedBackgroundHue = null;
 try {
@@ -23,7 +60,92 @@ if (savedBackgroundHue !== null) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const signedInUser = getSignedInUser();
+    document.querySelectorAll("[data-nav-login-item]").forEach((item) => {
+        item.hidden = false;
+        if (!signedInUser) return;
+
+        const link = item.querySelector("a");
+        const icon = link?.querySelector(".header-nav-icon");
+        if (!link || !icon) return;
+
+        link.setAttribute("aria-label", "Выйти");
+        link.setAttribute("title", "Выйти");
+        icon.innerHTML = '<path d="M14 4h5v16h-5M21 12H9m4-4-4 4 4 4"/>';
+        const label = link.querySelector(".header-nav-label");
+        if (label) label.textContent = "Выйти";
+
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const authUrl = link.href;
+            clearSignedInUser();
+            window.location.href = authUrl;
+        });
+    });
+
+    const floatingCartScript = document.querySelector('script[src*="assignment4.js"]');
+    if (floatingCartScript && !document.querySelector("[data-floating-cart]")) {
+        const floatingCart = document.createElement("a");
+        floatingCart.className = "floating-cart";
+        floatingCart.href = new URL("profile/cart.html", floatingCartScript.src).href;
+        floatingCart.setAttribute("data-floating-cart", "");
+        floatingCart.setAttribute("aria-label", "Корзина: 0 товаров, сумма 0 тенге");
+        floatingCart.innerHTML = '<svg class="floating-cart-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 11h10.9l2-7.5H6M9 19a1 1 0 1 0 0 .01M17 19a1 1 0 1 0 0 .01"/></svg><span class="floating-cart-copy"><span class="floating-cart-title">Корзина</span><span class="floating-cart-count" data-floating-cart-count>0 товаров</span></span><strong class="floating-cart-total" data-floating-cart-total>0 ₸</strong>';
+        document.body.append(floatingCart);
+
+        const updateFloatingCart = () => {
+            let cart = [];
+            try {
+                const storedCart = JSON.parse(window.localStorage.getItem("zebra-cart-v1") || "[]");
+                if (Array.isArray(storedCart)) cart = storedCart;
+            } catch {
+            }
+
+            const itemCount = cart.reduce((sum, item) => {
+                const quantity = Number(item?.quantity);
+                return sum + (Number.isFinite(quantity) && quantity > 0 ? quantity : 0);
+            }, 0);
+            const total = cart.reduce((sum, item) => {
+                const quantity = Number(item?.quantity);
+                const unitPrice = Number(item?.unitPrice);
+                return sum + (Number.isFinite(quantity) && quantity > 0 && Number.isFinite(unitPrice) && unitPrice > 0
+                    ? quantity * unitPrice
+                    : 0);
+            }, 0);
+            const itemWord = itemCount % 10 === 1 && itemCount % 100 !== 11
+                ? "товар"
+                : itemCount % 10 >= 2 && itemCount % 10 <= 4 && (itemCount % 100 < 12 || itemCount % 100 > 14)
+                    ? "товара"
+                    : "товаров";
+
+            floatingCart.querySelector("[data-floating-cart-count]").textContent = `${itemCount} ${itemWord}`;
+            floatingCart.querySelector("[data-floating-cart-total]").textContent = `${new Intl.NumberFormat("ru-RU").format(total)} ₸`;
+            floatingCart.setAttribute("aria-label", `Корзина: ${itemCount} ${itemWord}, сумма ${new Intl.NumberFormat("ru-RU").format(total)} тенге`);
+        };
+
+        updateFloatingCart();
+        window.addEventListener("zebra:cart-added", updateFloatingCart);
+        window.addEventListener("storage", (event) => {
+            if (!event.key || event.key === "zebra-cart-v1") updateFloatingCart();
+        });
+    }
+
     const stripWhitespace = (value) => value.replace(/\s/g, "");
+    const isValidEmailAddress = (value) => {
+        const parts = value.split("@");
+        if (parts.length !== 2) return false;
+
+        const [localPart, domain] = parts;
+        const localPartPattern = /^[A-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Z0-9!#$%&'*+/=?^_`{|}~-]+)*$/i;
+        const domainLabelPattern = /^[A-Z0-9](?:[A-Z0-9-]*[A-Z0-9])?$/i;
+        const domainLabels = domain.split(".");
+        const topLevelDomain = domainLabels[domainLabels.length - 1] || "";
+
+        return localPartPattern.test(localPart)
+            && domainLabels.length >= 2
+            && topLevelDomain.length >= 2
+            && domainLabels.every((label) => label.length <= 63 && domainLabelPattern.test(label));
+    };
     let navAudioContext = null;
 
     const playNavSound = async () => {
@@ -149,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const updateSubscriptionButton = (showError = subscriptionWasInteractedWith) => {
             if (!subscriptionEmail || !subscriptionButton) return false;
             const normalizedEmail = stripWhitespace(subscriptionEmail.value).trim();
-            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(normalizedEmail);
+            const isValid = isValidEmailAddress(normalizedEmail);
             const isLoading = subscriptionButton.classList.contains("is-loading");
             subscriptionButton.disabled = !isValid || isLoading;
 
@@ -487,11 +609,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const submit = authForm.querySelector("[data-auth-submit]");
         const switches = document.querySelectorAll("[data-auth-switch]");
         const signupFields = authForm.querySelectorAll("[data-signup-only]");
+        const demoLoginPanel = document.querySelector("[data-demo-login]");
+        const fillDemoLogin = demoLoginPanel?.querySelector("[data-fill-demo-login]");
 
         const setMode = (mode) => {
             const signup = mode === "signup";
             authForm.dataset.authMode = mode;
             signupFields.forEach((field) => { field.hidden = !signup; });
+            if (demoLoginPanel) demoLoginPanel.hidden = signup;
             if (confirmation) confirmation.autocomplete = signup ? "new-password" : "off";
             if (password) password.autocomplete = signup ? "new-password" : "current-password";
             title.textContent = signup ? "Создайте аккаунт" : "Войдите в аккаунт";
@@ -505,16 +630,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.classList.toggle("btn-outline-secondary", !active);
             });
             message.textContent = "";
-            message.classList.remove("is-success");
+            message.classList.remove("is-success", "is-info");
             [name, email, phone, password, confirmation].filter(Boolean).forEach((field) => field.removeAttribute("aria-invalid"));
         };
 
         switches.forEach((button) => button.addEventListener("click", () => setMode(button.dataset.authSwitch)));
+        setMode(new URLSearchParams(window.location.search).get("mode") === "login" ? "login" : "signup");
+
+        fillDemoLogin?.addEventListener("click", () => {
+            email.value = DEMO_USER.email;
+            password.value = DEMO_USER.password;
+            email.removeAttribute("aria-invalid");
+            password.removeAttribute("aria-invalid");
+            message.classList.remove("is-success");
+            message.classList.add("is-info");
+            message.textContent = "Демо-данные заполнены. Нажмите «Войти».";
+            email.focus();
+        });
 
         const validateRegistration = () => {
             const signup = authForm.dataset.authMode === "signup";
             const fields = signup ? [name, email, phone, password, confirmation] : [email, password];
-            const values = fields.map((field) => stripWhitespace(field.value));
+            const values = fields.map((field) => {
+                if (field === name || field === phone) return field.value.trim();
+                if (field === email) return stripWhitespace(field.value).trim();
+                return field.value;
+            });
             fields.forEach((field, index) => {
                 field.value = values[index];
             });
@@ -525,12 +666,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     : "";
             const errors = signup ? [
                 !values[0] ? "Укажите имя." : "",
-                !values[1] ? "Укажите электронную почту." : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values[1]) ? "Введите корректный адрес электронной почты." : "",
+                !values[1] ? "Укажите электронную почту." : !isValidEmailAddress(values[1]) ? "Введите корректный адрес электронной почты." : "",
                 !values[2] ? "Укажите номер телефона." : !/^\+?\d[\d\s()-]{8,17}$/.test(values[2]) ? "Введите телефон в формате +7 700 123 45 67." : "",
                 passwordError,
                 !values[4] ? "Повторите пароль." : values[4] !== values[3] ? "Пароли не совпадают." : ""
             ] : [
-                !values[0] ? "Укажите электронную почту." : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values[0]) ? "Введите корректный адрес электронной почты." : "",
+                !values[0] ? "Укажите электронную почту." : !isValidEmailAddress(values[0]) ? "Введите корректный адрес электронной почты." : "",
                 passwordError
             ];
             fields.forEach((field, index) => {
@@ -543,12 +684,13 @@ document.addEventListener("DOMContentLoaded", () => {
             field.addEventListener("input", () => {
                 field.removeAttribute("aria-invalid");
                 message.textContent = "";
-                message.classList.remove("is-success");
+                message.classList.remove("is-success", "is-info");
             });
         });
 
         authForm.addEventListener("submit", (event) => {
             event.preventDefault();
+            message.classList.remove("is-success", "is-info");
             const { errors, fields, values, signup } = validateRegistration();
             const firstInvalidIndex = errors.findIndex(Boolean);
 
@@ -559,8 +701,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            let user;
-            try { user = JSON.parse(window.localStorage.getItem("zebra-user") || "null"); } catch { user = null; }
+            let user = readLocalUser("zebra-user");
             if (signup) {
                 if (user && user.email.toLowerCase() === values[1].toLowerCase()) {
                     setMode("login");
@@ -569,12 +710,33 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
                 user = { name: values[0], email: values[1], phone: values[2], password: values[3] };
-                window.localStorage.setItem("zebra-user", JSON.stringify(user));
-            } else if (!user || user.email.toLowerCase() !== values[0].toLowerCase() || user.password !== values[1]) {
-                message.textContent = "Email или пароль не совпадают. Проверьте данные или зарегистрируйтесь.";
+                try {
+                    window.localStorage.setItem("zebra-user", JSON.stringify(user));
+                } catch {
+                    message.textContent = "Не удалось сохранить аккаунт в этом браузере. Проверьте настройки локального хранилища.";
+                    return;
+                }
+            } else {
+                const storedCredentialsMatch = user
+                    && user.email.toLowerCase() === values[0].toLowerCase()
+                    && user.password === values[1];
+                const demoCredentialsMatch = DEMO_USER.email === values[0].toLowerCase()
+                    && DEMO_USER.password === values[1];
+                if (!storedCredentialsMatch && demoCredentialsMatch) {
+                    user = DEMO_USER;
+                } else if (!storedCredentialsMatch) {
+                    message.textContent = "Email или пароль не совпадают. Проверьте данные или зарегистрируйтесь.";
+                    return;
+                }
+            }
+
+            try {
+                window.localStorage.setItem("zebra-session-user", JSON.stringify(user));
+                window.localStorage.setItem("zebra-session", "active");
+            } catch {
+                message.textContent = "Не удалось выполнить вход в этом браузере. Проверьте настройки локального хранилища.";
                 return;
             }
-            window.localStorage.setItem("zebra-session", "active");
             message.classList.add("is-success");
             message.textContent = signup ? "Аккаунт создан. Открываем профиль…" : "Вход выполнен. Открываем профиль…";
             window.location.href = "../profile.html";
@@ -583,33 +745,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const profileName = document.querySelector("[data-profile-name]");
     if (profileName) {
-        let user;
-        try { user = JSON.parse(window.localStorage.getItem("zebra-user") || "null"); } catch { user = null; }
-        if (user && window.localStorage.getItem("zebra-session") === "active") {
-            profileName.textContent = user.name;
-            document.querySelector("[data-profile-email]").textContent = user.email;
-            document.querySelector("[data-profile-phone]").textContent = user.phone;
-        } else {
-            profileName.textContent = "Гость";
-            document.querySelector("[data-profile-email]").textContent = "Войдите или создайте аккаунт";
-            document.querySelector("[data-profile-phone]").textContent = "—";
+        const user = getSignedInUser();
+        if (!user) {
+            window.location.replace("component/auth.html?mode=login");
+            return;
         }
+
+        profileName.textContent = user.name || "Пользователь";
+        document.querySelector("[data-profile-email]").textContent = user.email;
+        document.querySelector("[data-profile-phone]").textContent = user.phone || "—";
         document.querySelector("[data-profile-logout]")?.addEventListener("click", () => {
-            window.localStorage.removeItem("zebra-session");
-            window.location.href = "component/auth.html";
+            clearSignedInUser();
+            window.location.href = "component/auth.html?mode=login";
         });
     }
 
     const coffeeApiCard = document.querySelector("[data-coffee-api]");
     if (coffeeApiCard) {
+        const refreshButton = coffeeApiCard.querySelector("[data-api-refresh]");
         const loadCoffeeTip = async () => {
             const status = coffeeApiCard.querySelector("[data-api-status]");
             const title = coffeeApiCard.querySelector("[data-api-title]");
             const description = coffeeApiCard.querySelector("[data-api-description]");
             const ingredients = coffeeApiCard.querySelector("[data-api-ingredients]");
+            const controller = new AbortController();
+            const timeoutId = window.setTimeout(() => controller.abort(), 8000);
             status.textContent = "Загружаем идеи напитков…";
+            if (refreshButton) refreshButton.disabled = true;
             try {
-                const response = await fetch("https://api.sampleapis.com/coffee/hot");
+                const response = await fetch("https://api.sampleapis.com/coffee/hot", { signal: controller.signal });
                 if (!response.ok) throw new Error("HTTP " + response.status);
                 const drinks = await response.json();
                 if (!Array.isArray(drinks) || !drinks.length) throw new Error("Пустой ответ API");
@@ -622,10 +786,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 title.textContent = "Классический капучино";
                 description.textContent = "Эспрессо, горячее молоко и воздушная молочная пена — беспроигрышное сочетание.";
                 ingredients.textContent = "эспрессо · молоко · молочная пена";
-                status.textContent = "Не удалось подключиться к API. Показана локальная рекомендация.";
+                status.textContent = controller.signal.aborted
+                    ? "API не ответил за 8 секунд. Показана локальная рекомендация."
+                    : "Не удалось подключиться к API. Показана локальная рекомендация.";
+            } finally {
+                window.clearTimeout(timeoutId);
+                if (refreshButton) refreshButton.disabled = false;
             }
         };
         loadCoffeeTip();
-        coffeeApiCard.querySelector("[data-api-refresh]")?.addEventListener("click", loadCoffeeTip);
+        refreshButton?.addEventListener("click", loadCoffeeTip);
     }
 });

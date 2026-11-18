@@ -1,5 +1,20 @@
 $(document).ready(function () {
     console.log("jQuery is ready!");
+    const isValidSubscriptionEmail = (value) => {
+        const parts = value.split("@");
+        if (parts.length !== 2) return false;
+
+        const [localPart, domain] = parts;
+        const localPartPattern = /^[A-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Z0-9!#$%&'*+/=?^_`{|}~-]+)*$/i;
+        const domainLabelPattern = /^[A-Z0-9](?:[A-Z0-9-]*[A-Z0-9])?$/i;
+        const domainLabels = domain.split(".");
+        const topLevelDomain = domainLabels[domainLabels.length - 1] || "";
+
+        return localPartPattern.test(localPart)
+            && domainLabels.length >= 2
+            && topLevelDomain.length >= 2
+            && domainLabels.every((label) => label.length <= 63 && domainLabelPattern.test(label));
+    };
 
     const $window = $(window);
     const $menuSearch = $("#menu-search");
@@ -287,7 +302,7 @@ $(document).ready(function () {
         const $email = $form.find("[name='email']");
         const email = $email.val().replace(/\s/g, "").trim();
         $email.val(email);
-        const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        const isValidEmail = isValidSubscriptionEmail(email);
         const $message = $form.find("[data-subscription-message]");
         const $button = $form.find(".subscription-submit");
         const $label = $form.find("[data-subscription-submit-label]");

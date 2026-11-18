@@ -21,6 +21,22 @@
         }
     };
 
+    const isValidCheckoutEmail = (value) => {
+        const parts = value.split("@");
+        if (parts.length !== 2) return false;
+
+        const [localPart, domain] = parts;
+        const localPartPattern = /^[A-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Z0-9!#$%&'*+/=?^_`{|}~-]+)*$/i;
+        const domainLabelPattern = /^[A-Z0-9](?:[A-Z0-9-]*[A-Z0-9])?$/i;
+        const domainLabels = domain.split(".");
+        const topLevelDomain = domainLabels[domainLabels.length - 1] || "";
+
+        return localPartPattern.test(localPart)
+            && domainLabels.length >= 2
+            && topLevelDomain.length >= 2
+            && domainLabels.every((label) => label.length <= 63 && domainLabelPattern.test(label));
+    };
+
     const writeStorage = (key, value) => {
         try {
             window.localStorage.setItem(key, JSON.stringify(value));
@@ -653,11 +669,12 @@
             phoneField.value = phone;
             const email = emailField.value.replace(/\s/g, "").trim();
             emailField.value = email;
+            const isValidEmail = isValidCheckoutEmail(email);
             return [
                 name ? "" : "Укажите имя для заказа.",
                 !phone ? "Укажите телефон для связи." : /^\+?\d[\d\s()-]{8,17}$/.test(phone) ? "" : "Введите телефон в формате +7 700 123 45 67.",
                 !email ? "Укажите электронную почту для чека."
-                    : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? ""
+                    : isValidEmail ? ""
                         : "Введите корректный адрес электронной почты."
             ];
         };
@@ -711,6 +728,7 @@
                 if (target) target.textContent = value;
             };
             setSummary("[data-checkout-name]", paymentForm.querySelector("#client-name").value.trim());
+            setSummary("[data-checkout-phone]", paymentForm.querySelector("#client-phone").value.trim());
             setSummary("[data-checkout-email]", paymentForm.querySelector("#client-email").value.trim());
             setSummary("[data-checkout-payment]", paymentForm.querySelector("#pay-method").selectedOptions[0]?.textContent.trim() || "—");
             setSummary("[data-checkout-pickup]", paymentForm.querySelector("#pickup-time").selectedOptions[0]?.textContent.trim() || "—");
