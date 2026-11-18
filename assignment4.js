@@ -258,6 +258,36 @@ document.addEventListener("DOMContentLoaded", () => {
         window.setInterval(updateFooterClock, 1000);
     }
 
+    const mainFooter = document.querySelector("#main-footer.site-footer");
+    if (mainFooter) {
+        const footerBrandColumn = mainFooter.querySelector(".site-footer-brand")?.parentElement;
+        if (footerBrandColumn && !mainFooter.querySelector("[data-open-subscription]")) {
+            const subscribeButton = document.createElement("button");
+            subscribeButton.className = "site-footer-cta site-footer-subscribe";
+            subscribeButton.type = "button";
+            subscribeButton.dataset.openSubscription = "";
+            subscribeButton.textContent = "Подписаться на новости";
+            footerBrandColumn.querySelector(".site-footer-cta")?.after(subscribeButton);
+        }
+
+        const footerBottom = mainFooter.querySelector(".site-footer-bottom");
+        if (footerBottom && !mainFooter.querySelector("[data-copy-site-url]")) {
+            const copyActions = document.createElement("div");
+            copyActions.className = "site-footer-copy-actions";
+            copyActions.innerHTML = '<button class="site-footer-copy-url" type="button" data-copy-site-url title="Скопировать адрес сайта" aria-label="Скопировать адрес сайта"><span class="site-copy-icon" data-copy-icon aria-hidden="true">⧉</span><span data-copy-label>Копировать адрес сайта</span></button><span class="site-footer-copy-status" data-copy-site-status role="status" aria-live="polite"></span>';
+            footerBottom.append(copyActions);
+        }
+
+        if (!document.querySelector("[data-subscription-dialog]")) {
+            const dialog = document.createElement("dialog");
+            dialog.className = "subscription-dialog";
+            dialog.dataset.subscriptionDialog = "";
+            dialog.setAttribute("aria-labelledby", "subscription-title");
+            dialog.innerHTML = '<button class="subscription-dialog-close" type="button" data-close-subscription aria-label="Закрыть окно">×</button><p class="subscription-eyebrow">ZEBRA COFFEE</p><h2 id="subscription-title">Новости и свежие поводы зайти</h2><p class="subscription-description">Расскажем о сезонных напитках, новинках меню и предложениях.</p><form data-subscription-form novalidate><label class="form-label" for="subscription-email">Электронная почта</label><input class="form-control" id="subscription-email" name="email" type="text" inputmode="email" autocomplete="email" placeholder="name@example.com" aria-describedby="subscription-message" aria-required="true" data-no-whitespace><button class="btn btn-info text-white fw-bold w-100 mt-3 subscription-submit" type="submit" disabled><span class="subscription-submit-spinner" aria-hidden="true"></span><span data-subscription-submit-label>Подписаться</span></button><p class="subscription-message" id="subscription-message" data-subscription-message role="status" aria-live="polite" hidden></p></form>';
+            document.body.append(dialog);
+        }
+    }
+
     const subscriptionDialog = document.querySelector("[data-subscription-dialog]");
     if (subscriptionDialog) {
         const subscriptionForm = subscriptionDialog.querySelector("[data-subscription-form]");
@@ -361,6 +391,47 @@ document.addEventListener("DOMContentLoaded", () => {
             updateSubscriptionButton();
         });
     }
+
+    const copySiteButton = document.querySelector("[data-copy-site-url]");
+    copySiteButton?.addEventListener("click", async () => {
+        const deployedUrl = "https://yourqyert.github.io/assignment-1-web-zebra-coffee/";
+        const icon = copySiteButton.querySelector("[data-copy-icon]");
+        const label = copySiteButton.querySelector("[data-copy-label]");
+        const status = document.querySelector("[data-copy-site-status]");
+        let copied = false;
+
+        try {
+            await navigator.clipboard.writeText(deployedUrl);
+            copied = true;
+        } catch {
+            const fallback = document.createElement("textarea");
+            fallback.value = deployedUrl;
+            fallback.setAttribute("readonly", "");
+            fallback.style.position = "fixed";
+            fallback.style.opacity = "0";
+            document.body.append(fallback);
+            fallback.select();
+            try { copied = document.execCommand("copy"); } catch { copied = false; }
+            fallback.remove();
+        }
+
+        if (!copied) {
+            if (status) status.textContent = "Не удалось скопировать адрес. Попробуйте ещё раз.";
+            return;
+        }
+
+        copySiteButton.setAttribute("aria-label", "Адрес сайта скопирован");
+        copySiteButton.title = "Скопировано в буфер обмена";
+        if (icon) icon.textContent = "✓";
+        if (label) label.textContent = "Адрес скопирован";
+        if (status) status.textContent = "Адрес сайта скопирован.";
+        window.setTimeout(() => {
+            copySiteButton.setAttribute("aria-label", "Скопировать адрес сайта");
+            copySiteButton.title = "Скопировать адрес сайта";
+            if (icon) icon.textContent = "⧉";
+            if (label) label.textContent = "Копировать адрес сайта";
+        }, 2200);
+    });
 
     if (backgroundButton) {
         backgroundButton.addEventListener("click", () => {

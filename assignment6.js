@@ -273,29 +273,6 @@ $(document).ready(function () {
         showToast("Вы успешно подписались на новости Zebra Coffee");
     });
 
-    $("[data-copy-site-url]").on("click", async function () {
-        const deployedUrl = "https://yourqyert.github.io/assignment-1-web-zebra-coffee/";
-        const $button = $(this);
-        try {
-            await navigator.clipboard.writeText(deployedUrl);
-        } catch {
-            const $fallback = $("<textarea>").val(deployedUrl).appendTo("body");
-            $fallback.trigger("select");
-            document.execCommand("copy");
-            $fallback.remove();
-        }
-        $button.attr({ "aria-label": "Адрес сайта скопирован", title: "Скопировано в буфер обмена" });
-        $button.find("[data-copy-icon]").text("✓");
-        $button.find("[data-copy-label]").text("Адрес скопирован");
-        $("[data-copy-site-status]").text("Адрес сайта скопирован.");
-        showToast("Ссылка на Zebra Coffee скопирована");
-        window.setTimeout(function () {
-            $button.attr({ "aria-label": "Скопировать адрес сайта", title: "Скопировать адрес сайта" });
-            $button.find("[data-copy-icon]").text("⧉");
-            $button.find("[data-copy-label]").text("Копировать адрес сайта");
-        }, 2200);
-    });
-
     $("[data-subscription-form]").on("submit", function (event) {
         event.preventDefault();
         const $form = $(this);
